@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CollegeOS | Swami Vivekanand Subharti University</title>
+    <script>
+      // Single Page Application (SPA) Router Fallback for GitHub Pages
+      (function() {
+        var base = "/poly";
+        var pathname = window.location.pathname;
+        if (pathname.startsWith(base)) {
+          var subPath = pathname.slice(base.length);
+          if (subPath && subPath !== "/") {
+            var search = window.location.search || "";
+            var hash = window.location.hash || "";
+            // Redirect clean pathname to hash route
+            window.location.replace(base + "/#" + subPath + search + hash);
+            return;
+          }
+        }
+        window.location.replace(base + "/");
+      })();
+    </script>
+  </head>
+  <body style="margin: 0; background-color: #081525; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif;">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px;">
+      <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">CollegeOS Gateway</h2>
+      <p style="color: #94a3b8; font-size: 14px;">Redirecting to requested application portal...</p>
+    </div>
+  </body>
+</html>
