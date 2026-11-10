@@ -3,7 +3,11 @@ import dns from "node:dns";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch {
+  // Ignore in environments where custom DNS servers cannot be set
+}
 import dotenv from "dotenv";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

@@ -30,11 +30,22 @@ app.use(
 // 2. CORS Configuration
 const allowedOrigins = [
   process.env.FRONTEND_URL,
+  "https://sonuk597733-cyber.github.io",
   "http://localhost:5173",
   "http://localhost:3000",
   "http://127.0.0.1:5173",
   "http://127.0.0.1:3000"
 ].filter(Boolean);
+
+// Ensure base domain origin is accepted even if FRONTEND_URL includes path or trailing slash
+if (process.env.FRONTEND_URL) {
+  try {
+    const parsedOrigin = new URL(process.env.FRONTEND_URL).origin;
+    if (!allowedOrigins.includes(parsedOrigin)) {
+      allowedOrigins.push(parsedOrigin);
+    }
+  } catch {}
+}
 
 app.use(
   cors({
