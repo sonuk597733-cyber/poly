@@ -1,0 +1,721 @@
+/* AdminExams.css - Controller of Examinations & Academic Senate Command Console */
+
+.admin-exams-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Header & Scope Selectors */
+.adm-header-pane {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.adm-header-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.adm-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.adm-header-left h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-header-left p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary, #64748b);
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+.adm-scope-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.adm-scope-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.adm-scope-item label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+  text-transform: uppercase;
+}
+
+.adm-scope-item select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #0f172a);
+  font-size: 0.86rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Tab Navigation */
+.adm-tab-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  border-bottom: 2px solid var(--border-color, #e2e8f0);
+  padding-bottom: 4px;
+}
+
+.adm-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.adm-tab-btn:hover {
+  background: var(--bg-hover, #f1f5f9);
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-tab-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+/* Tab Content */
+.adm-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards */
+.adm-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.adm-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.adm-card-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-card-header p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #64748b);
+}
+
+/* Pipeline Grid */
+.adm-pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.adm-pipe-stage {
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.adm-pipe-stage.highlight {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.adm-pipe-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-pipe-lbl {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+  margin-top: 4px;
+}
+
+/* Actions Grid */
+.adm-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.adm-action-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.adm-action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adm-action-icon.blue { background: #eff6ff; color: #2563eb; }
+.adm-action-icon.emerald { background: #ecfdf5; color: #10b981; }
+
+.adm-action-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-action-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--text-secondary, #64748b);
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Result Summary Card */
+.adm-result-summary-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.adm-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adm-summary-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.adm-summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.adm-sum-metric {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  border: 1px solid #dcfce7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.adm-sum-metric.emerald .adm-sum-val { color: #16a34a; }
+.adm-sum-metric.amber .adm-sum-val { color: #d97706; }
+.adm-sum-metric.blue .adm-sum-val { color: #2563eb; }
+.adm-sum-metric.rose .adm-sum-val { color: #dc2626; }
+.adm-sum-metric.purple .adm-sum-val { color: #7c3aed; }
+
+.adm-sum-val {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.adm-sum-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+/* Gazette Toolbar */
+.adm-gazette-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 10px;
+  padding: 12px 18px;
+}
+
+.adm-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-surface, #ffffff);
+  flex: 1;
+  min-width: 240px;
+  max-width: 400px;
+}
+
+.adm-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.86rem;
+  width: 100%;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+}
+
+.adm-filter-group select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #0f172a);
+  font-size: 0.84rem;
+}
+
+.adm-gazette-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Gazette Official Header */
+.adm-gazette-official-header {
+  text-align: center;
+  padding: 16px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 10px;
+}
+
+.adm-gaz-univ {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #1e3a8a;
+}
+
+.adm-gaz-sub {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #475569;
+  margin-top: 2px;
+}
+
+.adm-gaz-title {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  padding: 4px 14px;
+  border-bottom: 2px solid #2563eb;
+  margin: 8px 0;
+}
+
+.adm-gaz-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Gazette Table */
+.adm-gazette-table-wrap {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.adm-gazette-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  min-width: 950px;
+}
+
+.adm-gazette-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.adm-gazette-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--text-primary, #1e293b);
+  vertical-align: middle;
+}
+
+.adm-gazette-table tr:hover {
+  background: #f8fafc;
+}
+
+.adm-gazette-table tr.row-fail {
+  background: #fff1f2;
+}
+
+.adm-cand-name {
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-cand-father {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.adm-sub-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 320px;
+}
+
+.adm-sub-badge {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.adm-grace-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+.adm-status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.adm-status-badge.pass { background: #dcfce7; color: #15803d; }
+.adm-status-badge.pcp { background: #fef3c7; color: #b45309; }
+.adm-status-badge.pwg { background: #dbeafe; color: #1d4ed8; }
+.adm-status-badge.fail { background: #fee2e2; color: #b91c1c; }
+
+.adm-cop-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #b45309;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.adm-standing-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Gazette Signatures */
+.adm-gazette-sign-footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 40px 24px 20px 24px;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.adm-sign-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.adm-sign-line {
+  width: 140px;
+  border-top: 1px dashed #64748b;
+}
+
+.adm-sign-block span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Buttons */
+.adm-btn-primary,
+.adm-btn-emerald,
+.adm-btn-secondary,
+.adm-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+}
+
+.adm-btn-primary { background: #2563eb; color: #ffffff; }
+.adm-btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+
+.adm-btn-emerald { background: #10b981; color: #ffffff; }
+.adm-btn-emerald:hover:not(:disabled) { background: #059669; }
+
+.adm-btn-secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+.adm-btn-secondary:hover:not(:disabled) { background: #e2e8f0; }
+
+.adm-btn-danger { background: #dc2626; color: #ffffff; }
+.adm-btn-danger:hover:not(:disabled) { background: #b91c1c; }
+
+.adm-btn-primary:disabled,
+.adm-btn-emerald:disabled,
+.adm-btn-secondary:disabled,
+.adm-btn-danger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Rules & Form Controls */
+.adm-rules-form,
+.adm-correction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.adm-rules-grid,
+.adm-corr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.adm-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adm-input-group.full {
+  grid-column: 1 / -1;
+}
+
+.adm-input-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary, #0f172a);
+}
+
+.adm-input-group input,
+.adm-input-group textarea,
+.adm-input-group select {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #0f172a);
+  font-size: 0.86rem;
+  outline: none;
+}
+
+.adm-input-group input:focus,
+.adm-input-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Grading Scale Table */
+.adm-scale-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.adm-scale-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.adm-scale-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Loading & Empty States */
+.adm-loading-bar,
+.adm-empty-gazette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.adm-empty-gazette h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+.adm-empty-gazette p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #64748b;
+  max-width: 480px;
+}
+
+/* Utility Helpers */
+.text-center { text-align: center; }
+.font-mono { font-family: monospace; }
+.text-muted { color: #64748b; }
+.text-xs { font-size: 0.72rem; }
+.text-lg { font-size: 1.05rem; }
+.text-blue { color: #2563eb; }
+.text-amber { color: #d97706; }
+.text-purple { color: #7c3aed; }
+.text-emerald { color: #10b981; }
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Print Stylesheet for Official University Gazette */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .adm-gazette-official-header,
+  .adm-gazette-official-header *,
+  .adm-gazette-table-wrap,
+  .adm-gazette-table-wrap * {
+    visibility: visible;
+  }
+  .adm-gazette-official-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .adm-gazette-table-wrap {
+    position: absolute;
+    left: 0;
+    top: 140px;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

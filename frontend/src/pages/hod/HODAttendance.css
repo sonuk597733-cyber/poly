@@ -1,0 +1,1846 @@
+/* ==========================================================================
+   COLLEGEOS — HOD DEPARTMENT ATTENDANCE & ACADEMIC GOVERNANCE
+   Enterprise-Grade Styling System for Department-Wide Lecture Schedules,
+   Faculty Teaching Activity Auditing, and Student Roll-Call Compliance.
+
+   TABLE OF CONTENTS:
+   1. Design Tokens & Department Identity (Emerald / Slate / Navy / Amber)
+   2. Container Architecture & Department Page Shell
+   3. Department Header & Academic Navigation Strip
+   4. Department KPI Summary Strip (4 Core Department Metrics)
+   5. Mode Switcher & Studio Toggle Navigation
+   6. Department Teaching Workspace Grid (Calendar Left / Inspector Right)
+   7. Department Calendar Panel & Weekday Alignment
+   8. Department Conduction Date Cells (Scheduled, Done, Pending Badges)
+   9. Daily Department Lecture Inspector Panel
+   10. Department Lecture Cards (Faculty, Room, Timing, Present/Absent Split)
+   11. Department Student Attendance Roster Modal
+   12. Student Roster KPI Bar & Status Filters
+   13. Student Roster Data Table with Verified Status Badges
+   14. Master Roll-Call Studio Integration Wrapper
+   15. Faculty Department Teaching Load Matrix
+   16. Section-Wise Attendance Breakdown (Section A vs Section B)
+   17. Department Attendance Shortage Escalation Strip (<60% Warning)
+   18. Faculty Conduction Compliance Badges & Alerts
+   19. Timetable Period Slots Strip & Lecture Breakdown
+   20. Micro-Interactions, Shimmer Effects & Keyframe Animations
+   21. Comprehensive Dark Theme System ([data-theme="dark"] & .dark)
+   22. Advanced Responsive Layout Engine (1920px -> 360px)
+   23. Accessibility, High-Contrast & Reduced Motion
+   24. Official Print Stylesheet for Department Board Archiving
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS & DEPARTMENT IDENTITY
+   ========================================================================== */
+
+:root {
+  --hod-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --hod-font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Color Palette - HOD Emerald & Executive Governance */
+  --hod-primary: #059669;
+  --hod-primary-hover: #047857;
+  --hod-primary-active: #065F46;
+  --hod-primary-soft: #ECFDF5;
+  --hod-primary-line: #A7F3D0;
+
+  --hod-accent: #0284C7;
+  --hod-accent-hover: #0369A1;
+  --hod-accent-soft: #F0F9FF;
+  --hod-accent-line: #BAE6FD;
+
+  --hod-brand: #FF6B0A;
+  --hod-brand-hover: #EA580C;
+  --hod-brand-soft: #FFF7ED;
+  --hod-brand-line: #FFEDD5;
+
+  /* Neutral Slate Scale */
+  --hod-navy-950: #0B1120;
+  --hod-navy-900: #0F172A;
+  --hod-navy-800: #1E293B;
+  --hod-navy-700: #334155;
+  --hod-navy-600: #475569;
+  --hod-navy-500: #64748B;
+  --hod-navy-400: #94A3B8;
+  --hod-navy-300: #CBD5E1;
+  --hod-navy-200: #E2E8F0;
+  --hod-navy-100: #F1F5F9;
+  --hod-navy-50:  #F8FAFC;
+
+  /* Status Colors */
+  --hod-emerald-700: #047857;
+  --hod-emerald-600: #059669;
+  --hod-emerald-500: #10B981;
+  --hod-emerald-100: #D1FAE5;
+  --hod-emerald-50:  #ECFDF5;
+
+  --hod-crimson-700: #B91C1C;
+  --hod-crimson-600: #DC2626;
+  --hod-crimson-500: #EF4444;
+  --hod-crimson-100: #FEE2E2;
+  --hod-crimson-50:  #FEF2F2;
+
+  --hod-amber-700: #B45309;
+  --hod-amber-600: #D97706;
+  --hod-amber-500: #F59E0B;
+  --hod-amber-100: #FEF3C7;
+  --hod-amber-50:  #FFFBEB;
+
+  --hod-purple-700: #6D28D9;
+  --hod-purple-600: #7C3AED;
+  --hod-purple-500: #8B5CF6;
+  --hod-purple-100: #EDE9FE;
+  --hod-purple-50:  #F5F3FF;
+
+  --hod-teal-700: #0F766E;
+  --hod-teal-600: #0D9488;
+  --hod-teal-500: #14B8A6;
+  --hod-teal-100: #CCFBF1;
+
+  /* Surfaces & Shadows */
+  --hod-surface: #FFFFFF;
+  --hod-surface-alt: #F8FAFC;
+  --hod-surface-card: #FFFFFF;
+  --hod-border: #E2E8F0;
+  --hod-border-strong: #CBD5E1;
+  --hod-border-focus: #059669;
+
+  --hod-shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --hod-shadow-sm: 0 2px 4px -1px rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --hod-shadow-md: 0 8px 18px -4px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+  --hod-shadow-lg: 0 16px 32px -6px rgba(15, 23, 42, 0.1), 0 6px 12px -3px rgba(15, 23, 42, 0.04);
+  --hod-shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.14);
+  --hod-shadow-glow-emerald: 0 0 22px -2px rgba(5, 150, 105, 0.28);
+
+  /* Border Radii */
+  --hod-radius-xs: 4px;
+  --hod-radius-sm: 8px;
+  --hod-radius-md: 12px;
+  --hod-radius-lg: 16px;
+  --hod-radius-xl: 20px;
+  --hod-radius-full: 9999px;
+
+  /* Easing */
+  --hod-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --hod-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --hod-transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   2. CONTAINER ARCHITECTURE & DEPARTMENT PAGE SHELL
+   ========================================================================== */
+
+.staff-attendance-page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--hod-font-sans);
+  color: var(--hod-navy-900);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.teaching-calendar-master-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: hodFadeIn 0.3s var(--hod-ease);
+}
+
+@keyframes hodFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hodScaleUp {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   3. DEPARTMENT HEADER & ACADEMIC NAVIGATION STRIP
+   ========================================================================== */
+
+.teaching-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--hod-border);
+}
+
+.teaching-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.teaching-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.role-tag-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--hod-primary-soft);
+  color: var(--hod-primary);
+  padding: 4px 10px;
+  border-radius: var(--hod-radius-sm);
+  border: 1px solid var(--hod-primary-line);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--hod-shadow-xs);
+}
+
+.role-tag-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hod-primary);
+  box-shadow: 0 0 6px rgba(5, 150, 105, 0.6);
+}
+
+.teaching-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.teaching-desc {
+  font-size: 13px;
+  color: var(--hod-navy-600);
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.teaching-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   4. DEPARTMENT KPI SUMMARY STRIP (4 CORE DEPARTMENT METRICS)
+   ========================================================================== */
+
+.teaching-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.t-kpi-card {
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: var(--hod-shadow-xs);
+  transition: var(--hod-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.t-kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: var(--hod-transition);
+}
+
+.t-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--hod-shadow-md);
+  border-color: var(--hod-navy-300);
+}
+
+.t-kpi-card:hover::before {
+  background: var(--hod-primary);
+}
+
+.t-kpi-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--hod-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-blue {
+  background: var(--hod-accent-soft);
+  color: var(--hod-accent);
+  border: 1px solid var(--hod-accent-line);
+}
+
+.icon-emerald {
+  background: var(--hod-emerald-50);
+  color: var(--hod-emerald-600);
+  border: 1px solid var(--hod-emerald-100);
+}
+
+.icon-amber {
+  background: var(--hod-amber-50);
+  color: var(--hod-amber-600);
+  border: 1px solid var(--hod-amber-100);
+}
+
+.icon-purple {
+  background: var(--hod-purple-50);
+  color: var(--hod-purple-600);
+  border: 1px solid var(--hod-purple-100);
+}
+
+.t-kpi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.t-kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--hod-navy-500);
+}
+
+.t-kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  line-height: 1.1;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.font-emerald { color: var(--hod-emerald-600) !important; }
+.font-amber   { color: var(--hod-amber-600) !important; }
+.font-purple  { color: var(--hod-purple-600) !important; }
+.font-crimson { color: var(--hod-crimson-600) !important; }
+.font-muted   { color: var(--hod-navy-400) !important; }
+
+.t-kpi-sub {
+  font-size: 11px;
+  color: var(--hod-navy-500);
+}
+
+/* ==========================================================================
+   5. MODE SWITCHER & STUDIO TOGGLE NAVIGATION
+   ========================================================================== */
+
+.studio-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.studio-top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 0;
+}
+
+.btn-back-to-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hod-navy-800);
+  cursor: pointer;
+  box-shadow: var(--hod-shadow-xs);
+  transition: var(--hod-transition);
+}
+
+.btn-back-to-calendar:hover {
+  background: var(--hod-primary-soft);
+  color: var(--hod-primary);
+  border-color: var(--hod-primary-line);
+  transform: translateX(-2px);
+}
+
+.btn-open-studio-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--hod-brand), var(--hod-brand-hover));
+  color: #ffffff;
+  border: none;
+  border-radius: var(--hod-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 10, 0.25);
+  transition: var(--hod-transition);
+}
+
+.btn-open-studio-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 107, 10, 0.35);
+}
+
+.btn-refresh-unified {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hod-navy-700);
+  cursor: pointer;
+  box-shadow: var(--hod-shadow-xs);
+  transition: var(--hod-transition);
+}
+
+.btn-refresh-unified:hover:not(:disabled) {
+  border-color: var(--hod-primary);
+  color: var(--hod-primary);
+  background: var(--hod-primary-soft);
+}
+
+.spin-icon {
+  animation: hodSpin 1s linear infinite;
+}
+
+@keyframes hodSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   6. DEPARTMENT TEACHING WORKSPACE GRID (CALENDAR LEFT / INSPECTOR RIGHT)
+   ========================================================================== */
+
+.teaching-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.teaching-calendar-panel,
+.teaching-day-inspector-panel {
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-xl);
+  box-shadow: var(--hod-shadow-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 16px 22px;
+  background: var(--hod-navy-50);
+  border-bottom: 1px solid var(--hod-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hod-navy-600);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot-green { background: var(--hod-emerald-500); }
+.dot-amber { background: var(--hod-amber-500); }
+.dot-gray  { background: var(--hod-navy-400); }
+
+/* ==========================================================================
+   7. DEPARTMENT CALENDAR PANEL & NAVIGATION
+   ========================================================================== */
+
+.global-month-bar {
+  display: flex;
+  align-items: center;
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 4px 8px;
+  box-shadow: var(--hod-shadow-xs);
+  gap: 8px;
+}
+
+.g-month-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--hod-navy-600);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--hod-transition);
+}
+
+.g-month-btn:hover {
+  background: var(--hod-navy-100);
+  color: var(--hod-navy-950);
+}
+
+.g-month-display {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hod-navy-900);
+  min-width: 110px;
+  text-align: center;
+}
+
+.g-today-pill {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--hod-primary-soft);
+  color: var(--hod-primary);
+  border: 1px solid var(--hod-primary-line);
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: var(--hod-transition);
+}
+
+.g-today-pill:hover {
+  background: var(--hod-primary);
+  color: #ffffff;
+}
+
+.panel-calendar-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teaching-weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--hod-border);
+}
+
+.wd-col {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--hod-navy-400);
+  padding: 4px 0;
+}
+
+.wd-sunday {
+  color: var(--hod-crimson-600);
+}
+
+/* ==========================================================================
+   8. DEPARTMENT CONDUCTION DATE CELLS
+   ========================================================================== */
+
+.teaching-cells-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.t-cal-cell {
+  min-height: 72px;
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-sm);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--hod-surface);
+  transition: var(--hod-transition);
+  position: relative;
+}
+
+.t-cal-cell:hover {
+  border-color: var(--hod-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--hod-shadow-sm);
+  z-index: 2;
+}
+
+.t-cell-empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.t-cell-selected {
+  border-color: var(--hod-primary) !important;
+  background: var(--hod-primary-soft) !important;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.25) !important;
+}
+
+.t-cell-today {
+  border-color: var(--hod-accent) !important;
+  border-width: 2px !important;
+}
+
+.t-cell-sunday {
+  background: var(--hod-navy-50);
+}
+
+.t-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.t-cell-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hod-navy-800);
+}
+
+.t-today-badge {
+  font-size: 8px;
+  font-weight: 800;
+  background: var(--hod-accent);
+  color: #ffffff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.t-cell-badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.t-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.t-badge-done {
+  background: var(--hod-emerald-100);
+  color: var(--hod-emerald-700);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.t-badge-pending {
+  background: var(--hod-amber-100);
+  color: var(--hod-amber-700);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.t-cell-holiday-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--hod-amber-700);
+  background: var(--hod-amber-100);
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   9. DAILY DEPARTMENT LECTURE INSPECTOR PANEL
+   ========================================================================== */
+
+.teaching-day-inspector-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inspector-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--hod-primary);
+}
+
+.inspector-lecture-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--hod-navy-100);
+  color: var(--hod-navy-800);
+  padding: 4px 10px;
+  border-radius: var(--hod-radius-sm);
+}
+
+.inspector-content {
+  padding: 22px;
+  overflow-y: auto;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inspector-placeholder,
+.inspector-no-lectures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--hod-navy-400);
+  gap: 12px;
+}
+
+.inspector-no-lectures h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--hod-navy-800);
+}
+
+.inspector-no-lectures p,
+.inspector-placeholder p {
+  font-size: 12px;
+  margin: 0;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.inspector-lectures-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   10. DEPARTMENT LECTURE CARDS
+   ========================================================================== */
+
+.inspector-lecture-card {
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 16px 18px;
+  background: var(--hod-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: var(--hod-transition);
+  box-shadow: var(--hod-shadow-xs);
+  position: relative;
+}
+
+.inspector-lecture-card:hover {
+  box-shadow: var(--hod-shadow-md);
+  border-color: var(--hod-navy-300);
+}
+
+.lec-card-submitted {
+  border-left: 4px solid var(--hod-primary);
+}
+
+.lec-card-pending {
+  border-left: 4px solid var(--hod-amber-500);
+}
+
+.lec-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lec-period-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--hod-navy-100);
+  color: var(--hod-navy-800);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.lec-time-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hod-navy-600);
+}
+
+.lec-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-status-pill.pill-done {
+  background: var(--hod-emerald-100);
+  color: var(--hod-emerald-700);
+}
+
+.lec-status-pill.pill-warn {
+  background: var(--hod-amber-100);
+  color: var(--hod-amber-700);
+}
+
+.lec-subj-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lec-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--hod-navy-600);
+  background: var(--hod-navy-50);
+  border: 1px solid var(--hod-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-attendance-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--hod-navy-50);
+  border-radius: var(--hod-radius-sm);
+  padding: 10px;
+}
+
+.att-num-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.num-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--hod-navy-500);
+}
+
+.num-val {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.lec-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.btn-view-roster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hod-primary-soft);
+  border: 1px solid var(--hod-primary-line);
+  border-radius: var(--hod-radius-sm);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--hod-primary);
+  cursor: pointer;
+  transition: var(--hod-transition);
+}
+
+.btn-view-roster:hover {
+  background: var(--hod-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   11. DEPARTMENT STUDENT ATTENDANCE ROSTER MODAL
+   ========================================================================== */
+
+.subj-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: hodFadeIn 0.15s ease;
+}
+
+.subj-modal-container.roster-modal {
+  background: var(--hod-surface);
+  border-radius: var(--hod-radius-xl);
+  box-shadow: var(--hod-shadow-xl);
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--hod-border);
+  animation: hodSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hodSlideUp {
+  from { transform: translateY(20px) scale(0.97); }
+  to { transform: translateY(0) scale(1); }
+}
+
+.subj-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--hod-border);
+  background: var(--hod-navy-50);
+}
+
+.subj-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--hod-primary);
+}
+
+.subj-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  margin: 0;
+}
+
+.subj-modal-code {
+  font-size: 12px;
+  color: var(--hod-navy-500);
+}
+
+.subj-modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--hod-navy-400);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: var(--hod-transition);
+}
+
+.subj-modal-close:hover {
+  background: var(--hod-navy-200);
+  color: var(--hod-navy-950);
+}
+
+/* Roster KPI Summary Grid */
+.subj-graph-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.subj-graph-kpi-card {
+  background: var(--hod-navy-50);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-graph-kpi-card .kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--hod-navy-500);
+}
+
+.subj-graph-kpi-card .kpi-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+}
+
+.subj-graph-kpi-card .kpi-val.good { color: var(--hod-emerald-600); }
+.subj-graph-kpi-card .kpi-val.alert { color: var(--hod-crimson-600); }
+.subj-graph-kpi-card .kpi-val.highlight { color: var(--hod-primary); }
+
+.subj-graph-kpi-card .kpi-sub {
+  font-size: 11px;
+  color: var(--hod-navy-500);
+}
+
+/* Search and Filters inside modal */
+.search-input-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hod-navy-50);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 8px 12px;
+}
+
+.search-input-box:focus-within {
+  border-color: var(--hod-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.search-input-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--hod-navy-900);
+  width: 100%;
+}
+
+.search-icon {
+  color: var(--hod-navy-400);
+}
+
+/* Roster Table */
+.history-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+}
+
+.history-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.history-data-table th {
+  background: var(--hod-navy-50);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--hod-navy-700);
+  border-bottom: 1px solid var(--hod-border);
+}
+
+.history-data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--hod-border);
+  color: var(--hod-navy-800);
+}
+
+.history-data-table tr:hover {
+  background: var(--hod-navy-50);
+}
+
+.status-cell-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-cell-pill.pill-pres {
+  background: var(--hod-emerald-100);
+  color: var(--hod-emerald-700);
+}
+
+.status-cell-pill.pill-abs {
+  background: var(--hod-crimson-100);
+  color: var(--hod-crimson-700);
+}
+
+.status-cell-pill.pill-pend {
+  background: var(--hod-amber-100);
+  color: var(--hod-amber-700);
+}
+
+/* ==========================================================================
+   15. FACULTY DEPARTMENT TEACHING LOAD MATRIX
+   ========================================================================== */
+
+.hod-faculty-matrix-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-lg);
+  padding: 20px;
+  box-shadow: var(--hod-shadow-xs);
+}
+
+.hod-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--hod-border);
+  padding-bottom: 12px;
+}
+
+.hod-matrix-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--hod-navy-950);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hod-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.faculty-load-card {
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 14px 16px;
+  background: var(--hod-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: var(--hod-transition);
+}
+
+.faculty-load-card:hover {
+  border-color: var(--hod-primary);
+  box-shadow: var(--hod-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.faculty-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faculty-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hod-navy-900);
+}
+
+.faculty-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--hod-navy-100);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.faculty-progress-fill {
+  height: 100%;
+  background: var(--hod-primary);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* ==========================================================================
+   16. SECTION-WISE ATTENDANCE BREAKDOWN (SECTION A VS SECTION B)
+   ========================================================================== */
+
+.hod-section-breakdown-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.section-comparison-card {
+  background: var(--hod-surface);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-comparison-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hod-navy-800);
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--hod-navy-600);
+}
+
+/* ==========================================================================
+   17. DEPARTMENT ATTENDANCE SHORTAGE ESCALATION STRIP (<60% WARNING)
+   ========================================================================== */
+
+.hod-shortage-alert-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--hod-crimson-50);
+  border: 1px solid var(--hod-crimson-100);
+  border-radius: var(--hod-radius-md);
+  padding: 14px 18px;
+}
+
+.shortage-alert-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hod-crimson-700);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-escalate-shortage {
+  background: var(--hod-crimson-600);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--hod-radius-sm);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--hod-transition);
+}
+
+.btn-escalate-shortage:hover {
+  background: var(--hod-crimson-700);
+}
+
+/* ==========================================================================
+   18. FACULTY CONDUCTION COMPLIANCE BADGES & ALERTS
+   ========================================================================== */
+
+.compliance-badge-on-time {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--hod-emerald-100);
+  color: var(--hod-emerald-700);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.compliance-badge-overdue {
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--hod-crimson-100);
+  color: var(--hod-crimson-700);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   19. TIMETABLE PERIOD SLOTS STRIP & LECTURE BREAKDOWN
+   ========================================================================== */
+
+.hod-period-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 6px 0;
+}
+
+.hod-period-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: var(--hod-radius-sm);
+  background: var(--hod-navy-50);
+  border: 1px solid var(--hod-border);
+  color: var(--hod-navy-700);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   20. MICRO-INTERACTIONS, SHIMMER EFFECTS & KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes hodPulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.t-cell-selected::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--hod-radius-sm) + 2px);
+  border: 2px solid var(--hod-primary);
+  pointer-events: none;
+  animation: hodPulseRing 2s infinite ease-in-out;
+}
+
+.teaching-loading-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--hod-navy-400);
+  gap: 12px;
+}
+
+.teaching-loading-grid p {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   21. COMPREHENSIVE DARK THEME SYSTEM ([data-theme="dark"] & .dark)
+   ========================================================================== */
+
+[data-theme="dark"] .staff-attendance-page-container,
+.dark .staff-attendance-page-container {
+  --hod-surface: #0F172A;
+  --hod-surface-alt: #1E293B;
+  --hod-surface-card: #0F172A;
+  --hod-border: #334155;
+  --hod-border-strong: #475569;
+  --hod-border-focus: #10B981;
+
+  --hod-navy-950: #F8FAFC;
+  --hod-navy-900: #F1F5F9;
+  --hod-navy-800: #E2E8F0;
+  --hod-navy-700: #CBD5E1;
+  --hod-navy-600: #94A3B8;
+  --hod-navy-500: #64748B;
+  --hod-navy-400: #475569;
+  --hod-navy-300: #334155;
+  --hod-navy-200: #1E293B;
+  --hod-navy-100: #1E293B;
+  --hod-navy-50:  #0B1120;
+
+  --hod-primary: #10B981;
+  --hod-primary-hover: #059669;
+  --hod-primary-soft: rgba(16, 185, 129, 0.16);
+  --hod-primary-line: rgba(16, 185, 129, 0.35);
+
+  --hod-accent: #38BDF8;
+  --hod-accent-soft: rgba(56, 189, 248, 0.16);
+  --hod-accent-line: rgba(56, 189, 248, 0.35);
+
+  --hod-brand: #FF6B0A;
+  --hod-brand-soft: rgba(255, 107, 10, 0.16);
+  --hod-brand-line: rgba(255, 107, 10, 0.35);
+
+  --hod-emerald-700: #34D399;
+  --hod-emerald-600: #10B981;
+  --hod-emerald-100: rgba(16, 185, 129, 0.2);
+  --hod-emerald-50:  rgba(16, 185, 129, 0.1);
+
+  --hod-crimson-700: #F87171;
+  --hod-crimson-600: #EF4444;
+  --hod-crimson-100: rgba(239, 68, 68, 0.2);
+  --hod-crimson-50:  rgba(239, 68, 68, 0.1);
+
+  --hod-amber-700: #FBBF24;
+  --hod-amber-600: #F59E0B;
+  --hod-amber-100: rgba(245, 158, 11, 0.2);
+  --hod-amber-50:  rgba(245, 158, 11, 0.1);
+
+  --hod-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --hod-shadow-sm: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  --hod-shadow-md: 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+  --hod-shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.6);
+  --hod-shadow-xl: 0 28px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .t-cal-cell,
+.dark .t-cal-cell {
+  background: #0F172A;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .t-cal-cell:hover,
+.dark .t-cal-cell:hover {
+  background: #1E293B;
+  border-color: #10B981;
+}
+
+[data-theme="dark"] .t-cell-sunday,
+.dark .t-cell-sunday {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .t-cell-selected,
+.dark .t-cell-selected {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: #10B981 !important;
+}
+
+[data-theme="dark"] .inspector-lecture-card,
+.dark .inspector-lecture-card {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .inspector-lecture-card:hover,
+.dark .inspector-lecture-card:hover {
+  border-color: #475569;
+  background: #131E35;
+}
+
+[data-theme="dark"] .panel-header,
+.dark .panel-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lec-attendance-numbers,
+.dark .lec-attendance-numbers {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .meta-tag,
+.dark .meta-tag {
+  background: #1E293B;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-view-roster,
+.dark .btn-view-roster {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #6EE7B7;
+}
+
+[data-theme="dark"] .btn-view-roster:hover,
+.dark .btn-view-roster:hover {
+  background: #059669;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .global-month-bar,
+.dark .global-month-bar {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .g-month-btn:hover,
+.dark .g-month-btn:hover {
+  background: #1E293B;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .btn-refresh-unified,
+.dark .btn-refresh-unified {
+  background: #0F172A;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-refresh-unified:hover,
+.dark .btn-refresh-unified:hover {
+  background: rgba(16, 185, 129, 0.16);
+  color: #6EE7B7;
+  border-color: #10B981;
+}
+
+[data-theme="dark"] .subj-modal-container.roster-modal,
+.dark .subj-modal-container.roster-modal {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-modal-header,
+.dark .subj-modal-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-graph-kpi-card,
+.dark .subj-graph-kpi-card {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box,
+.dark .search-input-box {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box input,
+.dark .search-input-box input {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .history-data-table th,
+.dark .history-data-table th {
+  background: #0B1120;
+  border-color: #334155;
+  color: #94A3B8;
+}
+
+[data-theme="dark"] .history-data-table td,
+.dark .history-data-table td {
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+[data-theme="dark"] .history-data-table tr:hover,
+.dark .history-data-table tr:hover {
+  background: #1E293B;
+}
+
+[data-theme="dark"] .hod-faculty-matrix-container,
+.dark .hod-faculty-matrix-container {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .faculty-load-card,
+.dark .faculty-load-card {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .section-comparison-card,
+.dark .section-comparison-card {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+/* ==========================================================================
+   22. ADVANCED RESPONSIVE LAYOUT ENGINE (1920px -> 360px)
+   ========================================================================== */
+
+@media (min-width: 1920px) {
+  .staff-attendance-page-container {
+    max-width: 1800px;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+  }
+  .t-cal-cell {
+    min-height: 84px;
+    padding: 10px;
+  }
+  .t-cell-num {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .teaching-kpi-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+  .teaching-header-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .teaching-header-actions {
+    justify-content: space-between;
+  }
+  .hod-section-breakdown-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .staff-attendance-page-container {
+    padding: 14px;
+    gap: 16px;
+  }
+  .teaching-kpi-strip {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .teaching-title {
+    font-size: 20px;
+  }
+  .teaching-desc {
+    font-size: 12px;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .legend-pills {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .panel-calendar-body {
+    padding: 14px 12px;
+  }
+  .t-cal-cell {
+    min-height: 60px;
+    padding: 5px 4px;
+  }
+  .t-cell-num {
+    font-size: 11px;
+  }
+  .t-badge {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+  .subj-graph-kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .subj-modal-container.roster-modal {
+    margin: 10px;
+    max-height: 94vh;
+  }
+  .subj-modal-header {
+    padding: 16px 18px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-attendance-page-container {
+    padding: 10px;
+  }
+  .global-month-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .g-month-display {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  .btn-open-studio-toggle,
+  .btn-refresh-unified {
+    width: 100%;
+    justify-content: center;
+  }
+  .t-cal-cell {
+    min-height: 52px;
+    padding: 3px 2px;
+  }
+  .t-cell-num {
+    font-size: 10px;
+  }
+  .t-today-badge {
+    display: none;
+  }
+  .inspector-content {
+    padding: 14px 12px;
+  }
+  .inspector-lecture-card {
+    padding: 12px 14px;
+  }
+  .lec-subj-name {
+    font-size: 14px;
+  }
+  .lec-attendance-numbers {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 6px;
+    gap: 4px;
+  }
+  .num-val {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .t-cal-cell {
+    min-height: 46px;
+  }
+  .t-badge {
+    display: none;
+  }
+  .t-cell-has-lectures::after {
+    content: "•";
+    color: var(--hod-primary);
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   23. ACCESSIBILITY, HIGH-CONTRAST & REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .t-cal-cell,
+  .inspector-lecture-card,
+  .t-kpi-card,
+  .subj-modal-container {
+    border: 1px solid CanvasText !important;
+  }
+  .t-cell-selected {
+    outline: 2px solid Highlight !important;
+  }
+}
+
+/* ==========================================================================
+   24. OFFICIAL PRINT STYLESHEET FOR DEPARTMENT BOARD ARCHIVING
+   ========================================================================== */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .teaching-calendar-master-view,
+  .teaching-calendar-master-view * {
+    visibility: visible;
+  }
+  .teaching-calendar-master-view {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: transparent !important;
+  }
+  .teaching-header-actions,
+  .btn-open-studio-toggle,
+  .btn-refresh-unified,
+  .btn-view-roster,
+  .subj-modal-backdrop {
+    display: none !important;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .t-kpi-card,
+  .teaching-calendar-panel,
+  .teaching-day-inspector-panel,
+  .inspector-lecture-card {
+    box-shadow: none !important;
+    border: 1px solid #94A3B8 !important;
+    page-break-inside: avoid;
+  }
+}

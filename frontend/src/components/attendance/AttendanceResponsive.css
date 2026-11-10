@@ -1,0 +1,57 @@
+/* ==========================================================================
+   COLLEGEOS — ATTENDANCE RESPONSIVE ENGINE CSS
+   Mobile First & Desktop Media Queries: 1920px -> 360px
+   ========================================================================== */
+
+/* 1920px Full HD */
+@media (min-width: 1920px) {
+  .attendance-page,
+  .subject-attendance-page,
+  .master-attendance-studio {
+    max-width: 1800px;
+  }
+}
+
+/* 1024px Tablets Landscape */
+@media (max-width: 1024px) {
+  .att-calendar-grid {
+    gap: 4px;
+  }
+  .att-calendar-day-cell {
+    border-radius: 8px;
+    font-size: 11px;
+  }
+}
+
+/* 768px Tablets Portrait */
+@media (max-width: 768px) {
+  .att-radial-container {
+    width: 180px;
+    height: 180px;
+  }
+  .att-radial-pct-number {
+    font-size: 30px;
+  }
+}
+
+/* 480px Large Mobile */
+@media (max-width: 480px) {
+  .att-calendar-day-header {
+    font-size: 9px;
+  }
+  .att-calendar-day-cell {
+    font-size: 10px;
+    border-radius: 6px;
+  }
+}
+
+/* 390px / 360px Small Mobile */
+@media (max-width: 390px) {
+  .att-radial-container {
+    width: 150px;
+    height: 150px;
+  }
+  .att-radial-pct-number {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,522 @@
+/* ==========================================================================
+   COLLEGEOS — HEAD OF DEPARTMENT (HOD) TIMETABLE PREMIUM DESIGN SYSTEM
+   Supports Light Mode (#F6F8FC) & Dark Mode (#0B1120).
+   Uses --erp-* master tokens with dedicated responsive layouts.
+   ========================================================================== */
+
+.hod-tt-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: erpFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 1. TOP HEADER & CONTROLS */
+.hod-tt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 24px 28px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  transition: all 0.2s ease;
+}
+
+.hod-tt-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.025em;
+  margin: 0 0 6px 0;
+}
+
+.hod-tt-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--erp-text-secondary, #64748B);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.hod-tt-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hod-select {
+  padding: 9px 16px;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 10px);
+  color: var(--erp-text-primary, #172033);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.16s ease;
+}
+
+.hod-select:focus {
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 0 0 3px var(--erp-primary-light, rgba(79, 70, 229, 0.12));
+}
+
+/* 2. APPROVAL WORKFLOW STATUS CARD */
+.hod-approval-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 22px 26px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  flex-wrap: wrap;
+  transition: all 0.2s ease;
+}
+
+.hod-approval-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.hod-status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hod-approval-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+.hod-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--erp-radius-full, 9999px);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.hod-status-pill.published {
+  background: var(--erp-success-light, #DCFCE7);
+  color: var(--erp-success, #16A34A);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+}
+
+[data-theme="dark"] .hod-status-pill.published {
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ADE80;
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.hod-status-pill.approved {
+  background: var(--erp-primary-light, #EEF2FF);
+  color: var(--erp-primary, #4F46E5);
+  border: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+[data-theme="dark"] .hod-status-pill.approved {
+  background: rgba(129, 140, 248, 0.18);
+  color: #A5B4FC;
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+.hod-status-pill.under_review {
+  background: var(--erp-warning-light, #FEF3C7);
+  color: var(--erp-warning, #D97706);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.hod-status-pill.changes_requested {
+  background: var(--erp-danger-light, #FEE2E2);
+  color: var(--erp-danger, #DC2626);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.hod-status-pill.draft {
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  color: var(--erp-text-secondary, #64748B);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.hod-ver-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--erp-text-secondary, #64748B);
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  padding: 3px 8px;
+  border-radius: var(--erp-radius-sm, 6px);
+}
+
+.hod-status-desc {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--erp-text-secondary, #64748B);
+  line-height: 1.5;
+}
+
+.hod-approval-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* BUTTONS */
+.hod-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--erp-radius-md, 10px);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--erp-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04));
+}
+
+.hod-btn-approve {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+}
+
+.hod-btn-approve:hover:not(:disabled) {
+  background: var(--erp-primary-hover, #4338CA);
+  transform: translateY(-1px);
+}
+
+.hod-btn-reject {
+  background: var(--erp-danger, #DC2626);
+  color: #FFFFFF;
+}
+
+.hod-btn-reject:hover:not(:disabled) {
+  background: var(--erp-danger-hover, #B91C1C);
+  transform: translateY(-1px);
+}
+
+.hod-btn-publish {
+  background: var(--erp-success, #16A34A);
+  color: #FFFFFF;
+}
+
+.hod-btn-publish:hover:not(:disabled) {
+  background: var(--erp-success-hover, #15803D);
+  transform: translateY(-1px);
+}
+
+.hod-btn-outline {
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-text-primary, #172033);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.hod-btn-outline:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  border-color: var(--erp-border-hover, #CBD5E1);
+  transform: translateY(-1px);
+}
+
+/* CONFLICT STATUS ALERT */
+.hod-conflict-alert {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: var(--erp-radius-md, 12px);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.hod-conflict-alert.error {
+  background: var(--erp-danger-light, #FEE2E2);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: var(--erp-danger, #DC2626);
+}
+
+[data-theme="dark"] .hod-conflict-alert.error {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #FCA5A5;
+}
+
+.hod-conflict-alert.ok {
+  background: var(--erp-success-light, #DCFCE7);
+  border: 1px solid rgba(22, 163, 74, 0.25);
+  color: var(--erp-success, #16A34A);
+}
+
+[data-theme="dark"] .hod-conflict-alert.ok {
+  background: rgba(34, 197, 94, 0.14);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #86EFAC;
+}
+
+/* 3. SCOPE SELECTOR & VIEW MODES */
+.hod-scope-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hod-scope-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--erp-radius-md, 12px);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1px solid var(--erp-border, #E2E8F0);
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-text-secondary, #64748B);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: var(--erp-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
+}
+
+.hod-scope-btn:hover {
+  color: var(--erp-text-primary, #172033);
+  border-color: var(--erp-primary, #4F46E5);
+}
+
+.hod-scope-btn.active {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+}
+
+[data-theme="dark"] .hod-scope-btn.active {
+  background: var(--erp-primary, #818CF8);
+  color: #0F172A;
+  border-color: var(--erp-primary, #818CF8);
+}
+
+.hod-view-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hod-mode-toggles {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  padding: 4px;
+  border-radius: var(--erp-radius-md, 10px);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.hod-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 7px 16px;
+  border-radius: var(--erp-radius-sm, 6px);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary, #64748B);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.hod-mode-btn.active {
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-primary, #4F46E5);
+  font-weight: 700;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+[data-theme="dark"] .hod-mode-btn.active {
+  background: var(--erp-bg-surface-alt, #1E2D4A);
+  color: var(--erp-primary, #818CF8);
+}
+
+/* DAY SELECTOR PILLS */
+.hod-day-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hod-day-btn {
+  padding: 8px 18px;
+  border-radius: var(--erp-radius-full, 9999px);
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-text-secondary, #64748B);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.hod-day-btn:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  color: var(--erp-text-primary, #172033);
+  border-color: var(--erp-primary, #4F46E5);
+}
+
+.hod-day-btn.active {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+}
+
+[data-theme="dark"] .hod-day-btn.active {
+  background: var(--erp-primary, #818CF8);
+  color: #0F172A;
+  border-color: var(--erp-primary, #818CF8);
+}
+
+/* 4. MODALS */
+.hod-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 17, 32, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: erpFadeIn 0.2s ease forwards;
+}
+
+.hod-modal-dialog {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+  box-shadow: var(--erp-shadow-xl, 0 20px 40px rgba(0, 0, 0, 0.2));
+  animation: erpScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hod-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 26px;
+  border-bottom: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.hod-modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+}
+
+.hod-modal-close {
+  border: none;
+  background: transparent;
+  color: var(--erp-text-secondary, #64748B);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--erp-radius-sm, 6px);
+  transition: all 0.15s ease;
+}
+
+.hod-modal-close:hover {
+  color: var(--erp-text-primary, #172033);
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+}
+
+.hod-modal-body {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hod-modal-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--erp-text-secondary, #64748B);
+  line-height: 1.5;
+}
+
+.hod-textarea {
+  width: 100%;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  color: var(--erp-text-primary, #172033);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 10px);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  min-height: 110px;
+}
+
+.hod-textarea:focus {
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 0 0 3px var(--erp-primary-light, rgba(79, 70, 229, 0.12));
+}
+
+.hod-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 26px;
+  border-top: 1px solid var(--erp-border, #E2E8F0);
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+}
+
+/* 5. RESPONSIVE BREAKPOINTS */
+@media (max-width: 768px) {
+  .hod-tt-header {
+    padding: 18px 20px;
+  }
+
+  .hod-approval-card {
+    padding: 18px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hod-approval-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .hod-scope-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}

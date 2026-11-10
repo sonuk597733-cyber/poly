@@ -1,0 +1,108 @@
+/* ==========================================================================
+   COLLEGEOS — HOD LEAVES SANCTION STYLING
+   ========================================================================== */
+
+.hod-leaves-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.hod-leaves-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.hod-leave-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px;
+}
+
+.hod-leave-stat-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--hod-text-secondary);
+}
+
+.hod-leave-stat-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.hod-leave-stat-sub {
+  font-size: 0.78rem;
+  color: var(--hod-text-muted);
+}
+
+.hod-leaves-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.hod-leave-tab {
+  padding: 8px 16px;
+  border-radius: var(--hod-radius-pill);
+  background: var(--hod-card-bg);
+  color: var(--hod-text-secondary);
+  border: 1px solid var(--hod-border);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.hod-leave-tab:hover {
+  background: var(--hod-card-hover);
+  color: var(--hod-primary);
+  border-color: var(--hod-border-hover);
+}
+
+.hod-leave-tab.active {
+  background: var(--hod-primary);
+  color: #FFFFFF;
+  border-color: var(--hod-primary);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.hod-leaves-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hod-leave-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--hod-radius-pill);
+  background: var(--hod-primary-soft);
+  color: var(--hod-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--hod-primary-border);
+}
+
+@media (max-width: 768px) {
+  .hod-leaves-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hod-leaves-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

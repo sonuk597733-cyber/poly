@@ -1,0 +1,614 @@
+[
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/attendance",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/attendance/summary",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/exams",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/exams/results",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/scanned-marksheet",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/assignments",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/timetable",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/notices",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/leaves",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "POST",
+    "path": "/leaves",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/notifications",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "PATCH",
+    "path": "/notifications/:id/read",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "PATCH",
+    "path": "/notifications/read-all",
+    "roles": "admin,principal"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/materials",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/fees",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "POST",
+    "path": "/fees/pay",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/library/books",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/library/my-books",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/feedback",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "POST",
+    "path": "/feedback",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/rooms",
+    "roles": "coordinator,hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/calendar",
+    "roles": "coordinator,hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/settings",
+    "roles": "admin,principal,hod"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/subjects/stats",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/subjects",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/exams/analytics",
+    "roles": "hod,principal,admin,coordinator"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/exams/schedules",
+    "roles": "hod,principal,admin,coordinator"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/labs/stats",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/labs",
+    "roles": "hod,principal,admin"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/events/department",
+    "roles": "hod,principal,admin,coordinator"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/placements/stats",
+    "roles": "hod,principal,admin,coordinator"
+  },
+  {
+    "file": "academicRoutes.js",
+    "method": "GET",
+    "path": "/placements",
+    "roles": "hod,principal,admin,coordinator"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/analytics",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/report/export-csv",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/:id",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "PUT",
+    "path": "/:id",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "DELETE",
+    "path": "/:id",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/publish",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/unpublish",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/archive",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/duplicate",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "DELETE",
+    "path": "/:id/attachments/:fileId",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/submit",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "POST",
+    "path": "/:id/grade",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "PATCH",
+    "path": "/:id/grade",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/:id/download-reference/:fileId",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "assignmentRoutes.js",
+    "method": "GET",
+    "path": "/:id/download-submission/:submissionId/:fileId",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/config",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "POST",
+    "path": "/config",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/roster",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/today-timetable",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/daily-college",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "POST",
+    "path": "/daily-college",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/subject-session",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "POST",
+    "path": "/subject-session",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "POST",
+    "path": "/correct-record",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/student-overall",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/student-subjects",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/subject-calendar",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/subject-monthly-calendar",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/subject-analytics",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/subject-history",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/today-student",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/student-day-audit",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/analytics",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/export-report",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/teaching-calendar",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "GET",
+    "path": "/lecture-roster",
+    "roles": "...STAFF_ROLES"
+  },
+  {
+    "file": "attendanceRoutes.js",
+    "method": "POST",
+    "path": "/simulate-projection",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/register",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/verify-email-otp",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/resend-email-otp",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/login",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "GET",
+    "path": "/me",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/logout",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/forgot-password",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "authRoutes.js",
+    "method": "POST",
+    "path": "/reset-password",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "dashboardRoutes.js",
+    "method": "GET",
+    "path": "/stats",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "dashboardRoutes.js",
+    "method": "GET",
+    "path": "/charts",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "GET",
+    "path": "/student/history",
+    "roles": "student"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "GET",
+    "path": "/",
+    "roles": "teacher,coordinator,hod,principal,admin"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "GET",
+    "path": "/:id",
+    "roles": "teacher,coordinator,hod,principal,admin"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "POST",
+    "path": "/:id/progress",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "GET",
+    "path": "/:id/stream",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "lectureRoutes.js",
+    "method": "GET",
+    "path": "/:id/download/:resourceId?",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/student/statistics",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/student/downloaded",
+    "roles": "teacher,coordinator,hod,principal,admin"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/:id/preview",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/:id/download",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/",
+    "roles": "teacher,coordinator,hod,principal,admin"
+  },
+  {
+    "file": "noteRoutes.js",
+    "method": "GET",
+    "path": "/:id",
+    "roles": "teacher,coordinator,hod,principal,admin"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "GET",
+    "path": "/",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "PATCH",
+    "path": "/",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "POST",
+    "path": "/avatar",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "DELETE",
+    "path": "/avatar",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "POST",
+    "path": "/cover",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "DELETE",
+    "path": "/cover",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "profileRoutes.js",
+    "method": "POST",
+    "path": "/change-password",
+    "roles": "teacher,hod,coordinator,principal,admin"
+  },
+  {
+    "file": "studentDirectoryRoutes.js",
+    "method": "GET",
+    "path": "/",
+    "roles": "all/authenticated"
+  },
+  {
+    "file": "studentDirectoryRoutes.js",
+    "method": "GET",
+    "path": "/:id/public",
+    "roles": "all/authenticated"
+  }
+]

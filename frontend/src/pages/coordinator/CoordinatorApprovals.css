@@ -1,0 +1,185 @@
+.coord-appr-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.coord-appr-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.coord-appr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.coord-appr-chip.warning {
+  background: #FFF7ED;
+  color: #C2410C;
+  border-color: #FFEDD5;
+}
+
+.coord-appr-chip.success {
+  background: #F0FDF4;
+  color: #166534;
+  border-color: #BBF7D0;
+}
+
+.coord-appr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.coord-appr-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.coord-appr-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.coord-appr-title-block h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 6px 0 2px 0;
+}
+
+.coord-appr-requester {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.coord-appr-type-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #E0F2FE;
+  color: #0369A1;
+  text-transform: uppercase;
+}
+
+.coord-appr-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.coord-appr-badge.pending {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.coord-appr-badge.approved {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.coord-appr-badge.rejected {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+.coord-appr-details-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.coord-appr-details-box p {
+  margin: 0;
+}
+
+.coord-appr-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.coord-appr-id {
+  font-size: 0.78rem;
+  color: #64748B;
+}
+
+.coord-appr-id.mono {
+  font-family: monospace;
+}
+
+.coord-appr-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.coord-appr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.coord-appr-btn.approve {
+  background: #059669;
+  color: #FFFFFF;
+}
+
+.coord-appr-btn.approve:hover {
+  background: #047857;
+}
+
+.coord-appr-btn.reject {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+.coord-appr-btn.reject:hover {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+.coord-appr-closed-note {
+  font-size: 0.8rem;
+  color: #64748B;
+  font-style: italic;
+}

@@ -1,0 +1,89 @@
+# ==============================================================================
+# CollegeOS Security & Environment Ignore Rules
+# ==============================================================================
+
+# Dependencies
+node_modules/
+*/node_modules/
+**/node_modules/
+
+# Production Build Artifacts
+dist/
+build/
+*/dist/
+**/dist/
+
+# Local Environment Variables & Secrets (NEVER UPLOAD)
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env
+frontend/.env.local
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# User Uploads & Private Media (student marksheets, avatars, submissions)
+uploads/
+*/uploads/
+**/uploads/**
+!uploads/.gitkeep
+!backend/uploads/.gitkeep
+
+# Temporary Test Profiles, Chrome CDP & Browser Sandboxes
+scratch/
+scratch*/
+**/scratch*/
+.chrome*
+**/.chrome*
+scratch_chrome_*
+backend/.chrome*
+backend/backend/
+
+# Temporary / Scratch test scripts & diagnostic files
+scratch_*
+*.scratch
+**/scratch_*
+backend/scratch_*
+backend/capture_*.mjs
+backend/check_*.mjs
+backend/verify_*.mjs
+test_inspect_debug.png
+banner_375px_current.png
+test_handout.pdf
+test_video.mp4
+
+# Machine Learning & OCR Weights (Large binary files)
+*.traineddata
+
+# Logs & Runtime Dumps
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database Dumps, Backups & Certificates
+*.dump
+*.sql
+*.sqlite
+*.sqlite3
+*.rdb
+*.bak
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo

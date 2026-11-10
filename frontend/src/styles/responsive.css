@@ -1,0 +1,61 @@
+/* ==========================================================================
+   COLLEGEOS — CENTRALIZED RESPONSIVE & LAYOUT SYSTEM
+   Breakpoints, touch-target helpers, and overflow containment.
+   ========================================================================== */
+
+:root {
+  /* Breakpoint Variables for Documentation & Consistency */
+  --bp-mobile: 640px;
+  --bp-tablet: 960px;
+  --bp-laptop: 1280px;
+  --bp-desktop: 1536px;
+}
+
+/* Universal box-sizing & zero horizontal root overflow */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Container Utility */
+.cos-container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .cos-container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cos-container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+/* Table Responsive Wrapper */
+.cos-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch Targets for Mobile Devices */
+@media (pointer: coarse) {
+  button,
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 38px;
+  }
+}

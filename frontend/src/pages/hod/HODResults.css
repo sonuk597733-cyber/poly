@@ -1,0 +1,348 @@
+/* ==========================================================================
+   COLLEGEOS — HOD RESULTS & EXAM APPROVAL CENTER STYLES
+   ========================================================================== */
+
+.hod-res-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.hod-res-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hod-res-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.hod-res-kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+}
+
+.hod-res-kpi-card h4 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--hod-text-secondary);
+}
+
+.hod-res-kpi-val {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hod-res-kpi-card p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--hod-text-muted);
+}
+
+/* Workspace Tabs */
+.hod-workspace-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--hod-card-border, #e2e8f0);
+  padding-bottom: 4px;
+}
+
+.hod-workspace-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--hod-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hod-workspace-tab:hover {
+  color: var(--hod-primary);
+}
+
+.hod-workspace-tab.active {
+  color: var(--hod-primary);
+  border-bottom-color: var(--hod-primary);
+}
+
+/* Filter Bar */
+.hod-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.hod-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--hod-card-bg, #ffffff);
+  border: 1px solid var(--hod-card-border, #e2e8f0);
+  border-radius: 8px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.hod-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.86rem;
+  outline: none;
+  color: var(--hod-text-primary);
+}
+
+.hod-select {
+  padding: 8px 14px;
+  background: var(--hod-card-bg, #ffffff);
+  border: 1px solid var(--hod-card-border, #e2e8f0);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: var(--hod-text-primary);
+  outline: none;
+}
+
+/* Batches List */
+.hod-batches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hod-batch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  background: var(--hod-card-bg, #ffffff);
+  border: 1px solid var(--hod-card-border, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hod-batch-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.hod-batch-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hod-batch-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.hod-batch-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--hod-text-primary);
+  margin: 0 0 6px 0;
+}
+
+.hod-batch-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--hod-text-secondary);
+  flex-wrap: wrap;
+}
+
+.hod-batch-meta > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hod-batch-actions-col {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hod-candidates-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 14px;
+  background: var(--hod-surface-secondary, #f8fafc);
+  border: 1px solid var(--hod-card-border, #e2e8f0);
+  border-radius: 8px;
+}
+
+.hod-count-big {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--hod-text-primary);
+  line-height: 1;
+}
+
+.hod-count-sub {
+  font-size: 0.72rem;
+  color: var(--hod-text-muted);
+  margin-top: 2px;
+}
+
+.hod-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hod-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hod-btn-danger:hover {
+  background: rgba(239, 68, 68, 0.18);
+}
+
+.hod-loading-state,
+.hod-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 20px;
+  text-align: center;
+  color: var(--hod-text-secondary);
+  background: var(--hod-card-bg, #ffffff);
+  border: 1px solid var(--hod-card-border, #e2e8f0);
+  border-radius: 12px;
+}
+
+/* Modals */
+.hod-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 20px;
+}
+
+.hod-modal-content {
+  background: var(--hod-card-bg, #ffffff);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 960px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hod-modal-content.small {
+  max-width: 520px;
+}
+
+.hod-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--hod-card-border, #e2e8f0);
+}
+
+.hod-modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--hod-text-primary);
+}
+
+.hod-modal-header p {
+  font-size: 0.8rem;
+  color: var(--hod-text-muted);
+  margin: 3px 0 0 0;
+}
+
+.hod-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--hod-text-muted);
+  cursor: pointer;
+}
+
+.hod-modal-body {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.hod-audit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.hod-audit-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--hod-surface-secondary, #f8fafc);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hod-card-border, #e2e8f0);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--hod-text-secondary);
+  font-weight: 600;
+}
+
+.hod-audit-table tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--hod-card-border, #e2e8f0);
+}
+
+.hod-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--hod-card-border, #e2e8f0);
+  background: var(--hod-surface-secondary, #f8fafc);
+}

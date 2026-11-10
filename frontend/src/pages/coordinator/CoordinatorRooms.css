@@ -1,0 +1,185 @@
+.coord-rooms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.coord-allocate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #0284C7;
+  color: #FFFFFF;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.coord-allocate-btn:hover {
+  background: #0369A1;
+}
+
+.coord-room-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.coord-room-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.coord-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.coord-indicator.occupied {
+  background: #EA580C;
+}
+
+.coord-indicator.available {
+  background: #10B981;
+}
+
+.coord-indicator.maintenance {
+  background: #64748B;
+}
+
+.coord-rooms-table-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.coord-rooms-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.coord-rooms-table th {
+  background: #F8FAFC;
+  padding: 14px 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.coord-rooms-table td {
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: #1E293B;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.coord-rooms-table tr:hover td {
+  background: #F8FAFC;
+}
+
+.coord-r-subname {
+  display: block;
+  font-size: 0.78rem;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.coord-type-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.coord-equip-text,
+.coord-floor-text,
+.coord-occ-text {
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.coord-occ-text {
+  font-weight: 500;
+  color: #0F172A;
+}
+
+.coord-room-status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.coord-room-status-badge.occupied {
+  background: #FFEDD5;
+  color: #C2410C;
+}
+
+.coord-room-status-badge.available {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.coord-room-status-badge.maintenance {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+.coord-tbl-action-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.coord-tbl-action-btn.book {
+  background: #E0F2FE;
+  color: #0369A1;
+}
+
+.coord-tbl-action-btn.book:hover {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+
+.coord-tbl-action-btn.release {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+.coord-tbl-action-btn.release:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+}
+
+.coord-tbl-na {
+  font-size: 0.78rem;
+  color: #94A3B8;
+  font-style: italic;
+}

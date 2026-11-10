@@ -1,0 +1,339 @@
+/* ==========================================================================
+   COLLEGEOS — STUDENT SETTINGS & SECURITY PREMIUM DESIGN SYSTEM
+   Deep Navy + Royal Blue Theme with Full Light Mode Parity
+   ========================================================================== */
+
+.std-settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ───────────── 1. BENTO GRID ───────────── */
+.std-settings-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.std-settings-card {
+  padding: 24px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.std-set-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--std-border-subtle, #294565);
+}
+
+.std-set-card-header h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0;
+}
+
+/* ───────────── 2. PASSWORD INPUTS & STRENGTH ───────────── */
+.std-set-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.std-password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.std-password-input-wrap .std-fb-input {
+  padding-right: 42px;
+}
+
+.std-pwd-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--std-text-muted, #64748B);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.std-pwd-toggle-btn:hover {
+  color: var(--std-text-primary, #F8FAFC);
+}
+
+.std-strength-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.std-strength-bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.std-strength-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.std-strength-fill.weak {
+  background: #EF4444;
+}
+
+.std-strength-fill.fair {
+  background: #F59E0B;
+}
+
+.std-strength-fill.good {
+  background: #3B82F6;
+}
+
+.std-strength-fill.strong {
+  background: #10B981;
+}
+
+.std-strength-text {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.std-strength-text.weak { color: #F87171; }
+.std-strength-text.fair { color: #FBBF24; }
+.std-strength-text.good { color: #60A5FA; }
+.std-strength-text.strong { color: #34D399; }
+
+/* ───────────── 3. SWITCHES & PREFERENCES ───────────── */
+.std-set-switches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.std-set-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.std-set-switch-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.std-switch-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.std-switch-info strong {
+  font-size: 13px;
+  color: var(--std-text-title, #FFFFFF);
+}
+
+.std-switch-info small {
+  font-size: 11.5px;
+  color: var(--std-text-muted, #64748B);
+}
+
+/* Toggle Switch */
+.std-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.std-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.std-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  transition: all 0.25s ease;
+}
+
+.std-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+
+input:checked + .std-slider {
+  background-color: var(--std-blue, #2563EB);
+}
+
+input:checked + .std-slider:before {
+  transform: translateX(20px);
+}
+
+/* Theme Box */
+.std-set-theme-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 12px;
+  margin-top: 6px;
+}
+
+.std-theme-toggle-btn-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--std-border-subtle, #294565);
+  color: var(--std-text-primary, #F8FAFC);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.std-theme-toggle-btn-settings:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ───────────── 4. SESSION GRID ───────────── */
+.std-set-session-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.std-session-item {
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.std-session-label {
+  font-size: 11px;
+  color: var(--std-text-muted, #64748B);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.std-session-val {
+  font-size: 13px;
+  color: var(--std-text-title, #FFFFFF);
+}
+
+/* ───────────── 5. LIGHT THEME CANONICAL OVERRIDES ───────────── */
+[data-theme="light"] .std-settings-card,
+.theme-light .std-settings-card {
+  background: #FFFFFF !important;
+  border-color: #DBEAFE !important;
+  box-shadow: 0 4px 16px -4px rgba(11, 31, 59, 0.08) !important;
+}
+
+[data-theme="light"] .std-set-card-header h3,
+.theme-light .std-set-card-header h3,
+[data-theme="light"] .std-switch-info strong,
+.theme-light .std-switch-info strong,
+[data-theme="light"] .std-session-val,
+.theme-light .std-session-val {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-set-switch-row,
+.theme-light .std-set-switch-row {
+  border-color: #F1F5F9 !important;
+}
+
+[data-theme="light"] .std-set-theme-box,
+.theme-light .std-set-theme-box {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .std-session-item,
+.theme-light .std-session-item {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .std-theme-toggle-btn-settings,
+.theme-light .std-theme-toggle-btn-settings {
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #0B1F3B !important;
+}
+
+/* ───────────── 6. RESPONSIVE BREAKPOINTS ───────────── */
+@media (max-width: 900px) {
+  .std-settings-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-set-session-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .std-set-session-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-set-theme-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .std-theme-toggle-btn-settings {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,2553 @@
+/* ==========================================================================
+   COLLEGEOS — SWAMI VIVEKANAND SUBHARTI UNIVERSITY OFFICIAL MARKSHEET
+   Comprehensive Digital Marksheet & Academic Transcript System
+   Authentic SVSU Diploma in Engineering Reference Implementation
+   ========================================================================== */
+
+.std-res-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ───────────── 1. TOP CONTROL PANE ───────────── */
+.std-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.std-pane-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.std-title-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.16);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: var(--std-cyan-bright, #60A5FA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.std-pane-title-group h2 {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.std-pane-title-group p {
+  font-size: 13px;
+  color: var(--std-text-secondary, #A9BCD4);
+  margin: 0;
+}
+
+.std-pane-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.std-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 18px;
+  background: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.std-btn-primary:hover:not(:disabled) {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+}
+
+.std-res-action-btn.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 9999px;
+  color: var(--std-text-primary, #F8FAFC);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.std-res-action-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(96, 165, 250, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ───────────── 2. BENTO METRICS GRID ───────────── */
+.std-res-cgpa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.std-res-kpi-card {
+  padding: 18px 20px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.std-res-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.std-res-kpi-card.highlight-royal {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, rgba(16, 37, 65, 0.95) 100%);
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.std-res-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.std-res-kpi-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--std-text-muted, #7E97B8);
+}
+
+.std-res-kpi-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.std-res-kpi-badge.royal {
+  background: rgba(37, 99, 235, 0.2);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+}
+
+.std-res-kpi-badge.blue {
+  background: rgba(14, 165, 233, 0.2);
+  color: #38BDF8;
+  border: 1px solid rgba(14, 165, 233, 0.35);
+}
+
+.std-res-kpi-badge.emerald {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.std-res-kpi-badge.gold {
+  background: rgba(245, 158, 11, 0.18);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.std-res-kpi-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.std-res-kpi-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  line-height: 1;
+}
+
+.std-res-kpi-val.royal {
+  color: #60A5FA;
+}
+
+.std-res-kpi-val.status-pcp {
+  font-size: 18px;
+  color: #F59E0B;
+}
+
+.std-res-kpi-scale {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--std-text-muted, #7E97B8);
+}
+
+.std-res-kpi-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.std-res-kpi-progress-fill {
+  height: 100%;
+  background: #3B82F6;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.std-res-kpi-progress-fill.emerald {
+  background: #10B981;
+}
+
+.std-res-kpi-hint {
+  font-size: 11.5px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+/* ───────────── 3. VISUAL PERFORMANCE ANALYTICS & SEMESTER PROGRESSION ───────────── */
+.std-res-analytics-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.std-res-chart-card,
+.std-res-progression-card {
+  padding: 20px 24px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.std-res-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.std-res-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.std-res-header-title-row h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0;
+}
+
+.std-res-card-header p {
+  font-size: 12px;
+  color: var(--std-text-secondary, #A9BCD4);
+  margin: 0;
+}
+
+.std-res-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.external {
+  background: #3B82F6;
+}
+
+.legend-dot.sessional {
+  background: #10B981;
+}
+
+.legend-dot.dist {
+  background: #F59E0B;
+}
+
+.std-res-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 180px;
+  padding: 10px 8px 0;
+  gap: 10px;
+  border-bottom: 1px solid var(--std-border-subtle, #294565);
+}
+
+.std-res-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.std-res-bar-value-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0B1F3B;
+  color: #FFFFFF;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  border: 1px solid #3B82F6;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s ease;
+  z-index: 50;
+  text-align: center;
+}
+
+.std-res-bar-col:hover .std-res-bar-value-tooltip,
+.std-res-bar-col.is-hovered .std-res-bar-value-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.tooltip-sub {
+  color: #93C5FD;
+  margin-top: 2px;
+}
+
+.tooltip-marks {
+  font-weight: 700;
+  color: #34D399;
+  margin-top: 2px;
+}
+
+.tooltip-split {
+  font-size: 10px;
+  color: #CBD5E1;
+  margin-top: 2px;
+}
+
+.std-res-bar-track {
+  width: 100%;
+  max-width: 24px;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.std-res-bar-fill {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.std-res-bar-fill.standard {
+  background: linear-gradient(180deg, #3B82F6 0%, #1D4ED8 100%);
+}
+
+.std-res-bar-fill.distinction {
+  background: linear-gradient(180deg, #10B981 0%, #047857 100%);
+}
+
+.std-res-bar-fill.fail {
+  background: linear-gradient(180deg, #EF4444 0%, #B91C1C 100%);
+}
+
+.std-res-distinction-line {
+  position: absolute;
+  top: 25%;
+  left: -2px;
+  right: -2px;
+  height: 1px;
+  background: rgba(245, 158, 11, 0.6);
+  border-top: 1px dashed rgba(245, 158, 11, 0.9);
+  pointer-events: none;
+}
+
+.std-res-bar-label {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--std-text-secondary, #A9BCD4);
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.std-res-bar-sub {
+  font-size: 10px;
+  font-weight: 800;
+  color: #60A5FA;
+}
+
+.std-res-bar-sub.text-fail {
+  color: #EF4444;
+}
+
+/* Semester Progression Card */
+.std-res-progression-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.std-res-prog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.std-prog-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.std-res-prog-header h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0;
+}
+
+.std-res-prog-header p {
+  font-size: 12px;
+  color: var(--std-text-secondary, #A9BCD4);
+  margin: 0;
+}
+
+.std-prog-sem-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.std-prog-box {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--std-border-subtle, #294565);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.std-prog-box.active {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+.prog-box-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--std-text-muted, #7E97B8);
+}
+
+.prog-box-badge.highlight {
+  color: #60A5FA;
+}
+
+.prog-box-sgpa {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--std-text-title, #FFFFFF);
+}
+
+.prog-box-sgpa.highlight {
+  color: #34D399;
+}
+
+.prog-box-meta {
+  font-size: 11px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.prog-box-credits {
+  font-size: 10.5px;
+  color: var(--std-text-muted, #7E97B8);
+}
+
+.prog-box-status {
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 4px;
+  color: #F59E0B;
+}
+
+.prog-box-status.pass {
+  color: #10B981;
+}
+
+.std-prog-arrow {
+  color: var(--std-text-muted, #7E97B8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.std-prog-kpi-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--std-border-subtle, #294565);
+}
+
+.kpi-bullet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.bullet-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.bullet-dot.green {
+  background: #10B981;
+}
+
+.bullet-dot.blue {
+  background: #3B82F6;
+}
+
+/* ───────────── 4. VIEW SELECTOR & ZOOM TOOLBAR ───────────── */
+.std-res-view-ctrl-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 14px;
+}
+
+.std-res-view-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.std-view-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  background: transparent;
+  color: var(--std-text-secondary, #A9BCD4);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.std-view-pill:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.std-view-pill.active {
+  background: #2563EB;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.std-res-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zoom-hint {
+  font-size: 12px;
+  color: var(--std-text-muted, #7E97B8);
+  margin-right: 4px;
+}
+
+.std-zoom-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--std-border-subtle, #294565);
+  color: var(--std-text-primary, #F8FAFC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.std-zoom-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #60A5FA;
+}
+
+.std-zoom-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.zoom-level {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--std-text-title, #FFFFFF);
+  min-width: 42px;
+  text-align: center;
+}
+
+/* ───────────── 5. THE OFFICIAL SVSU MARKSHEET DOCUMENT CANVAS ───────────── */
+.std-marksheet-canvas-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 10px 0 40px;
+}
+
+/* Standard A4 Portrait Paper Container */
+.svsu-marksheet-document {
+  width: 820px;
+  min-width: 820px;
+  background: #FFFFFF;
+  color: #111827;
+  padding: 14px;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65), 0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.2s ease-out;
+}
+
+/* Multi-Layered Guilloche Security Border */
+.svsu-guilloche-border-outer {
+  border: 4px solid #1E3A8A; /* SVSU Deep Navy Outer Rule */
+  outline: 2px solid #F59E0B; /* Golden Amber Secondary Rule */
+  outline-offset: -8px;
+  padding: 12px;
+  background: #FFFFFF;
+  position: relative;
+}
+
+.svsu-guilloche-border-inner {
+  border: 1.5px solid #2563EB;
+  padding: 16px 18px;
+  background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAFA 100%);
+  position: relative;
+}
+
+/* SVSU Watermark Background (Embossed & Subtle) */
+.svsu-guilloche-border-inner::before {
+  content: "SWAMI VIVEKANAND SUBHARTI UNIVERSITY";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 42px;
+  font-weight: 900;
+  color: rgba(30, 58, 138, 0.028);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.15em;
+}
+
+/* Top Security Bar */
+.svsu-doc-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.svsu-tagline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6D28D9; /* Purple accent matching reference */
+  letter-spacing: 0.02em;
+}
+
+.svsu-sr-number {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1E3A8A;
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Main University Header Lockup */
+.svsu-doc-header-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #1E3A8A;
+}
+
+.svsu-crest-box {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svsu-official-crest-svg,
+.svsu-official-crest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+.svsu-univ-name-col {
+  flex: 1;
+  text-align: center;
+}
+
+.svsu-hindi-pre {
+  font-size: 12px;
+  font-weight: 800;
+  color: #EA580C;
+  letter-spacing: 0.06em;
+  margin-bottom: 0px;
+  font-family: Georgia, serif;
+}
+
+.svsu-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 1px 0;
+}
+
+.svsu-main-brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: #1E3A8A;
+  letter-spacing: 0.12em;
+  line-height: 1.05;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.svsu-sub-brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #EA580C; /* Vibrant University Orange from reference */
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.svsu-city-brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 700;
+  color: #1E3A8A;
+  letter-spacing: 0.02em;
+}
+
+.svsu-naac-col {
+  width: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.svsu-doc-watermark-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.svsu-approval-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.svsu-approval-badge span {
+  font-size: 11px;
+  font-weight: 800;
+  color: #1E3A8A;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* NAAC Grade A Circular Seal */
+.svsu-naac-seal {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 2px dashed #D97706;
+  background: radial-gradient(circle, #FEF3C7 0%, #FDE68A 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+}
+
+.naac-ribbon {
+  font-size: 6.5px;
+  font-weight: 800;
+  color: #92400E;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.naac-grade-circle {
+  font-size: 26px;
+  font-weight: 900;
+  color: #B45309;
+  line-height: 1;
+  margin: 2px 0 1px;
+}
+
+.naac-footer {
+  font-size: 8px;
+  font-weight: 900;
+  color: #92400E;
+  letter-spacing: 0.05em;
+}
+
+/* Statement of Marks Title Block */
+.svsu-doc-title-block {
+  text-align: center;
+  padding: 10px 0 8px;
+}
+
+.svsu-statement-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #1E3A8A;
+  letter-spacing: 0.1em;
+  margin: 0 0 4px;
+}
+
+.svsu-course-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 0.04em;
+  margin: 0 0 2px;
+}
+
+.svsu-branch-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1E3A8A;
+  letter-spacing: 0.03em;
+}
+
+.svsu-session-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #4B5563;
+  margin-top: 2px;
+}
+
+/* Identity & Metadata Section */
+.svsu-identity-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 10px 0 14px;
+  padding: 8px 12px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+}
+
+/* QR Code */
+.svsu-qr-box-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.svsu-qr-frame {
+  width: 82px;
+  height: 82px;
+  background: #FFFFFF;
+  border: 1px solid #94A3B8;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svsu-qr-caption {
+  font-size: 9px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+/* Student Metadata Table */
+.svsu-student-meta-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.meta-row {
+  display: flex;
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+.meta-cell.label {
+  width: 120px;
+  color: #475569;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.meta-cell.val {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.meta-cell.val.bold {
+  font-weight: 800;
+  color: #1E3A8A;
+}
+
+/* Passport Photo */
+.svsu-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.svsu-photo-frame {
+  width: 76px;
+  height: 94px;
+  border: 2px solid #0284C7;
+  background: #E2E8F0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.svsu-student-passport-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.svsu-photo-placeholder {
+  color: #64748B;
+}
+
+.svsu-photo-placeholder-blue {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #38BDF8 0%, #0284C7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svsu-photo-cropped-actual {
+  width: 76px;
+  height: 94px;
+  background-image: url("/svsu_marksheet_scanned_reference.jpg");
+  background-size: 662px 938px;
+  background-position: -550px -124px;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.student-silhouette-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.svsu-exam-type-tag {
+  font-size: 9.5px;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.svsu-exam-type-tag strong {
+  color: #0F172A;
+  font-weight: 800;
+}
+
+/* ───────────── OFFICIAL MARKS MATRIX TABLE ───────────── */
+.svsu-marks-table-container {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.svsu-official-marks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  border: 1.5px solid #1E3A8A;
+}
+
+.svsu-official-marks-table th,
+.svsu-official-marks-table td {
+  border: 1px solid #64748B;
+  padding: 4px 6px;
+  vertical-align: middle;
+}
+
+/* Table Headers */
+.main-th-row th {
+  background: #F1F5F9;
+  color: #1E3A8A;
+  font-weight: 800;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.sub-th-row th {
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 9px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Column Width Specifications */
+.col-sno { width: 34px; }
+.col-course { text-align: left !important; min-width: 220px; }
+.col-code { width: 75px; }
+.col-credit { width: 48px; }
+.col-external { width: 100px; }
+.col-sessional { width: 100px; }
+.col-total { width: 100px; }
+.col-cpe { width: 65px; }
+
+/* Table Cells */
+.center-cell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.course-name-cell {
+  text-align: left;
+  font-weight: 700;
+  color: #0F172A;
+  font-size: 10.5px;
+}
+
+.code-cell {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  color: #1E3A8A;
+  font-size: 10px;
+}
+
+.num-cell {
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.num-cell.bold {
+  font-weight: 800;
+}
+
+.num-cell.credit-points {
+  font-weight: 700;
+  color: #1E3A8A;
+}
+
+.num-cell.fail-mark {
+  color: #DC2626;
+  font-weight: 800;
+}
+
+/* Semester Divider Row */
+.semester-divider-row td {
+  background: #E2E8F0;
+  font-weight: 800;
+  font-size: 11px;
+  text-align: center;
+  color: #1E3A8A;
+  letter-spacing: 0.05em;
+  padding: 4px;
+}
+
+.is-cop-row {
+  background: #FEF2F2;
+}
+
+/* Subtotals & SGPA Rows */
+.semester-subtotal-row td {
+  background: #F8FAFC;
+  border-top: 1.5px solid #1E3A8A;
+  font-weight: 800;
+  font-size: 10.5px;
+}
+
+.subtotal-label {
+  text-align: right !important;
+  padding-right: 12px !important;
+  font-weight: 800;
+  color: #1E3A8A;
+}
+
+.semester-sgpa-row td {
+  background: #EFF6FF;
+  border-top: 1px solid #CBD5E1;
+}
+
+.sgpa-label {
+  text-align: right !important;
+  padding-right: 12px !important;
+  font-weight: 800;
+  color: #1E3A8A;
+  letter-spacing: 0.05em;
+}
+
+.sgpa-val {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #1E3A8A;
+  background: #DBEAFE;
+}
+
+/* Annual Grand Total Footer */
+.annual-grand-total-row td {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  border: 1px solid #1E3A8A;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px;
+}
+
+.year-total-label {
+  text-align: right !important;
+  padding-right: 12px !important;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+}
+
+.annual-grand-total-row .num-cell {
+  color: #FFFFFF;
+}
+
+/* ───────────── CARRY OVER PAPER (COP) SECTION ───────────── */
+.svsu-cop-container {
+  margin: 10px 0 14px;
+}
+
+.svsu-cop-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  border: 1px solid #475569;
+}
+
+.svsu-cop-table th,
+.svsu-cop-table td {
+  border: 1px solid #64748B;
+  padding: 4px 8px;
+}
+
+.cop-heading-cell {
+  background: #F1F5F9;
+  color: #1E3A8A;
+  text-align: center;
+  font-weight: 800;
+  font-size: 10.5px;
+}
+
+.cop-sub-th th {
+  background: #F8FAFC;
+  color: #334155;
+  text-align: center;
+  font-weight: 700;
+}
+
+.cop-val-center {
+  text-align: center;
+  font-size: 10.5px;
+}
+
+.cop-val-center.bold {
+  font-weight: 800;
+}
+
+.result-pcp {
+  color: #B45309;
+  background: #FEF3C7;
+}
+
+/* ───────────── SIGNATURES & SECURITY HOLOGRAM ───────────── */
+.svsu-signatures-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 18px 0 10px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.signature-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+}
+
+.signature-img-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: 100%;
+}
+
+.authentic-signature-img {
+  height: 44px;
+  max-width: 140px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  margin-bottom: -2px;
+  filter: contrast(1.2) brightness(0.96);
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+}
+
+.signature-img-wrapper:has(img.authentic-signature-img:not([style*="display: none"])) .fallback-sign {
+  display: none;
+}
+
+.hologram-asset-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authentic-hologram-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.28), 0 0 2px rgba(245, 158, 11, 0.6);
+  filter: contrast(1.1) brightness(1.04);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.authentic-hologram-img:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.hologram-asset-wrapper:has(img.authentic-hologram-img:not([style*="display: none"])) .fallback-hologram {
+  display: none;
+}
+
+.svsu-scanned-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: contrast(1.25);
+  position: relative;
+  z-index: 2;
+}
+
+.svsu-qr-frame:has(img.svsu-scanned-qr-img:not([style*="display: none"])) .svsu-qr-vector-fallback {
+  display: none;
+}
+
+.handwritten-sign {
+  font-family: "Brush Script MT", "Caveat", "Segoe Script", cursive;
+  font-size: 26px;
+  color: #1D4ED8; /* Authentic Blue Sign Pen Ink */
+  margin-bottom: -4px;
+  transform: rotate(-3deg);
+  user-select: none;
+}
+
+.handwritten-sign.prepared {
+  transform: rotate(-5deg);
+}
+
+.checked-stamp-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.stamp-box {
+  border: 1.5px solid #1D4ED8;
+  padding: 1px 6px;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #1D4ED8;
+  letter-spacing: 0.04em;
+  transform: rotate(-1.5deg);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.handwritten-sign.checked {
+  transform: rotate(-2deg);
+  color: #2563EB;
+}
+
+.handwritten-sign.controller {
+  transform: rotate(-4deg);
+  font-size: 28px;
+  color: #1E40AF;
+}
+
+.sign-line {
+  width: 100%;
+  height: 1px;
+  background: #1E3A8A;
+  margin-bottom: 4px;
+}
+
+.sign-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  text-align: center;
+}
+
+.sign-date {
+  font-size: 9.5px;
+  color: #475569;
+  margin-top: 2px;
+}
+
+/* Golden Hologram Security Stamp */
+.svsu-hologram-seal-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svsu-golden-hologram {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #D97706 0deg,
+    #FDE68A 60deg,
+    #B45309 120deg,
+    #FEF3C7 180deg,
+    #D97706 240deg,
+    #FBBF24 300deg,
+    #D97706 360deg
+  );
+  padding: 3px;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35), inset 0 0 4px rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hologram-outer-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px dashed #78350F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #FDE68A 0%, #D97706 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram-microtext {
+  font-size: 5px;
+  font-weight: 900;
+  color: #78350F;
+  text-align: center;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.hologram-inner-crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1px;
+}
+
+.hologram-crest-symbol {
+  font-size: 14px;
+  color: #78350F;
+  line-height: 1;
+}
+
+.hologram-seal-text {
+  font-size: 7px;
+  font-weight: 900;
+  color: #78350F;
+  letter-spacing: 0.1em;
+}
+
+/* Official Legal Legend & Disclaimer */
+.svsu-legal-legend {
+  border-top: 1px solid #CBD5E1;
+  padding-top: 8px;
+  font-size: 9px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.svsu-legal-legend p {
+  margin: 1px 0;
+}
+
+.svsu-final-disclaimer {
+  font-weight: 600;
+  color: #1E293B;
+  margin-top: 4px !important;
+}
+
+/* ───────────── 6. ORIGINAL DOCUMENT MODAL ───────────── */
+.std-modal-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 11, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.std-original-doc-modal {
+  width: 100%;
+  max-width: 860px;
+  max-height: 92vh;
+  background: #0B1F3B;
+  border: 1px solid #294565;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.std-doc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #081525;
+  border-bottom: 1px solid #1E3A8A;
+  color: #FFFFFF;
+}
+
+.std-doc-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.std-doc-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.std-modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.std-modal-close-btn:hover {
+  background: #EF4444;
+}
+
+.std-doc-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: #06111E;
+}
+
+.std-original-scan-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.std-scan-zoom-container {
+  transition: transform 0.2s ease-out;
+  display: flex;
+  justify-content: center;
+}
+
+.std-doc-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #081525;
+  border-top: 1px solid #1E3A8A;
+  color: #FFFFFF;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.std-doc-modal-verified-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.std-doc-modal-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ───────────── MARKSHEET SCOPE BAR & CONTROLS ───────────── */
+.std-marksheet-scope-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 12px;
+}
+
+.scope-pills-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.scope-lbl {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--std-text-secondary, #94A3B8);
+  margin-right: 4px;
+}
+
+.scope-pill {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 9999px;
+  border: 1px solid var(--std-border-subtle, #334155);
+  background: transparent;
+  color: var(--std-text-secondary, #94A3B8);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.scope-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.scope-pill.active {
+  background: #2563EB;
+  border-color: #3B82F6;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+.std-doc-zoom-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ───────────── SVSU YEAR TOTAL TABLE ───────────── */
+.svsu-year-total-container {
+  width: 100%;
+  margin: -1px 0 10px;
+}
+
+.svsu-year-total-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.annual-grand-total-row td {
+  background: #F8FAFC;
+  border: 1px solid #64748B;
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+.annual-grand-total-row .year-total-label {
+  text-align: right;
+  padding-right: 18px;
+  font-weight: 800;
+  color: #1E3A8A;
+  letter-spacing: 0.04em;
+}
+
+.annual-grand-total-row .yt-num-cell {
+  text-align: center;
+  font-weight: 800;
+  width: 55px;
+  color: #0F172A;
+  border: 1px solid #64748B;
+}
+
+.annual-grand-total-row .credit-points-white {
+  text-align: center;
+  font-weight: 900;
+  width: 65px;
+  color: #1E3A8A;
+  background: #DBEAFE;
+  border: 1px solid #64748B;
+}
+
+/* ───────────── OPTICAL HOLOGRAM COMPONENT ───────────── */
+.svsu-official-hologram {
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #D97706 0deg,
+    #FDE68A 45deg,
+    #34D399 90deg,
+    #60A5FA 135deg,
+    #F472B6 180deg,
+    #F59E0B 225deg,
+    #10B981 270deg,
+    #38BDF8 315deg,
+    #D97706 360deg
+  );
+  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hologramShine 6s linear infinite alternate;
+}
+
+@keyframes hologramShine {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(180deg) brightness(1.15); }
+  100% { filter: hue-rotate(360deg) brightness(1); }
+}
+
+.hologram-shimmer-disk {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FEF3C7 10%, #D97706 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hologram-outer-dashed-ring {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 1px dashed #78350F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hologram-inner-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+.hologram-micro-text {
+  font-size: 5px;
+  font-weight: 900;
+  color: #78350F;
+  letter-spacing: 0.08em;
+}
+
+.hologram-emblem-star {
+  font-size: 8px;
+  font-weight: 900;
+  color: #78350F;
+  margin: 1px 0;
+}
+
+/* ───────────── 7. LIGHT THEME CANONICAL OVERRIDES ───────────── */
+[data-theme="light"] .std-pane-header,
+.theme-light .std-pane-header,
+[data-theme="light"] .std-res-kpi-card,
+.theme-light .std-res-kpi-card,
+[data-theme="light"] .std-res-chart-card,
+.theme-light .std-res-chart-card,
+[data-theme="light"] .std-res-progression-card,
+.theme-light .std-res-progression-card,
+[data-theme="light"] .std-res-view-ctrl-bar,
+.theme-light .std-res-view-ctrl-bar {
+  background: #FFFFFF !important;
+  border-color: #DBEAFE !important;
+  box-shadow: 0 4px 16px -4px rgba(11, 31, 59, 0.08) !important;
+}
+
+[data-theme="light"] .std-res-kpi-card.highlight-royal,
+.theme-light .std-res-kpi-card.highlight-royal {
+  background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%) !important;
+  border-color: #BFDBFE !important;
+}
+
+[data-theme="light"] .std-pane-title-group h2,
+.theme-light .std-pane-title-group h2,
+[data-theme="light"] .std-res-kpi-val,
+.theme-light .std-res-kpi-val,
+[data-theme="light"] .std-res-header-title-row h3,
+.theme-light .std-res-header-title-row h3,
+[data-theme="light"] .std-res-prog-header h4,
+.theme-light .std-res-prog-header h4,
+[data-theme="light"] .prog-box-sgpa,
+.theme-light .prog-box-sgpa,
+[data-theme="light"] .zoom-level,
+.theme-light .zoom-level {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-res-action-btn.secondary,
+.theme-light .std-res-action-btn.secondary,
+[data-theme="light"] .std-zoom-btn,
+.theme-light .std-zoom-btn {
+  background: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-prog-box,
+.theme-light .std-prog-box {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .std-prog-box.active,
+.theme-light .std-prog-box.active {
+  background: #EFF6FF !important;
+  border-color: #93C5FD !important;
+}
+
+[data-theme="light"] .std-res-bar-track,
+.theme-light .std-res-bar-track {
+  background: #F1F5F9 !important;
+}
+
+/* ───────────── 8. RESPONSIVE OPTIMIZATIONS ───────────── */
+@media (max-width: 1024px) {
+  .std-res-cgpa-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .std-res-analytics-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .std-pane-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .std-pane-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .std-btn-primary,
+  .std-res-action-btn.secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .std-res-cgpa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-res-view-ctrl-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .std-res-view-pills {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .std-res-zoom-controls {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .std-marksheet-canvas-wrapper {
+    justify-content: flex-start;
+    padding: 10px;
+  }
+}
+
+/* ───────────── 9. HIGH-FIDELITY PRINT STYLES ───────────── */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 5mm;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide all dashboard chrome */
+  .no-print,
+  .std-pane-header,
+  .std-res-cgpa-grid,
+  .std-res-analytics-row,
+  .std-res-view-ctrl-bar,
+  .std-modal-scrim,
+  header,
+  nav,
+  aside,
+  footer,
+  .app-sidebar,
+  .dashboard-sidebar,
+  .dashboard-header {
+    display: none !important;
+  }
+
+  .student-role-view,
+  .std-res-container,
+  .std-marksheet-canvas-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .svsu-marksheet-document {
+    transform: none !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .svsu-guilloche-border-outer {
+    border-width: 3px !important;
+    outline-width: 1.5px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* Publication Notice Banner */
+.std-res-pub-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.std-res-pub-banner.published {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.std-res-pub-banner.pending {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.std-pub-banner-text strong {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   THREE-SESSIONAL INTERNAL EXAMINATION SYSTEM STYLES
+   ========================================================================== */
+
+/* Top Module Switcher */
+.std-module-switch-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 10px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.std-module-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.std-mod-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #64748b);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.std-mod-tab:hover {
+  background: var(--bg-hover, #f1f5f9);
+  color: var(--text-primary, #0f172a);
+}
+
+.std-mod-tab.active {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.std-btn-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: transparent;
+  color: var(--text-secondary, #475569);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.std-btn-sync:hover {
+  background: var(--bg-hover, #f8fafc);
+  color: var(--text-primary, #0f172a);
+}
+
+/* Sessional Bento Grid */
+.std-sess-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.std-kpi-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.std-kpi-card.highlight-royal {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, rgba(124, 58, 237, 0.04) 100%);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.std-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.std-kpi-lbl {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.std-kpi-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+}
+
+.std-kpi-tag.blue { background: #dbeafe; color: #1d4ed8; }
+.std-kpi-tag.emerald { background: #d1fae5; color: #047857; }
+.std-kpi-tag.purple { background: #ede9fe; color: #6d28d9; }
+
+.std-kpi-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.std-kpi-val {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-primary, #0f172a);
+  line-height: 1;
+}
+
+.std-kpi-val.royal {
+  color: #1d4ed8;
+}
+
+.std-kpi-scale {
+  font-size: 0.92rem;
+  color: var(--text-secondary, #64748b);
+  font-weight: 600;
+}
+
+.std-kpi-progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.std-kpi-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.std-kpi-bar.royal { background: linear-gradient(90deg, #2563eb, #7c3aed); }
+.std-kpi-bar.emerald { background: #10b981; }
+.std-kpi-bar.purple { background: #8b5cf6; }
+
+.std-kpi-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #64748b);
+}
+
+.std-kpi-sub strong {
+  color: var(--text-primary, #0f172a);
+}
+
+/* Sessional Navigation Bar */
+.std-sess-tab-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.std-sess-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.std-sess-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-secondary, #475569);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.std-sess-tab-btn:hover {
+  background: var(--bg-hover, #f8fafc);
+  color: var(--text-primary, #0f172a);
+}
+
+.std-sess-tab-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+/* Table Card Wrap */
+.std-card-table-wrap {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-top: 14px;
+}
+
+.std-card-table-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+
+.std-card-table-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+}
+
+.std-card-table-header p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary, #64748b);
+}
+
+/* Comparison Table */
+.std-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  min-width: 800px;
+}
+
+.std-comparison-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.std-comparison-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--text-primary, #1e293b);
+  vertical-align: middle;
+}
+
+.std-comparison-table tr:hover {
+  background: #f8fafc;
+}
+
+.std-comparison-table .highlight-best {
+  background: #f0fdf4;
+}
+
+.std-best-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 800;
+  font-size: 0.86rem;
+}
+
+.std-selected-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #1e40af;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.std-pct-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.std-pct-pill.dist { background: #dcfce7; color: #15803d; }
+.std-pct-pill.pass { background: #dbeafe; color: #1d4ed8; }
+.std-pct-pill.fail { background: #fee2e2; color: #b91c1c; }
+
+.std-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.std-status-pill.entered { background: #ecfdf5; color: #047857; }
+.std-status-pill.pending { background: #fef3c7; color: #b45309; }
+
+/* Internal Marksheet Canvas & A4 Document */
+.std-internal-marksheet-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.std-marksheet-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  max-width: 840px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+
+.print-mode-toggles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #64748b);
+}
+
+.print-pill {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: transparent;
+  color: var(--text-primary, #0f172a);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.print-pill.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+/* The A4 Printable Document */
+.std-printable-sessional-doc {
+  width: 100%;
+  max-width: 840px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #1e3a8a;
+  border-radius: 8px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.std-doc-header {
+  text-align: center;
+  border-bottom: 2px solid #1e3a8a;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.std-doc-univ {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
+}
+
+.std-doc-sub {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  margin-top: 2px;
+}
+
+.std-doc-title {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  padding: 4px 14px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  margin: 10px 0 6px 0;
+  letter-spacing: 0.03em;
+}
+
+.std-doc-disclaimer {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #dc2626;
+  font-style: italic;
+}
+
+.std-doc-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px 18px;
+  margin-bottom: 18px;
+  font-size: 0.84rem;
+}
+
+.std-doc-meta-grid .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.std-doc-meta-grid .lbl {
+  color: #475569;
+  font-weight: 600;
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.std-doc-meta-grid .val {
+  color: #0f172a;
+}
+
+.std-doc-marks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 24px;
+}
+
+.std-doc-marks-table th {
+  background: #f1f5f9;
+  color: #1e293b;
+  font-weight: 700;
+  padding: 9px 10px;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.std-doc-marks-table td {
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.std-doc-marks-table tfoot td {
+  background: #f8fafc;
+  border-top: 2px solid #cbd5e1;
+  padding: 10px;
+}
+
+.std-doc-signatures-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 36px;
+  text-align: center;
+}
+
+.sign-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sign-line {
+  width: 120px;
+  border-top: 1px dashed #64748b;
+}
+
+.sign-box span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Print CSS Stylesheet */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .std-printable-sessional-doc,
+  .std-printable-sessional-doc * {
+    visibility: visible;
+  }
+  .std-printable-sessional-doc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+

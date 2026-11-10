@@ -1,0 +1,1839 @@
+/* ==========================================================================
+   COLLEGEOS — ACADEMIC COORDINATOR ATTENDANCE GOVERNANCE
+   Enterprise-Grade Styling System for Multi-Branch Timetable Compliance,
+   Cross-Department Lecture Conduction, and Student Attendance Oversight.
+
+   TABLE OF CONTENTS:
+   1. Design Tokens & Academic Coordination Identity (Royal Blue / Amber / Slate)
+   2. Container Architecture & Coordinator Page Shell
+   3. Academic Coordination Header & Multi-Branch Picker
+   4. Coordination KPI Summary Strip (4 Multi-Branch Metrics)
+   5. Mode Switcher & Studio Toggle Navigation
+   6. Multi-Branch Teaching Workspace Grid (Calendar Left / Inspector Right)
+   7. Coordination Calendar Panel & Weekday Alignment
+   8. Multi-Branch Conduction Date Cells (Scheduled, Done, Pending Badges)
+   9. Daily Lecture Inspector Panel with Branch / Section Tags
+   10. Coordination Lecture Cards (Faculty, Room, Timing, Present/Absent Split)
+   11. Student Attendance Roster Modal (Multi-Branch Register)
+   12. Student Roster KPI Bar & Status Filters
+   13. Student Roster Data Table with Verified Status Badges
+   14. Master Roll-Call Studio Integration Wrapper
+   15. Multi-Branch Compliance Comparison Matrix
+   16. Timetable Conflict & Room Clash Detection Markers
+   17. Faculty Substitution & Emergency Reassignment Alerts
+   18. Cross-Department Attendance Rate Breakdown
+   19. Period Schedule Verification & Room Utilization Chips
+   20. Micro-Interactions, Shimmer Effects & Keyframe Animations
+   21. Comprehensive Dark Theme System ([data-theme="dark"] & .dark)
+   22. Advanced Responsive Layout Engine (1920px -> 360px)
+   23. Accessibility, High-Contrast & Reduced Motion
+   24. Official Print Stylesheet for Academic Council Archiving
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS & COORDINATION IDENTITY
+   ========================================================================== */
+
+:root {
+  --coord-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --coord-font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Color Palette - Coordinator Royal Blue & Timetable Governance */
+  --coord-primary: #1D4ED8;
+  --coord-primary-hover: #1E40AF;
+  --coord-primary-active: #172554;
+  --coord-primary-soft: #EFF6FF;
+  --coord-primary-line: #BFDBFE;
+
+  --coord-accent: #D97706;
+  --coord-accent-hover: #B45309;
+  --coord-accent-soft: #FFFBEB;
+  --coord-accent-line: #FDE68A;
+
+  --coord-brand: #FF6B0A;
+  --coord-brand-hover: #EA580C;
+  --coord-brand-soft: #FFF7ED;
+  --coord-brand-line: #FFEDD5;
+
+  /* Neutral Slate Scale */
+  --coord-navy-950: #0B1120;
+  --coord-navy-900: #0F172A;
+  --coord-navy-800: #1E293B;
+  --coord-navy-700: #334155;
+  --coord-navy-600: #475569;
+  --coord-navy-500: #64748B;
+  --coord-navy-400: #94A3B8;
+  --coord-navy-300: #CBD5E1;
+  --coord-navy-200: #E2E8F0;
+  --coord-navy-100: #F1F5F9;
+  --coord-navy-50:  #F8FAFC;
+
+  /* Status Colors */
+  --coord-emerald-700: #047857;
+  --coord-emerald-600: #059669;
+  --coord-emerald-500: #10B981;
+  --coord-emerald-100: #D1FAE5;
+  --coord-emerald-50:  #ECFDF5;
+
+  --coord-crimson-700: #B91C1C;
+  --coord-crimson-600: #DC2626;
+  --coord-crimson-500: #EF4444;
+  --coord-crimson-100: #FEE2E2;
+  --coord-crimson-50:  #FEF2F2;
+
+  --coord-amber-700: #B45309;
+  --coord-amber-600: #D97706;
+  --coord-amber-500: #F59E0B;
+  --coord-amber-100: #FEF3C7;
+  --coord-amber-50:  #FFFBEB;
+
+  --coord-purple-700: #6D28D9;
+  --coord-purple-600: #7C3AED;
+  --coord-purple-500: #8B5CF6;
+  --coord-purple-100: #EDE9FE;
+  --coord-purple-50:  #F5F3FF;
+
+  --coord-indigo-700: #4338CA;
+  --coord-indigo-600: #4F46E5;
+  --coord-indigo-500: #6366F1;
+  --coord-indigo-100: #E0E7FF;
+
+  /* Surfaces & Shadows */
+  --coord-surface: #FFFFFF;
+  --coord-surface-alt: #F8FAFC;
+  --coord-surface-card: #FFFFFF;
+  --coord-border: #E2E8F0;
+  --coord-border-strong: #CBD5E1;
+  --coord-border-focus: #1D4ED8;
+
+  --coord-shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --coord-shadow-sm: 0 2px 4px -1px rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --coord-shadow-md: 0 8px 18px -4px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+  --coord-shadow-lg: 0 16px 32px -6px rgba(15, 23, 42, 0.1), 0 6px 12px -3px rgba(15, 23, 42, 0.04);
+  --coord-shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.14);
+  --coord-shadow-glow-royal: 0 0 22px -2px rgba(29, 78, 216, 0.28);
+
+  /* Border Radii */
+  --coord-radius-xs: 4px;
+  --coord-radius-sm: 8px;
+  --coord-radius-md: 12px;
+  --coord-radius-lg: 16px;
+  --coord-radius-xl: 20px;
+  --coord-radius-full: 9999px;
+
+  /* Easing */
+  --coord-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --coord-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --coord-transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   2. CONTAINER ARCHITECTURE & COORDINATOR PAGE SHELL
+   ========================================================================== */
+
+.staff-attendance-page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--coord-font-sans);
+  color: var(--coord-navy-900);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.teaching-calendar-master-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: coordFadeIn 0.3s var(--coord-ease);
+}
+
+@keyframes coordFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes coordScaleUp {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   3. ACADEMIC COORDINATION HEADER & MULTI-BRANCH PICKER
+   ========================================================================== */
+
+.teaching-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--coord-border);
+}
+
+.teaching-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.teaching-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.role-tag-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--coord-primary-soft);
+  color: var(--coord-primary);
+  padding: 4px 10px;
+  border-radius: var(--coord-radius-sm);
+  border: 1px solid var(--coord-primary-line);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--coord-shadow-xs);
+}
+
+.role-tag-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coord-primary);
+  box-shadow: 0 0 6px rgba(29, 78, 216, 0.6);
+}
+
+.branch-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--coord-navy-700);
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 4px 10px;
+  box-shadow: var(--coord-shadow-xs);
+}
+
+.branch-picker {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--coord-navy-900);
+  outline: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: var(--coord-transition);
+}
+
+.branch-picker option {
+  background: var(--coord-surface);
+  color: var(--coord-navy-900);
+}
+
+.teaching-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.teaching-desc {
+  font-size: 13px;
+  color: var(--coord-navy-600);
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.teaching-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   4. COORDINATION KPI SUMMARY STRIP (4 MULTI-BRANCH METRICS)
+   ========================================================================== */
+
+.teaching-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.t-kpi-card {
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: var(--coord-shadow-xs);
+  transition: var(--coord-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.t-kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: var(--coord-transition);
+}
+
+.t-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--coord-shadow-md);
+  border-color: var(--coord-navy-300);
+}
+
+.t-kpi-card:hover::before {
+  background: var(--coord-primary);
+}
+
+.t-kpi-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--coord-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-blue {
+  background: var(--coord-primary-soft);
+  color: var(--coord-primary);
+  border: 1px solid var(--coord-primary-line);
+}
+
+.icon-emerald {
+  background: var(--coord-emerald-50);
+  color: var(--coord-emerald-600);
+  border: 1px solid var(--coord-emerald-100);
+}
+
+.icon-amber {
+  background: var(--coord-amber-50);
+  color: var(--coord-amber-600);
+  border: 1px solid var(--coord-amber-100);
+}
+
+.icon-purple {
+  background: var(--coord-purple-50);
+  color: var(--coord-purple-600);
+  border: 1px solid var(--coord-purple-100);
+}
+
+.t-kpi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.t-kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--coord-navy-500);
+}
+
+.t-kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  line-height: 1.1;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.font-emerald { color: var(--coord-emerald-600) !important; }
+.font-amber   { color: var(--coord-amber-600) !important; }
+.font-purple  { color: var(--coord-purple-600) !important; }
+.font-crimson { color: var(--coord-crimson-600) !important; }
+.font-muted   { color: var(--coord-navy-400) !important; }
+
+.t-kpi-sub {
+  font-size: 11px;
+  color: var(--coord-navy-500);
+}
+
+/* ==========================================================================
+   5. MODE SWITCHER & STUDIO TOGGLE NAVIGATION
+   ========================================================================== */
+
+.studio-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.studio-top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 0;
+}
+
+.btn-back-to-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--coord-navy-800);
+  cursor: pointer;
+  box-shadow: var(--coord-shadow-xs);
+  transition: var(--coord-transition);
+}
+
+.btn-back-to-calendar:hover {
+  background: var(--coord-primary-soft);
+  color: var(--coord-primary);
+  border-color: var(--coord-primary-line);
+  transform: translateX(-2px);
+}
+
+.btn-open-studio-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--coord-brand), var(--coord-brand-hover));
+  color: #ffffff;
+  border: none;
+  border-radius: var(--coord-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 10, 0.25);
+  transition: var(--coord-transition);
+}
+
+.btn-open-studio-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 107, 10, 0.35);
+}
+
+.btn-refresh-unified {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--coord-navy-700);
+  cursor: pointer;
+  box-shadow: var(--coord-shadow-xs);
+  transition: var(--coord-transition);
+}
+
+.btn-refresh-unified:hover:not(:disabled) {
+  border-color: var(--coord-primary);
+  color: var(--coord-primary);
+  background: var(--coord-primary-soft);
+}
+
+.spin-icon {
+  animation: coordSpin 1s linear infinite;
+}
+
+@keyframes coordSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   6. MULTI-BRANCH TEACHING WORKSPACE GRID (CALENDAR LEFT / INSPECTOR RIGHT)
+   ========================================================================== */
+
+.teaching-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.teaching-calendar-panel,
+.teaching-day-inspector-panel {
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-xl);
+  box-shadow: var(--coord-shadow-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 16px 22px;
+  background: var(--coord-navy-50);
+  border-bottom: 1px solid var(--coord-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--coord-navy-600);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot-green { background: var(--coord-emerald-500); }
+.dot-amber { background: var(--coord-amber-500); }
+.dot-gray  { background: var(--coord-navy-400); }
+
+/* ==========================================================================
+   7. COORDINATION CALENDAR PANEL & NAVIGATION
+   ========================================================================== */
+
+.global-month-bar {
+  display: flex;
+  align-items: center;
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 4px 8px;
+  box-shadow: var(--coord-shadow-xs);
+  gap: 8px;
+}
+
+.g-month-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--coord-navy-600);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--coord-transition);
+}
+
+.g-month-btn:hover {
+  background: var(--coord-navy-100);
+  color: var(--coord-navy-950);
+}
+
+.g-month-display {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--coord-navy-900);
+  min-width: 110px;
+  text-align: center;
+}
+
+.g-today-pill {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--coord-primary-soft);
+  color: var(--coord-primary);
+  border: 1px solid var(--coord-primary-line);
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: var(--coord-transition);
+}
+
+.g-today-pill:hover {
+  background: var(--coord-primary);
+  color: #ffffff;
+}
+
+.panel-calendar-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teaching-weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--coord-border);
+}
+
+.wd-col {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--coord-navy-400);
+  padding: 4px 0;
+}
+
+.wd-sunday {
+  color: var(--coord-crimson-600);
+}
+
+/* ==========================================================================
+   8. MULTI-BRANCH CONDUCTION DATE CELLS
+   ========================================================================== */
+
+.teaching-cells-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.t-cal-cell {
+  min-height: 72px;
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-sm);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--coord-surface);
+  transition: var(--coord-transition);
+  position: relative;
+}
+
+.t-cal-cell:hover {
+  border-color: var(--coord-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--coord-shadow-sm);
+  z-index: 2;
+}
+
+.t-cell-empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.t-cell-selected {
+  border-color: var(--coord-primary) !important;
+  background: var(--coord-primary-soft) !important;
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.25) !important;
+}
+
+.t-cell-today {
+  border-color: var(--coord-accent) !important;
+  border-width: 2px !important;
+}
+
+.t-cell-sunday {
+  background: var(--coord-navy-50);
+}
+
+.t-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.t-cell-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--coord-navy-800);
+}
+
+.t-today-badge {
+  font-size: 8px;
+  font-weight: 800;
+  background: var(--coord-accent);
+  color: #ffffff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.t-cell-badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.t-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.t-badge-done {
+  background: var(--coord-emerald-100);
+  color: var(--coord-emerald-700);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.t-badge-pending {
+  background: var(--coord-amber-100);
+  color: var(--coord-amber-700);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.t-cell-holiday-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--coord-amber-700);
+  background: var(--coord-amber-100);
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   9. DAILY LECTURE INSPECTOR PANEL WITH BRANCH / SECTION TAGS
+   ========================================================================== */
+
+.teaching-day-inspector-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inspector-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--coord-primary);
+}
+
+.inspector-lecture-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--coord-navy-100);
+  color: var(--coord-navy-800);
+  padding: 4px 10px;
+  border-radius: var(--coord-radius-sm);
+}
+
+.inspector-content {
+  padding: 22px;
+  overflow-y: auto;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inspector-placeholder,
+.inspector-no-lectures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--coord-navy-400);
+  gap: 12px;
+}
+
+.inspector-no-lectures h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--coord-navy-800);
+}
+
+.inspector-no-lectures p,
+.inspector-placeholder p {
+  font-size: 12px;
+  margin: 0;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.inspector-lectures-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   10. COORDINATION LECTURE CARDS
+   ========================================================================== */
+
+.inspector-lecture-card {
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 16px 18px;
+  background: var(--coord-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: var(--coord-transition);
+  box-shadow: var(--coord-shadow-xs);
+  position: relative;
+}
+
+.inspector-lecture-card:hover {
+  box-shadow: var(--coord-shadow-md);
+  border-color: var(--coord-navy-300);
+}
+
+.lec-card-submitted {
+  border-left: 4px solid var(--coord-emerald-500);
+}
+
+.lec-card-pending {
+  border-left: 4px solid var(--coord-accent);
+}
+
+.lec-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lec-period-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--coord-navy-100);
+  color: var(--coord-navy-800);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.lec-time-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--coord-navy-600);
+}
+
+.lec-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-status-pill.pill-done {
+  background: var(--coord-emerald-100);
+  color: var(--coord-emerald-700);
+}
+
+.lec-status-pill.pill-warn {
+  background: var(--coord-amber-100);
+  color: var(--coord-amber-700);
+}
+
+.lec-subj-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lec-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--coord-navy-600);
+  background: var(--coord-navy-50);
+  border: 1px solid var(--coord-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-attendance-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--coord-navy-50);
+  border-radius: var(--coord-radius-sm);
+  padding: 10px;
+}
+
+.att-num-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.num-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--coord-navy-500);
+}
+
+.num-val {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.lec-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.btn-view-roster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coord-primary-soft);
+  border: 1px solid var(--coord-primary-line);
+  border-radius: var(--coord-radius-sm);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--coord-primary);
+  cursor: pointer;
+  transition: var(--coord-transition);
+}
+
+.btn-view-roster:hover {
+  background: var(--coord-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   11. STUDENT ATTENDANCE ROSTER MODAL (MULTI-BRANCH REGISTER)
+   ========================================================================== */
+
+.subj-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: coordFadeIn 0.15s ease;
+}
+
+.subj-modal-container.roster-modal {
+  background: var(--coord-surface);
+  border-radius: var(--coord-radius-xl);
+  box-shadow: var(--coord-shadow-xl);
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--coord-border);
+  animation: coordSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes coordSlideUp {
+  from { transform: translateY(20px) scale(0.97); }
+  to { transform: translateY(0) scale(1); }
+}
+
+.subj-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--coord-border);
+  background: var(--coord-navy-50);
+}
+
+.subj-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--coord-primary);
+}
+
+.subj-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  margin: 0;
+}
+
+.subj-modal-code {
+  font-size: 12px;
+  color: var(--coord-navy-500);
+}
+
+.subj-modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--coord-navy-400);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: var(--coord-transition);
+}
+
+.subj-modal-close:hover {
+  background: var(--coord-navy-200);
+  color: var(--coord-navy-950);
+}
+
+/* Roster KPI Summary Grid */
+.subj-graph-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.subj-graph-kpi-card {
+  background: var(--coord-navy-50);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-graph-kpi-card .kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--coord-navy-500);
+}
+
+.subj-graph-kpi-card .kpi-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+}
+
+.subj-graph-kpi-card .kpi-val.good { color: var(--coord-emerald-600); }
+.subj-graph-kpi-card .kpi-val.alert { color: var(--coord-crimson-600); }
+.subj-graph-kpi-card .kpi-val.highlight { color: var(--coord-primary); }
+
+.subj-graph-kpi-card .kpi-sub {
+  font-size: 11px;
+  color: var(--coord-navy-500);
+}
+
+/* Search and Filters inside modal */
+.search-input-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coord-navy-50);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 8px 12px;
+}
+
+.search-input-box:focus-within {
+  border-color: var(--coord-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.search-input-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--coord-navy-900);
+  width: 100%;
+}
+
+.search-icon {
+  color: var(--coord-navy-400);
+}
+
+/* Roster Table */
+.history-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+}
+
+.history-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.history-data-table th {
+  background: var(--coord-navy-50);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--coord-navy-700);
+  border-bottom: 1px solid var(--coord-border);
+}
+
+.history-data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--coord-border);
+  color: var(--coord-navy-800);
+}
+
+.history-data-table tr:hover {
+  background: var(--coord-navy-50);
+}
+
+.status-cell-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-cell-pill.pill-pres {
+  background: var(--coord-emerald-100);
+  color: var(--coord-emerald-700);
+}
+
+.status-cell-pill.pill-abs {
+  background: var(--coord-crimson-100);
+  color: var(--coord-crimson-700);
+}
+
+.status-cell-pill.pill-pend {
+  background: var(--coord-amber-100);
+  color: var(--coord-amber-700);
+}
+
+/* ==========================================================================
+   15. MULTI-BRANCH COMPLIANCE COMPARISON MATRIX
+   ========================================================================== */
+
+.coord-matrix-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--coord-surface);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-lg);
+  padding: 22px;
+  box-shadow: var(--coord-shadow-xs);
+}
+
+.coord-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--coord-border);
+  padding-bottom: 14px;
+}
+
+.coord-matrix-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--coord-navy-950);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coord-branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.coord-branch-card {
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 14px 16px;
+  background: var(--coord-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--coord-transition);
+}
+
+.coord-branch-card:hover {
+  border-color: var(--coord-primary);
+  box-shadow: var(--coord-shadow-sm);
+  transform: translateY(-2px);
+}
+
+.coord-branch-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coord-branch-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--coord-navy-900);
+}
+
+.coord-branch-progress {
+  width: 100%;
+  height: 6px;
+  background: var(--coord-navy-100);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.coord-branch-fill {
+  height: 100%;
+  background: var(--coord-primary);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* ==========================================================================
+   16. TIMETABLE CONFLICT & ROOM CLASH DETECTION MARKERS
+   ========================================================================== */
+
+.coord-conflict-card {
+  background: var(--coord-crimson-50);
+  border: 1px solid var(--coord-crimson-100);
+  border-radius: var(--coord-radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.conflict-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--coord-crimson-700);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.conflict-tag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: var(--coord-crimson-600);
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   17. FACULTY SUBSTITUTION & EMERGENCY REASSIGNMENT ALERTS
+   ========================================================================== */
+
+.substitution-alert-box {
+  background: var(--coord-purple-50);
+  border: 1px solid var(--coord-purple-100);
+  border-radius: var(--coord-radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--coord-purple-700);
+}
+
+/* ==========================================================================
+   18. CROSS-DEPARTMENT ATTENDANCE RATE BREAKDOWN
+   ========================================================================== */
+
+.coord-cross-dept-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.cross-dept-stat-box {
+  background: var(--coord-navy-50);
+  border: 1px solid var(--coord-border);
+  border-radius: var(--coord-radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   19. PERIOD SCHEDULE VERIFICATION & ROOM UTILIZATION CHIPS
+   ========================================================================== */
+
+.room-utilization-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: var(--coord-radius-sm);
+  background: var(--coord-indigo-100);
+  color: var(--coord-indigo-700);
+}
+
+/* ==========================================================================
+   20. MICRO-INTERACTIONS, SHIMMER EFFECTS & KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes coordPulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.t-cell-selected::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--coord-radius-sm) + 2px);
+  border: 2px solid var(--coord-primary);
+  pointer-events: none;
+  animation: coordPulseRing 2s infinite ease-in-out;
+}
+
+.teaching-loading-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--coord-navy-400);
+  gap: 12px;
+}
+
+.teaching-loading-grid p {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   21. COMPREHENSIVE DARK THEME SYSTEM ([data-theme="dark"] & .dark)
+   ========================================================================== */
+
+[data-theme="dark"] .staff-attendance-page-container,
+.dark .staff-attendance-page-container {
+  --coord-surface: #0F172A;
+  --coord-surface-alt: #1E293B;
+  --coord-surface-card: #0F172A;
+  --coord-border: #334155;
+  --coord-border-strong: #475569;
+  --coord-border-focus: #3B82F6;
+
+  --coord-navy-950: #F8FAFC;
+  --coord-navy-900: #F1F5F9;
+  --coord-navy-800: #E2E8F0;
+  --coord-navy-700: #CBD5E1;
+  --coord-navy-600: #94A3B8;
+  --coord-navy-500: #64748B;
+  --coord-navy-400: #475569;
+  --coord-navy-300: #334155;
+  --coord-navy-200: #1E293B;
+  --coord-navy-100: #1E293B;
+  --coord-navy-50:  #0B1120;
+
+  --coord-primary: #3B82F6;
+  --coord-primary-hover: #2563EB;
+  --coord-primary-soft: rgba(59, 130, 246, 0.16);
+  --coord-primary-line: rgba(59, 130, 246, 0.35);
+
+  --coord-accent: #FBBF24;
+  --coord-accent-soft: rgba(245, 158, 11, 0.16);
+  --coord-accent-line: rgba(245, 158, 11, 0.35);
+
+  --coord-brand: #FF6B0A;
+  --coord-brand-soft: rgba(255, 107, 10, 0.16);
+  --coord-brand-line: rgba(255, 107, 10, 0.35);
+
+  --coord-emerald-700: #34D399;
+  --coord-emerald-600: #10B981;
+  --coord-emerald-100: rgba(16, 185, 129, 0.2);
+  --coord-emerald-50:  rgba(16, 185, 129, 0.1);
+
+  --coord-crimson-700: #F87171;
+  --coord-crimson-600: #EF4444;
+  --coord-crimson-100: rgba(239, 68, 68, 0.2);
+  --coord-crimson-50:  rgba(239, 68, 68, 0.1);
+
+  --coord-amber-700: #FBBF24;
+  --coord-amber-600: #F59E0B;
+  --coord-amber-100: rgba(245, 158, 11, 0.2);
+  --coord-amber-50:  rgba(245, 158, 11, 0.1);
+
+  --coord-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --coord-shadow-sm: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  --coord-shadow-md: 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+  --coord-shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.6);
+  --coord-shadow-xl: 0 28px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .t-cal-cell,
+.dark .t-cal-cell {
+  background: #0F172A;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .t-cal-cell:hover,
+.dark .t-cal-cell:hover {
+  background: #1E293B;
+  border-color: #3B82F6;
+}
+
+[data-theme="dark"] .t-cell-sunday,
+.dark .t-cell-sunday {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .t-cell-selected,
+.dark .t-cell-selected {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border-color: #3B82F6 !important;
+}
+
+[data-theme="dark"] .inspector-lecture-card,
+.dark .inspector-lecture-card {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .inspector-lecture-card:hover,
+.dark .inspector-lecture-card:hover {
+  border-color: #475569;
+  background: #131E35;
+}
+
+[data-theme="dark"] .panel-header,
+.dark .panel-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lec-attendance-numbers,
+.dark .lec-attendance-numbers {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .meta-tag,
+.dark .meta-tag {
+  background: #1E293B;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-view-roster,
+.dark .btn-view-roster {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93C5FD;
+}
+
+[data-theme="dark"] .btn-view-roster:hover,
+.dark .btn-view-roster:hover {
+  background: #2563EB;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .branch-select-wrap,
+.dark .branch-select-wrap {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .global-month-bar,
+.dark .global-month-bar {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .g-month-btn:hover,
+.dark .g-month-btn:hover {
+  background: #1E293B;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .btn-refresh-unified,
+.dark .btn-refresh-unified {
+  background: #0F172A;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-refresh-unified:hover,
+.dark .btn-refresh-unified:hover {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93C5FD;
+  border-color: #3B82F6;
+}
+
+[data-theme="dark"] .subj-modal-container.roster-modal,
+.dark .subj-modal-container.roster-modal {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-modal-header,
+.dark .subj-modal-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-graph-kpi-card,
+.dark .subj-graph-kpi-card {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box,
+.dark .search-input-box {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box input,
+.dark .search-input-box input {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .history-data-table th,
+.dark .history-data-table th {
+  background: #0B1120;
+  border-color: #334155;
+  color: #94A3B8;
+}
+
+[data-theme="dark"] .history-data-table td,
+.dark .history-data-table td {
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+[data-theme="dark"] .history-data-table tr:hover,
+.dark .history-data-table tr:hover {
+  background: #1E293B;
+}
+
+[data-theme="dark"] .coord-matrix-container,
+.dark .coord-matrix-container {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .coord-branch-card,
+.dark .coord-branch-card {
+  background: #1E293B;
+  border-color: #334155;
+}
+
+/* ==========================================================================
+   22. ADVANCED RESPONSIVE LAYOUT ENGINE (1920px -> 360px)
+   ========================================================================== */
+
+@media (min-width: 1920px) {
+  .staff-attendance-page-container {
+    max-width: 1800px;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+  }
+  .t-cal-cell {
+    min-height: 84px;
+    padding: 10px;
+  }
+  .t-cell-num {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .teaching-kpi-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+  .teaching-header-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .teaching-header-actions {
+    justify-content: space-between;
+  }
+  .coord-cross-dept-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .staff-attendance-page-container {
+    padding: 14px;
+    gap: 16px;
+  }
+  .teaching-kpi-strip {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .teaching-title {
+    font-size: 20px;
+  }
+  .teaching-desc {
+    font-size: 12px;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .legend-pills {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .panel-calendar-body {
+    padding: 14px 12px;
+  }
+  .t-cal-cell {
+    min-height: 60px;
+    padding: 5px 4px;
+  }
+  .t-cell-num {
+    font-size: 11px;
+  }
+  .t-badge {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+  .subj-graph-kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .subj-modal-container.roster-modal {
+    margin: 10px;
+    max-height: 94vh;
+  }
+  .subj-modal-header {
+    padding: 16px 18px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-attendance-page-container {
+    padding: 10px;
+  }
+  .global-month-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .g-month-display {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  .btn-open-studio-toggle,
+  .btn-refresh-unified {
+    width: 100%;
+    justify-content: center;
+  }
+  .t-cal-cell {
+    min-height: 52px;
+    padding: 3px 2px;
+  }
+  .t-cell-num {
+    font-size: 10px;
+  }
+  .t-today-badge {
+    display: none;
+  }
+  .inspector-content {
+    padding: 14px 12px;
+  }
+  .inspector-lecture-card {
+    padding: 12px 14px;
+  }
+  .lec-subj-name {
+    font-size: 14px;
+  }
+  .lec-attendance-numbers {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 6px;
+    gap: 4px;
+  }
+  .num-val {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .t-cal-cell {
+    min-height: 46px;
+  }
+  .t-badge {
+    display: none;
+  }
+  .t-cell-has-lectures::after {
+    content: "•";
+    color: var(--coord-primary);
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   23. ACCESSIBILITY, HIGH-CONTRAST & REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .t-cal-cell,
+  .inspector-lecture-card,
+  .t-kpi-card,
+  .subj-modal-container {
+    border: 1px solid CanvasText !important;
+  }
+  .t-cell-selected {
+    outline: 2px solid Highlight !important;
+  }
+}
+
+/* ==========================================================================
+   24. OFFICIAL PRINT STYLESHEET FOR ACADEMIC COUNCIL ARCHIVING
+   ========================================================================== */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .teaching-calendar-master-view,
+  .teaching-calendar-master-view * {
+    visibility: visible;
+  }
+  .teaching-calendar-master-view {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: transparent !important;
+  }
+  .teaching-header-actions,
+  .btn-open-studio-toggle,
+  .btn-refresh-unified,
+  .btn-view-roster,
+  .subj-modal-backdrop {
+    display: none !important;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .t-kpi-card,
+  .teaching-calendar-panel,
+  .teaching-day-inspector-panel,
+  .inspector-lecture-card {
+    box-shadow: none !important;
+    border: 1px solid #94A3B8 !important;
+    page-break-inside: avoid;
+  }
+}

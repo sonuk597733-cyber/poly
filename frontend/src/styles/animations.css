@@ -1,0 +1,146 @@
+/* ==========================================================================
+   COLLEGEOS — CENTRALIZED ANIMATION SYSTEM
+   Smooth micro-interactions, hardware-accelerated transforms, accessibility.
+   ========================================================================== */
+
+/* Theme switching smooth transition */
+html, body {
+  transition: background-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out);
+}
+
+/* Keyframes */
+@keyframes cosFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cosFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes cosSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cosSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cosScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cosPulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cosShimmerSweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes cosSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Micro-Interaction Classes */
+.animate-fade-in {
+  animation: cosFadeIn var(--duration-normal) var(--ease-out) both;
+}
+
+.animate-slide-down {
+  animation: cosSlideDown var(--duration-normal) var(--ease-out) both;
+}
+
+.animate-scale-in {
+  animation: cosScaleIn var(--duration-fast) var(--ease-out) both;
+}
+
+.animate-spin {
+  animation: cosSpin 0.9s linear infinite;
+}
+
+/* Skeletons */
+.cos-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: cosShimmerSweep 1.6s infinite;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="light"] .cos-skeleton,
+.theme-light .cos-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 31, 59, 0.04) 25%,
+    rgba(11, 31, 59, 0.09) 50%,
+    rgba(11, 31, 59, 0.04) 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

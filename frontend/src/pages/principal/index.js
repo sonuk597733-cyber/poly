@@ -1,0 +1,11 @@
+export { default as PrincipalDashboard } from "./PrincipalDashboard";
+export { default as PrincipalProfile } from "./PrincipalProfile";
+export { default as PrincipalStudents } from "./PrincipalStudents";
+export { default as PrincipalFaculty } from "./PrincipalFaculty";
+export { default as PrincipalAttendance } from "./PrincipalAttendance";
+export { default as PrincipalApprovals } from "./PrincipalApprovals";
+export { default as PrincipalReports } from "./PrincipalReports";
+export { default as PrincipalTimetable } from "./PrincipalTimetable";
+export { default as PrincipalNotices } from "./PrincipalNotices";
+export { default as PrincipalSettings } from "./PrincipalSettings";
+export { default as PrincipalExams } from "./PrincipalExams";

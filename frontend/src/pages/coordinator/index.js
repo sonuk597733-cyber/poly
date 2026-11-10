@@ -1,0 +1,16 @@
+export { default as CoordinatorDashboard } from "./CoordinatorDashboard";
+export { default as CoordinatorProfile } from "./CoordinatorProfile";
+export { default as CoordinatorStudents } from "./CoordinatorStudents";
+export { default as CoordinatorFaculty } from "./CoordinatorFaculty";
+export { default as CoordinatorCalendar } from "./CoordinatorCalendar";
+export { default as CoordinatorTimetable } from "./CoordinatorTimetable";
+export { default as CoordinatorRooms } from "./CoordinatorRooms";
+export { default as CoordinatorExams } from "./CoordinatorExams";
+export { default as CoordinatorAttendance } from "./CoordinatorAttendance";
+export { default as CoordinatorAssignments } from "./CoordinatorAssignments";
+export { default as CoordinatorLeaves } from "./CoordinatorLeaves";
+export { default as CoordinatorApprovals } from "./CoordinatorApprovals";
+export { default as CoordinatorNotices } from "./CoordinatorNotices";
+export { default as CoordinatorReports } from "./CoordinatorReports";
+export { default as CoordinatorNotifications } from "./CoordinatorNotifications";
+export { default as CoordinatorSettings } from "./CoordinatorSettings";

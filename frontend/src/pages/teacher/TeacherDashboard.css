@@ -1,0 +1,323 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER DASHBOARD STYLES (DARK GLASS & LIGHT BRIGHT MODE)
+   ========================================================================== */
+
+.teacher-dash-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Welcome Hero Banner */
+.teacher-welcome-banner {
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  border-radius: var(--tch-radius-lg);
+  padding: 32px 36px;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25), 0 8px 10px -6px rgba(15, 23, 42, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: tchSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .teacher-welcome-banner,
+.theme-light .teacher-welcome-banner {
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.teacher-welcome-banner::after {
+  content: "";
+  position: absolute;
+  right: -50px;
+  top: -50px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.teacher-banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+.teacher-faculty-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.2);
+  color: #93C5FD;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: var(--tch-radius-pill);
+  margin-bottom: 14px;
+}
+
+.teacher-welcome-title {
+  font-size: 1.95rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 10px 0;
+  color: #FFFFFF;
+}
+
+.teacher-welcome-sub {
+  font-size: 0.96rem;
+  color: #CBD5E1;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+.teacher-welcome-sub strong {
+  color: #FFFFFF;
+}
+
+.teacher-mono-pill {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 3px 9px;
+  border-radius: 6px;
+  color: #93C5FD;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.teacher-welcome-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Stats Grid */
+.teacher-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Charts Layout */
+.teacher-charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.teacher-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.teacher-chart-header h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.teacher-chart-header p {
+  font-size: 0.86rem;
+  color: var(--tch-text-secondary);
+  margin: 0;
+}
+
+/* Operational Widgets Grid */
+.teacher-widgets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.teacher-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.teacher-widget-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teacher-widget-title h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0;
+}
+
+.teacher-widget-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--tch-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--tch-radius-sm);
+  transition: all 0.16s ease;
+}
+
+.teacher-widget-link:hover {
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary-hover);
+}
+
+/* Slots List */
+.teacher-slots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.teacher-slot-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--tch-bg-secondary);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  transition: all 0.18s ease;
+}
+
+.teacher-slot-item:hover {
+  border-color: var(--tch-border-hover);
+  background: var(--tch-card-hover);
+}
+
+.teacher-slot-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  text-align: center;
+}
+
+.teacher-slot-time strong {
+  font-size: 0.92rem;
+  color: var(--tch-primary);
+  font-weight: 700;
+}
+
+.teacher-slot-time span {
+  font-size: 0.74rem;
+  color: var(--tch-text-muted);
+}
+
+.teacher-slot-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.teacher-slot-title {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0;
+}
+
+.teacher-slot-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Mini Notices Widget */
+.teacher-notices-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.teacher-notice-item {
+  padding: 14px 16px;
+  background: var(--tch-bg-secondary);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  transition: all 0.18s ease;
+}
+
+.teacher-notice-item:hover {
+  border-color: var(--tch-border-hover);
+  background: var(--tch-card-hover);
+}
+
+.teacher-notice-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.teacher-notice-cat {
+  font-size: 0.78rem;
+  color: var(--tch-text-muted);
+  font-weight: 600;
+}
+
+.teacher-notice-headline {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 6px 0;
+}
+
+.teacher-notice-snippet {
+  font-size: 0.84rem;
+  color: var(--tch-text-secondary);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Breakpoint Queries */
+@media (max-width: 992px) {
+  .teacher-charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .teacher-widgets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .teacher-welcome-banner {
+    padding: 24px 20px;
+  }
+
+  .teacher-welcome-title {
+    font-size: 1.5rem;
+  }
+
+  .teacher-slot-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .teacher-slot-time {
+    align-items: flex-start;
+  }
+}

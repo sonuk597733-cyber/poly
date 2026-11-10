@@ -1,0 +1,616 @@
+/* ==========================================================================
+   COLLEGEOS — STUDENT DIGITAL LIBRARY PREMIUM DESIGN SYSTEM
+   Deep Navy + Royal Blue Theme with Full Light Mode Parity
+   ========================================================================== */
+
+.std-lib-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ───────────── 1. BENTO KPI GRID ───────────── */
+.std-lib-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.std-lib-kpi-card {
+  padding: 18px 20px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.std-lib-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--std-border-bright, rgba(96, 165, 250, 0.35));
+  box-shadow: var(--std-shadow-md, 0 8px 24px -4px rgba(0, 0, 0, 0.45));
+}
+
+.std-lib-kpi-card.highlight-royal {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(16, 37, 65, 0.95) 100%);
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.std-lib-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.std-lib-kpi-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--std-text-muted, #64748B);
+}
+
+.std-lib-kpi-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.std-lib-kpi-badge.royal {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--std-cyan-bright, #60A5FA);
+}
+
+.std-lib-kpi-badge.emerald {
+  background: rgba(16, 185, 129, 0.16);
+  color: #34D399;
+}
+
+.std-lib-kpi-badge.amber {
+  background: rgba(245, 158, 11, 0.16);
+  color: #FBBF24;
+}
+
+.std-lib-kpi-badge.blue {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93C5FD;
+}
+
+.std-lib-kpi-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.std-lib-kpi-val {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--std-text-title, #FFFFFF);
+  line-height: 1;
+}
+
+.std-lib-kpi-val.royal {
+  color: var(--std-cyan-bright, #60A5FA);
+}
+
+.std-lib-kpi-val.paid {
+  color: #34D399;
+}
+
+.std-lib-kpi-val.amber {
+  color: #FBBF24;
+}
+
+.std-lib-kpi-scale {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--std-text-muted, #64748B);
+}
+
+.std-lib-kpi-progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.std-lib-kpi-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--std-cyan-bright, #60A5FA);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.std-lib-kpi-hint {
+  font-size: 11.5px;
+  color: var(--std-text-muted, #64748B);
+}
+
+/* ───────────── 2. SECTION CARDS & LOANS GRID ───────────── */
+.std-lib-section-card {
+  padding: 20px 24px;
+  background: var(--std-surface-1, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-lg, 16px);
+  box-shadow: var(--std-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.std-lib-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.std-lib-card-header h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0 0 4px;
+}
+
+.std-lib-card-header p {
+  font-size: 12.5px;
+  color: var(--std-text-secondary, #A9BCD4);
+  margin: 0;
+}
+
+.std-lib-empty-box {
+  padding: 36px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px dashed var(--std-border-subtle, #294565);
+  border-radius: 12px;
+}
+
+.std-lib-loans-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.std-loan-card {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.std-loan-book-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.16);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: var(--std-cyan-bright, #60A5FA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.std-loan-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.std-loan-code {
+  font-size: 10.5px;
+  font-family: monospace;
+  color: var(--std-cyan-bright, #60A5FA);
+}
+
+.std-loan-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.std-loan-author {
+  font-size: 12px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.std-loan-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.std-loan-due {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--std-text-primary, #F8FAFC);
+}
+
+.std-loan-fine {
+  font-size: 11px;
+  font-weight: 700;
+  color: #F87171;
+  background: rgba(239, 68, 68, 0.16);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ───────────── 3. SEARCH FORM & CATEGORIES ───────────── */
+.std-lib-search-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.std-lib-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: var(--std-radius-full, 9999px);
+  padding: 0 14px;
+  height: 38px;
+  width: 280px;
+}
+
+.std-lib-search-input {
+  background: transparent;
+  border: none;
+  color: var(--std-text-primary, #F8FAFC);
+  font-size: 12.5px;
+  margin-left: 8px;
+  width: 100%;
+}
+
+.std-lib-search-input:focus {
+  outline: none;
+}
+
+.std-lib-clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--std-text-muted, #64748B);
+  cursor: pointer;
+  padding: 0;
+}
+
+.std-lib-cat-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+/* ───────────── 4. BOOK CATALOG CARDS GRID ───────────── */
+.std-lib-books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.std-book-card {
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.std-book-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--std-border-bright, rgba(96, 165, 250, 0.35));
+}
+
+.std-book-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.std-book-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.16);
+  color: var(--std-cyan-bright, #60A5FA);
+}
+
+.std-book-avail {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.std-book-avail.avail {
+  color: #34D399;
+}
+
+.std-book-avail.issued {
+  color: #94A3B8;
+}
+
+.std-book-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--std-text-title, #FFFFFF);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.std-book-author {
+  font-size: 12px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.std-book-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.std-book-meta-item span {
+  color: var(--std-text-muted, #64748B);
+  display: block;
+}
+
+.std-book-meta-item strong {
+  color: var(--std-text-primary, #F8FAFC);
+}
+
+.std-book-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.std-already-borrowed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #34D399;
+}
+
+/* ───────────── 5. BOOK MODAL ───────────── */
+.std-book-modal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--std-surface-1-solid, #102541);
+  border: 1px solid var(--std-border-subtle, #294565);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.std-book-modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--std-border-subtle, #294565);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.std-book-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.std-book-hero-preview {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.std-book-cover-mock {
+  width: 80px;
+  height: 110px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E3A8A 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #FFFFFF;
+  font-size: 10px;
+  text-align: center;
+  padding: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.std-book-hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.std-book-hero-text h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.std-book-publisher,
+.std-book-isbn {
+  font-size: 11.5px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.std-book-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.std-book-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--std-text-secondary, #A9BCD4);
+}
+
+.std-book-detail-row strong {
+  color: #FFFFFF;
+}
+
+/* ───────────── 6. LIGHT THEME CANONICAL OVERRIDES ───────────── */
+[data-theme="light"] .std-lib-kpi-card,
+.theme-light .std-lib-kpi-card,
+[data-theme="light"] .std-lib-section-card,
+.theme-light .std-lib-section-card {
+  background: #FFFFFF !important;
+  border-color: #DBEAFE !important;
+  box-shadow: 0 4px 16px -4px rgba(11, 31, 59, 0.08) !important;
+}
+
+[data-theme="light"] .std-lib-kpi-card.highlight-royal,
+.theme-light .std-lib-kpi-card.highlight-royal {
+  background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%) !important;
+  border-color: #BFDBFE !important;
+}
+
+[data-theme="light"] .std-loan-card,
+.theme-light .std-loan-card,
+[data-theme="light"] .std-book-card,
+.theme-light .std-book-card {
+  background: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .std-lib-kpi-val,
+.theme-light .std-lib-kpi-val,
+[data-theme="light"] .std-lib-card-header h3,
+.theme-light .std-lib-card-header h3,
+[data-theme="light"] .std-loan-title,
+.theme-light .std-loan-title,
+[data-theme="light"] .std-book-title,
+.theme-light .std-book-title {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-lib-search-input-wrap,
+.theme-light .std-lib-search-input-wrap {
+  background: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .std-lib-search-input,
+.theme-light .std-lib-search-input {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-book-meta-grid,
+.theme-light .std-book-meta-grid {
+  background: #F1F5F9 !important;
+}
+
+[data-theme="light"] .std-book-meta-item strong,
+.theme-light .std-book-meta-item strong {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-book-modal,
+.theme-light .std-book-modal {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .std-book-hero-text h4,
+.theme-light .std-book-hero-text h4,
+[data-theme="light"] .std-book-detail-row strong,
+.theme-light .std-book-detail-row strong {
+  color: #0B1F3B !important;
+}
+
+[data-theme="light"] .std-book-detail-grid,
+.theme-light .std-book-detail-grid {
+  background: #F8FAFC !important;
+}
+
+/* ───────────── 7. RESPONSIVE BREAKPOINTS ───────────── */
+@media (max-width: 1024px) {
+  .std-lib-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .std-lib-books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .std-lib-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-lib-loans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-lib-books-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .std-lib-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .std-lib-search-form {
+    width: 100%;
+  }
+
+  .std-lib-search-input-wrap {
+    width: 100%;
+  }
+
+  .std-loan-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .std-loan-card button {
+    width: 100%;
+  }
+}

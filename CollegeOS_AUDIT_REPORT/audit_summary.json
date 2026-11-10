@@ -1,0 +1,112 @@
+{
+  "totalFeatures": 226,
+  "overallProjectScore": 7.34,
+  "uiUxScore": 7.73,
+  "frontendScore": 7.55,
+  "backendScore": 7,
+  "databaseScore": 7,
+  "securityScore": 7.56,
+  "responsiveScore": 7.49,
+  "productionReadinessScore": 7.14,
+  "modules": {
+    "Public Website": {
+      "count": 15,
+      "overall": 7.12,
+      "ui": 8.7,
+      "fe": 8.4,
+      "be": 5.4,
+      "db": 5.4,
+      "sec": 7.5,
+      "resp": 8.2,
+      "prod": 7.07
+    },
+    "Student Dashboard": {
+      "count": 39,
+      "overall": 7.7,
+      "ui": 8.08,
+      "fe": 7.91,
+      "be": 7.38,
+      "db": 7.38,
+      "sec": 7.82,
+      "resp": 7.79,
+      "prod": 7.5
+    },
+    "Teacher Dashboard": {
+      "count": 27,
+      "overall": 8.58,
+      "ui": 8.76,
+      "fe": 8.69,
+      "be": 8.52,
+      "db": 8.52,
+      "sec": 8.57,
+      "resp": 8.41,
+      "prod": 8.52
+    },
+    "Coordinator Dashboard": {
+      "count": 21,
+      "overall": 8.38,
+      "ui": 8.62,
+      "fe": 8.5,
+      "be": 8.21,
+      "db": 8.21,
+      "sec": 8.57,
+      "resp": 8.36,
+      "prod": 8.24
+    },
+    "HOD Dashboard": {
+      "count": 25,
+      "overall": 8.54,
+      "ui": 8.74,
+      "fe": 8.66,
+      "be": 8.5,
+      "db": 8.5,
+      "sec": 8.62,
+      "resp": 8.24,
+      "prod": 8.48
+    },
+    "Principal Dashboard": {
+      "count": 24,
+      "overall": 7.72,
+      "ui": 8.04,
+      "fe": 7.83,
+      "be": 7.52,
+      "db": 7.52,
+      "sec": 7.98,
+      "resp": 7.88,
+      "prod": 7.44
+    },
+    "Admin": {
+      "count": 38,
+      "overall": 6.33,
+      "ui": 6.76,
+      "fe": 6.41,
+      "be": 5.96,
+      "db": 5.96,
+      "sec": 6.7,
+      "resp": 6.71,
+      "prod": 6.01
+    },
+    "Common Advanced Systems": {
+      "count": 19,
+      "overall": 6.48,
+      "ui": 6.76,
+      "fe": 6.55,
+      "be": 6.18,
+      "db": 6.18,
+      "sec": 6.84,
+      "resp": 6.63,
+      "prod": 6.29
+    },
+    "Enterprise Modules": {
+      "count": 18,
+      "overall": 4.52,
+      "ui": 4.89,
+      "fe": 4.75,
+      "be": 4.11,
+      "db": 4.11,
+      "sec": 4.83,
+      "resp": 4.81,
+      "prod": 4.14
+    }
+  }
+}

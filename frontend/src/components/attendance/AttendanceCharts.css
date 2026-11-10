@@ -1,0 +1,429 @@
+/* ==========================================================================
+   COLLEGEOS — ATTENDANCE CHARTS & VISUALIZATIONS
+   Radial gauge, monthly trend bars, legend and states.
+   Light by default; dark via [data-theme="dark"] / .theme-dark.
+   Class names are unchanged from the previous version.
+   ========================================================================== */
+
+/* ---------- 1. TOKENS ---------- */
+.att-radial-container,
+.att-monthly-chart-box {
+  --att-accent: #FF6B0A;
+  --att-accent-strong: #EA580C;
+  --att-good: #10B981;
+  --att-good-strong: #059669;
+  --att-alert: #EF4444;
+  --att-alert-strong: #DC2626;
+  --att-warn: #F59E0B;
+
+  --att-ink: #0F172A;
+  --att-ink-2: #334155;
+  --att-muted: #64748B;
+  --att-surface: #FFFFFF;
+  --att-surface-2: #F8FAFC;
+  --att-track: #F1F5F9;
+  --att-line: #E2E8F0;
+
+  --att-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.04);
+  --att-shadow-hover: 0 2px 6px rgba(15, 23, 42, 0.06), 0 14px 32px rgba(255, 107, 10, 0.1);
+
+  --att-font-ui: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --att-font-num: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --att-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --att-focus: 0 0 0 3px rgba(255, 107, 10, 0.4);
+}
+
+[data-theme="dark"] .att-radial-container,
+[data-theme="dark"] .att-monthly-chart-box,
+.theme-dark .att-radial-container,
+.theme-dark .att-monthly-chart-box {
+  --att-ink: #F1F5F9;
+  --att-ink-2: #CBD5E1;
+  --att-muted: #94A3B8;
+  --att-surface: #111A2E;
+  --att-surface-2: #0D1527;
+  --att-track: #1A2540;
+  --att-line: #243049;
+  --att-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --att-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.5), 0 14px 32px rgba(255, 107, 10, 0.15);
+}
+
+/* ---------- 2. RADIAL GAUGE ---------- */
+.att-radial-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(160px, 52vw, 220px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  container-type: inline-size;
+  font-family: var(--att-font-ui);
+  animation: attGaugePop 0.7s var(--att-ease) both;
+}
+
+/* soft halo behind the ring */
+.att-radial-container::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.att-radial-container:has(.att-radial-fill-circle.alert)::before {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.12), transparent 70%);
+}
+
+.att-radial-svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.att-radial-bg-circle {
+  fill: none;
+  stroke: var(--att-track);
+  stroke-width: 14;
+}
+
+.att-radial-fill-circle {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s var(--att-ease), stroke 300ms ease;
+}
+
+.att-radial-fill-circle.good {
+  stroke: var(--att-good);
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.35));
+}
+
+.att-radial-fill-circle.alert {
+  stroke: var(--att-alert);
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.35));
+  animation: attAlertGlow 2.4s ease-in-out infinite;
+}
+
+.att-radial-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  padding: 18%;
+}
+
+.att-radial-pct-number {
+  font-family: var(--att-font-num);
+  font-size: clamp(28px, 17cqw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--att-ink);
+  font-variant-numeric: tabular-nums;
+  animation: attNumberIn 0.8s var(--att-ease) 0.25s both;
+}
+
+.att-radial-ratio-text {
+  font-size: clamp(11px, 5.4cqw, 13px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--att-muted);
+  animation: attNumberIn 0.8s var(--att-ease) 0.4s both;
+}
+
+/* ---------- 3. MONTHLY TREND CHART ---------- */
+.att-monthly-chart-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  background: var(--att-surface);
+  border: 1px solid var(--att-line);
+  border-radius: 20px;
+  padding: clamp(16px, 3vw, 24px);
+  box-shadow: var(--att-shadow);
+  container-type: inline-size;
+  font-family: var(--att-font-ui);
+  color: var(--att-ink);
+  transition: box-shadow 0.25s var(--att-ease), border-color 0.25s var(--att-ease);
+  animation: attCardIn 0.5s var(--att-ease) both;
+}
+
+.att-monthly-chart-box:hover {
+  border-color: rgba(255, 107, 10, 0.35);
+  box-shadow: var(--att-shadow-hover);
+}
+
+.att-monthly-bars-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(4px, 1.6cqw, 12px);
+  height: clamp(140px, 30cqw, 200px);
+  padding-top: 20px;
+  border-bottom: 2px solid var(--att-line);
+  /* faint guide lines at 25 / 50 / 75 / 100 % */
+  background-image: repeating-linear-gradient(
+    to top,
+    transparent 0,
+    transparent calc(25% - 1px),
+    var(--att-line) calc(25% - 1px),
+    var(--att-line) 25%
+  );
+  background-size: 100% calc(100% - 20px);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.att-monthly-bar-col {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  cursor: default;
+  animation: attColIn 0.5s var(--att-ease) both;
+}
+
+.att-monthly-bar-col:nth-child(1)  { animation-delay: 0.00s; }
+.att-monthly-bar-col:nth-child(2)  { animation-delay: 0.05s; }
+.att-monthly-bar-col:nth-child(3)  { animation-delay: 0.10s; }
+.att-monthly-bar-col:nth-child(4)  { animation-delay: 0.15s; }
+.att-monthly-bar-col:nth-child(5)  { animation-delay: 0.20s; }
+.att-monthly-bar-col:nth-child(6)  { animation-delay: 0.25s; }
+.att-monthly-bar-col:nth-child(7)  { animation-delay: 0.30s; }
+.att-monthly-bar-col:nth-child(8)  { animation-delay: 0.35s; }
+.att-monthly-bar-col:nth-child(9)  { animation-delay: 0.40s; }
+.att-monthly-bar-col:nth-child(10) { animation-delay: 0.45s; }
+.att-monthly-bar-col:nth-child(11) { animation-delay: 0.50s; }
+.att-monthly-bar-col:nth-child(12) { animation-delay: 0.55s; }
+
+.att-bar-track {
+  width: 100%;
+  max-width: 36px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: var(--att-track);
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  transition: transform 0.25s var(--att-ease), box-shadow 0.25s var(--att-ease);
+}
+
+.att-bar-fill {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, var(--att-accent) 0%, var(--att-accent-strong) 100%);
+  transition: height 800ms var(--att-ease), filter 0.2s ease;
+  /* grows up from 0 to whatever height the component sets inline */
+  animation: attBarGrow 1s var(--att-ease) both;
+}
+
+.att-bar-fill.good {
+  background: linear-gradient(180deg, var(--att-good) 0%, var(--att-good-strong) 100%);
+}
+
+.att-bar-fill.alert {
+  background: linear-gradient(180deg, #F87171 0%, var(--att-alert-strong) 100%);
+}
+
+.att-monthly-bar-col:hover .att-bar-track {
+  transform: translateY(-3px) scaleX(1.06);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+}
+
+.att-monthly-bar-col:hover .att-bar-fill {
+  filter: brightness(1.08) saturate(1.1);
+}
+
+.att-monthly-bar-col:hover .att-bar-label,
+.att-monthly-bar-col:focus-within .att-bar-label {
+  color: var(--att-accent-strong);
+}
+
+.att-bar-label {
+  font-size: clamp(10px, 2.6cqw, 12px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--att-muted);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.att-bar-val {
+  font-family: var(--att-font-num);
+  font-size: clamp(9px, 2.3cqw, 11px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--att-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 4. OPTIONAL HELPERS (use only if you add the markup) ---------- */
+.att-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.att-chart-title {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--att-ink);
+}
+
+.att-chart-subtitle {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--att-muted);
+}
+
+.att-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--att-ink-2);
+}
+
+.att-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.att-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--att-accent);
+}
+
+.att-legend-dot.good  { background: var(--att-good); }
+.att-legend-dot.alert { background: var(--att-alert); }
+
+/* dashed target line (e.g. 75 % minimum). Place inside .att-monthly-bars-row. */
+.att-target-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 2px dashed var(--att-warn);
+  pointer-events: none;
+}
+
+.att-chart-skeleton {
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--att-track) 25%, var(--att-line) 50%, var(--att-track) 75%);
+  background-size: 200% 100%;
+  animation: attShimmer 1.4s linear infinite;
+}
+
+/* ---------- 5. FOCUS ---------- */
+.att-monthly-bar-col:focus-visible,
+.att-radial-container:focus-visible {
+  outline: none;
+  box-shadow: var(--att-focus);
+  border-radius: 10px;
+}
+
+/* ---------- 6. KEYFRAMES ---------- */
+@keyframes attGaugePop {
+  from { opacity: 0; transform: scale(0.9) rotate(-6deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes attNumberIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes attAlertGlow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.25)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.55)); }
+}
+
+@keyframes attCardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes attColIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes attBarGrow {
+  from { height: 0; }
+}
+
+@keyframes attShimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ---------- 7. RESPONSIVE (container-based) ---------- */
+@container (max-width: 480px) {
+  .att-monthly-bars-row { padding-top: 14px; }
+  .att-bar-track { max-width: 24px; border-radius: 6px 6px 0 0; }
+  .att-bar-fill { border-radius: 6px 6px 0 0; }
+}
+
+@container (max-width: 360px) {
+  /* very narrow: keep labels, drop the value text to avoid collisions */
+  .att-bar-val { display: none; }
+}
+
+@container (min-width: 900px) {
+  .att-bar-track { max-width: 44px; }
+}
+
+@media (max-width: 480px) {
+  .att-monthly-chart-box { border-radius: 16px; gap: 12px; }
+}
+
+@media (hover: none) {
+  .att-monthly-bar-col:hover .att-bar-track { transform: none; box-shadow: none; }
+}
+
+/* ---------- 8. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .att-radial-container,
+  .att-radial-container *,
+  .att-monthly-chart-box,
+  .att-monthly-chart-box * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- 9. PRINT ---------- */
+@media print {
+  .att-monthly-chart-box { box-shadow: none; break-inside: avoid; border-color: #CBD5E1; }
+  .att-radial-container,
+  .att-monthly-chart-box,
+  .att-monthly-chart-box * { animation: none !important; }
+  .att-radial-fill-circle { filter: none !important; }
+  .att-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

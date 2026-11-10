@@ -1,0 +1,165 @@
+/* ==========================================================================
+   COLLEGEOS — CENTRALIZED THEME DEFINITIONS
+   Exact Official Navy Blue + Royal Blue Color System
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DARK THEME (Official Executive Navy & Royal Blue)
+   ========================================================================== */
+:root,
+[data-theme="dark"],
+html.theme-dark,
+body.theme-dark,
+.theme-dark {
+  /* Official Theme Colors */
+  --dark-background: #081525;
+  --dark-surface: #102541;
+  --dark-card: #172D4B;
+  --dark-elevated: #1C3555;
+  --dark-border: #294565;
+  --dark-text: #F8FAFC;
+  --dark-muted: #A9BCD4;
+
+  /* Active Theme Aliases */
+  --bg-main: var(--dark-background);
+  --bg-surface: var(--dark-surface);
+  --bg-card: var(--dark-card);
+  --bg-elevated: var(--dark-elevated);
+  --bg-glass: rgba(16, 37, 65, 0.78);
+  --bg-glass-card: rgba(23, 45, 75, 0.75);
+
+  --border-color: var(--dark-border);
+  --border-subtle: rgba(41, 69, 101, 0.55);
+  --border-strong: rgba(96, 165, 250, 0.35);
+  --border-highlight: rgba(37, 99, 235, 0.6);
+
+  --text-primary: var(--dark-text);
+  --text-secondary: #CBD5E1;
+  --text-muted: var(--dark-muted);
+  --text-inverse: #0B1F3B;
+
+  --accent-primary: var(--brand-accent);       /* #2563EB */
+  --accent-hover: #1D4ED8;
+  --accent-active: #1E40AF;
+  --accent-soft: rgba(37, 99, 235, 0.16);
+  --accent-secondary: var(--brand-secondary); /* #60A5FA */
+  --accent-highlight: var(--brand-highlight); /* #93C5FD */
+  --accent-orange: var(--brand-orange);       /* #FF7A00 */
+
+  /* Shadows for Dark Mode */
+  --shadow-card: 0 4px 16px -2px rgba(2, 8, 16, 0.55), 0 0 0 1px var(--dark-border);
+  --shadow-card-hover: 0 12px 28px -4px rgba(2, 8, 16, 0.75), 0 0 0 1px var(--border-strong), var(--shadow-blue-glow);
+  --shadow-popover: 0 16px 36px -4px rgba(2, 8, 16, 0.85), 0 0 0 1px var(--dark-border);
+
+  /* Form Elements */
+  --input-bg: rgba(8, 21, 37, 0.85);
+  --input-border: var(--dark-border);
+  --input-focus-border: var(--brand-accent);
+  --input-focus-ring: rgba(37, 99, 235, 0.25);
+  --input-placeholder: #64748B;
+
+  /* Backward Compatibility Mappings for Existing Components */
+  --erp-bg-main: var(--dark-background);
+  --erp-bg-card: var(--dark-card);
+  --erp-bg-surface-secondary: var(--dark-surface);
+  --erp-bg-surface-alt: var(--dark-elevated);
+  --erp-bg-surface-hover: var(--dark-elevated);
+  --erp-sheet-bg: var(--dark-surface);
+  --erp-border: var(--dark-border);
+  --erp-text-primary: var(--dark-text);
+  --erp-text-secondary: #CBD5E1;
+  --erp-text-muted: var(--dark-muted);
+  --erp-primary: var(--brand-accent);
+  --erp-primary-hover: #1D4ED8;
+  --erp-primary-light: rgba(37, 99, 235, 0.16);
+  --erp-secondary: var(--brand-secondary);
+  --erp-accent: var(--brand-orange);
+
+  --dash-bg-main: var(--dark-background);
+  --dash-card-bg: var(--dark-card);
+  --dash-border: var(--dark-border);
+  --dash-navy: #0B1F3B;
+  --dash-navy-sub: var(--dark-surface);
+  --dash-text: var(--dark-text);
+  --dash-text-muted: var(--dark-muted);
+}
+
+/* ==========================================================================
+   2. LIGHT THEME (Official Ice Blue & White Enterprise)
+   ========================================================================== */
+[data-theme="light"],
+html.theme-light,
+body.theme-light,
+.theme-light {
+  /* Official Theme Colors */
+  --light-background: #F0F7FF;
+  --light-surface: #DBEAFE;
+  --light-card: #FFFFFF;
+  --light-elevated: #F8FBFF;
+  --light-border: #C7D9F0;
+  --light-text: #0B1F3B;
+  --light-muted: #526782;
+
+  /* Active Theme Aliases */
+  --bg-main: var(--light-background);
+  --bg-surface: var(--light-surface);
+  --bg-card: var(--light-card);
+  --bg-elevated: var(--light-elevated);
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --bg-glass-card: rgba(255, 255, 255, 0.95);
+
+  --border-color: var(--light-border);
+  --border-subtle: rgba(199, 217, 240, 0.65);
+  --border-strong: rgba(37, 99, 235, 0.35);
+  --border-highlight: rgba(37, 99, 235, 0.65);
+
+  --text-primary: var(--light-text);
+  --text-secondary: #334155;
+  --text-muted: var(--light-muted);
+  --text-inverse: #FFFFFF;
+
+  --accent-primary: var(--brand-accent);       /* #2563EB */
+  --accent-hover: #1D4ED8;
+  --accent-active: #1E40AF;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --accent-secondary: var(--brand-secondary); /* #60A5FA */
+  --accent-highlight: var(--brand-highlight); /* #93C5FD */
+  --accent-orange: var(--brand-orange);       /* #FF7A00 */
+
+  /* Shadows for Light Mode */
+  --shadow-card: 0 4px 14px -2px rgba(11, 31, 59, 0.07), 0 0 0 1px var(--light-border);
+  --shadow-card-hover: 0 12px 24px -4px rgba(37, 99, 235, 0.14), 0 0 0 1px var(--border-strong);
+  --shadow-popover: 0 16px 36px -4px rgba(11, 31, 59, 0.12), 0 0 0 1px var(--light-border);
+
+  /* Form Elements */
+  --input-bg: #FFFFFF;
+  --input-border: var(--light-border);
+  --input-focus-border: var(--brand-accent);
+  --input-focus-ring: rgba(37, 99, 235, 0.2);
+  --input-placeholder: #94A3B8;
+
+  /* Backward Compatibility Mappings for Existing Components */
+  --erp-bg-main: var(--light-background);
+  --erp-bg-card: var(--light-card);
+  --erp-bg-surface-secondary: var(--light-surface);
+  --erp-bg-surface-alt: var(--light-elevated);
+  --erp-bg-surface-hover: var(--light-elevated);
+  --erp-sheet-bg: var(--light-card);
+  --erp-border: var(--light-border);
+  --erp-text-primary: var(--light-text);
+  --erp-text-secondary: #334155;
+  --erp-text-muted: var(--light-muted);
+  --erp-primary: var(--brand-accent);
+  --erp-primary-hover: #1D4ED8;
+  --erp-primary-light: rgba(37, 99, 235, 0.12);
+  --erp-secondary: var(--brand-secondary);
+  --erp-accent: var(--brand-orange);
+
+  --dash-bg-main: var(--light-background);
+  --dash-card-bg: var(--light-card);
+  --dash-border: var(--light-border);
+  --dash-navy: #0B1F3B;
+  --dash-navy-sub: var(--light-surface);
+  --dash-text: var(--light-text);
+  --dash-text-muted: var(--light-muted);
+}

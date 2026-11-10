@@ -1,0 +1,131 @@
+/* ==========================================================================
+   COLLEGEOS — HOD NOTICES VIEW STYLING
+   ========================================================================== */
+
+.hod-notices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.hod-notice-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-left: 4px solid var(--hod-primary);
+  background: linear-gradient(135deg, var(--hod-primary-soft) 0%, var(--hod-card-bg) 40%);
+}
+
+.hod-notice-form-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.15rem;
+  color: var(--hod-text-primary);
+}
+
+.hod-notice-form-header p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--hod-text-secondary);
+}
+
+.hod-notice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hod-notice-form-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 14px;
+}
+
+.hod-notice-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.hod-notice-field.full {
+  grid-column: 1 / -1;
+}
+
+.hod-notice-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.hod-notices-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hod-notice-full-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hod-notice-full-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--hod-border-hover);
+  box-shadow: var(--hod-shadow-lg);
+}
+
+.hod-notice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hod-notice-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hod-notice-date-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--hod-text-muted);
+}
+
+.hod-notice-card-title {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--hod-text-primary);
+  line-height: 1.35;
+}
+
+.hod-notice-card-body {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--hod-text-secondary);
+  line-height: 1.6;
+}
+
+.hod-notice-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--hod-border);
+  font-size: 0.82rem;
+  color: var(--hod-text-muted);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .hod-notice-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

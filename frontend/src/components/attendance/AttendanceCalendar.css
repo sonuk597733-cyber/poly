@@ -1,0 +1,1198 @@
+/* ==========================================================================
+   COLLEGEOS — ATTENDANCE ACADEMIC CALENDAR & DAY AUDIT INSPECTOR CSS
+   Interactive Academic Grid, Day Ledger Inspection, and Status Indicators.
+   Supports Light Mode (#F6F8FC / #FFFFFF) & Dark Mode (#0B1120 / #111C30).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Grid Layout for Calendar + Inspector
+   -------------------------------------------------------------------------- */
+.att-calendar-inspector-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.15fr) minmax(380px, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+@media (max-width: 1040px) {
+  .att-calendar-inspector-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Calendar Box (Left Column)
+   -------------------------------------------------------------------------- */
+.att-calendar-box {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-xl, 20px);
+  padding: 24px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .att-calendar-box,
+.theme-dark .att-calendar-box {
+  background: #111C30;
+  border-color: #29374D;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.att-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.att-calendar-month-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .att-calendar-month-name,
+.theme-dark .att-calendar-month-name {
+  color: #F1F5F9;
+}
+
+.att-calendar-caption {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+[data-theme="dark"] .att-calendar-caption,
+.theme-dark .att-calendar-caption {
+  color: #A6B3C5;
+}
+
+.att-calendar-nav-btns {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.att-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.att-calendar-day-header {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--erp-text-secondary, #64748B);
+  text-transform: uppercase;
+  padding: 8px 0;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .att-calendar-day-header,
+.theme-dark .att-calendar-day-header {
+  color: #A6B3C5;
+}
+
+/* --------------------------------------------------------------------------
+   3. Calendar Day Cells
+   -------------------------------------------------------------------------- */
+.att-calendar-day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--erp-radius-md, 12px);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  background: var(--erp-bg-surface-secondary, #F8FAFC);
+  color: var(--erp-text-primary, #172033);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  user-select: none;
+}
+
+[data-theme="dark"] .att-calendar-day-cell,
+.theme-dark .att-calendar-day-cell {
+  background: #17243A;
+  border-color: #29374D;
+  color: #F1F5F9;
+}
+
+.att-calendar-day-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: var(--erp-primary, #4F46E5);
+}
+
+[data-theme="dark"] .att-calendar-day-cell:hover,
+.theme-dark .att-calendar-day-cell:hover {
+  border-color: #818CF8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Cell Status: Present (Green) */
+.att-calendar-day-cell.present {
+  background: #ECFDF5;
+  border-color: #10B981;
+  color: #065F46;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.present,
+.theme-dark .att-calendar-day-cell.present {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(52, 211, 153, 0.5);
+  color: #34D399;
+}
+
+/* Cell Status: Absent (Red) */
+.att-calendar-day-cell.absent {
+  background: #FEF2F2;
+  border-color: #EF4444;
+  color: #991B1B;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.absent,
+.theme-dark .att-calendar-day-cell.absent {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(248, 113, 113, 0.5);
+  color: #F87171;
+}
+
+/* Cell Status: Pending (Amber) */
+.att-calendar-day-cell.pending {
+  background: #FFFBEB;
+  border-color: #F59E0B;
+  color: #92400E;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.pending,
+.theme-dark .att-calendar-day-cell.pending {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #FBBF24;
+}
+
+/* Cell Status: Holiday (Grey) */
+.att-calendar-day-cell.holiday {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  color: #64748B;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.holiday,
+.theme-dark .att-calendar-day-cell.holiday {
+  background: #17243A;
+  border-color: #29374D;
+  color: #A6B3C5;
+}
+
+/* Cell Status: Future / Neutral */
+.att-calendar-day-cell.future {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+  color: #94A3B8;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.future,
+.theme-dark .att-calendar-day-cell.future {
+  background: #111C30;
+  border-color: #29374D;
+  color: #64748B;
+}
+
+/* Disabled Cell */
+.att-calendar-day-cell.disabled {
+  opacity: 0.25;
+  pointer-events: none;
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Cell Selected State Highlight */
+.att-calendar-day-cell.is-selected {
+  outline: 3px solid #4F46E5 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.25), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-color: #4F46E5 !important;
+  z-index: 3;
+}
+
+[data-theme="dark"] .att-calendar-day-cell.is-selected,
+.theme-dark .att-calendar-day-cell.is-selected {
+  outline: 3px solid #818CF8 !important;
+  box-shadow: 0 0 0 5px rgba(129, 140, 248, 0.35), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  border-color: #818CF8 !important;
+}
+
+.att-day-num {
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.att-today-indicator {
+  position: absolute;
+  bottom: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4F46E5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
+}
+
+[data-theme="dark"] .att-today-indicator,
+.theme-dark .att-today-indicator {
+  background: #818CF8;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.4);
+}
+
+/* Quick Calendar Footer Legend */
+.att-calendar-quick-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--erp-text-secondary, #64748B);
+  border-top: 1px solid var(--erp-border, #E2E8F0);
+  padding-top: 14px;
+}
+
+[data-theme="dark"] .att-calendar-quick-legend,
+.theme-dark .att-calendar-quick-legend {
+  color: #A6B3C5;
+  border-color: #29374D;
+}
+
+.att-legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.att-dot-marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.att-legend-pill.tone-present .att-dot-marker { background: #10B981; }
+.att-legend-pill.tone-absent .att-dot-marker { background: #EF4444; }
+.att-legend-pill.tone-pending .att-dot-marker { background: #F59E0B; }
+.att-legend-pill.tone-holiday .att-dot-marker { background: #94A3B8; }
+.att-legend-pill.tone-neutral .att-dot-marker { background: #CBD5E1; }
+
+[data-theme="dark"] .att-legend-pill.tone-neutral .att-dot-marker,
+.theme-dark .att-legend-pill.tone-neutral .att-dot-marker {
+  background: #64748B;
+}
+
+/* --------------------------------------------------------------------------
+   4. Day Audit Inspector Panel (Right Column)
+   -------------------------------------------------------------------------- */
+.att-inspector-panel {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-xl, 20px);
+  padding: 24px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 480px;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .att-inspector-panel,
+.theme-dark .att-inspector-panel {
+  background: #111C30;
+  border-color: #29374D;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.att-inspector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.att-icon-purple {
+  background: #EEF2FF;
+  color: #4F46E5;
+}
+
+[data-theme="dark"] .att-icon-purple,
+.theme-dark .att-icon-purple {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818CF8;
+}
+
+.att-inspector-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.att-inspector-nav-btn,
+.att-inspector-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--erp-border, #E2E8F0);
+  background: var(--erp-bg-surface-secondary, #F8FAFC);
+  color: var(--erp-text-secondary, #64748B);
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+[data-theme="dark"] .att-inspector-nav-btn,
+[data-theme="dark"] .att-inspector-close-btn,
+.theme-dark .att-inspector-nav-btn,
+.theme-dark .att-inspector-close-btn {
+  background: #17243A;
+  border-color: #29374D;
+  color: #A6B3C5;
+}
+
+.att-inspector-nav-btn:hover,
+.att-inspector-close-btn:hover {
+  background: var(--erp-primary, #4F46E5);
+  border-color: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   5. A. BEFORE DATE SELECTION: Premium Empty State
+   -------------------------------------------------------------------------- */
+.att-inspector-empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 0;
+  animation: erpFadeIn 300ms ease;
+}
+
+.att-empty-illustration-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 16px 0 6px;
+}
+
+.att-empty-ring-outer {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, rgba(79, 70, 229, 0.02) 70%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(79, 70, 229, 0.35);
+}
+
+[data-theme="dark"] .att-empty-ring-outer,
+.theme-dark .att-empty-ring-outer {
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.22) 0%, rgba(129, 140, 248, 0.04) 70%, transparent 100%);
+  border-color: rgba(129, 140, 248, 0.45);
+}
+
+.att-empty-ring-inner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.15);
+}
+
+[data-theme="dark"] .att-empty-ring-inner,
+.theme-dark .att-empty-ring-inner {
+  background: #17243A;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.att-empty-icon {
+  color: #4F46E5;
+}
+
+[data-theme="dark"] .att-empty-icon,
+.theme-dark .att-empty-icon {
+  color: #818CF8;
+}
+
+.att-empty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #EEF2FF;
+  color: #4F46E5;
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+[data-theme="dark"] .att-empty-badge,
+.theme-dark .att-empty-badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818CF8;
+  border-color: rgba(129, 140, 248, 0.3);
+}
+
+.att-empty-copy {
+  text-align: center;
+}
+
+.att-empty-copy h3 {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .att-empty-copy h3,
+.theme-dark .att-empty-copy h3 {
+  color: #F1F5F9;
+}
+
+.att-empty-copy p {
+  font-size: 0.8rem;
+  color: var(--erp-text-secondary, #64748B);
+  line-height: 1.5;
+  margin: 0;
+}
+
+[data-theme="dark"] .att-empty-copy p,
+.theme-dark .att-empty-copy p {
+  color: #A6B3C5;
+}
+
+/* Legend Card */
+.att-legend-card {
+  background: var(--erp-bg-surface-secondary, #F8FAFC);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+[data-theme="dark"] .att-legend-card,
+.theme-dark .att-legend-card {
+  background: #17243A;
+  border-color: #29374D;
+}
+
+.att-legend-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--erp-text-secondary, #64748B);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--erp-border, #E2E8F0);
+}
+
+[data-theme="dark"] .att-legend-title,
+.theme-dark .att-legend-title {
+  color: #A6B3C5;
+  border-color: #29374D;
+}
+
+.att-legend-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.att-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.att-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.att-legend-dot.tone-present { background: #10B981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+.att-legend-dot.tone-absent { background: #EF4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); }
+.att-legend-dot.tone-pending { background: #F59E0B; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+.att-legend-dot.tone-holiday { background: #94A3B8; box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2); }
+.att-legend-dot.tone-neutral { background: #CBD5E1; box-shadow: 0 0 0 3px rgba(203, 213, 225, 0.2); }
+
+[data-theme="dark"] .att-legend-dot.tone-neutral,
+.theme-dark .att-legend-dot.tone-neutral {
+  background: #64748B;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.2);
+}
+
+.att-legend-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.att-legend-desc strong {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--erp-text-primary, #172033);
+}
+
+[data-theme="dark"] .att-legend-desc strong,
+.theme-dark .att-legend-desc strong {
+  color: #F1F5F9;
+}
+
+.att-legend-desc span {
+  font-size: 0.72rem;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+[data-theme="dark"] .att-legend-desc span,
+.theme-dark .att-legend-desc span {
+  color: #A6B3C5;
+}
+
+/* Statutory Information Box */
+.att-statutory-info-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+[data-theme="dark"] .att-statutory-info-box,
+.theme-dark .att-statutory-info-box {
+  background: #17243A;
+  border-color: #29374D;
+}
+
+.att-statutory-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.att-statutory-lbl {
+  color: var(--erp-text-secondary, #64748B);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .att-statutory-lbl,
+.theme-dark .att-statutory-lbl {
+  color: #A6B3C5;
+}
+
+.att-statutory-val {
+  color: var(--erp-text-primary, #172033);
+  font-weight: 800;
+}
+
+[data-theme="dark"] .att-statutory-val,
+.theme-dark .att-statutory-val {
+  color: #F1F5F9;
+}
+
+.att-statutory-desc {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--erp-text-secondary, #64748B);
+  border-top: 1px solid var(--erp-border, #E2E8F0);
+  padding-top: 8px;
+  line-height: 1.45;
+}
+
+[data-theme="dark"] .att-statutory-desc,
+.theme-dark .att-statutory-desc {
+  color: #A6B3C5;
+  border-color: #29374D;
+}
+
+/* --------------------------------------------------------------------------
+   6. B. AFTER DATE SELECTION: Active Inspection View
+   -------------------------------------------------------------------------- */
+.att-inspector-content-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  max-height: 640px;
+  padding-right: 4px;
+  animation: erpFadeIn 240ms ease;
+}
+
+.att-inspector-content-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.att-inspector-content-scroll::-webkit-scrollbar-thumb {
+  background: var(--erp-border, #CBD5E1);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .att-inspector-content-scroll::-webkit-scrollbar-thumb,
+.theme-dark .att-inspector-content-scroll::-webkit-scrollbar-thumb {
+  background: #29374D;
+}
+
+.att-sec-card {
+  background: var(--erp-bg-surface-secondary, #F8FAFC);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+[data-theme="dark"] .att-sec-card,
+.theme-dark .att-sec-card {
+  background: #17243A;
+  border-color: #29374D;
+}
+
+.att-sec-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--erp-text-primary, #172033);
+}
+
+[data-theme="dark"] .att-sec-title,
+.theme-dark .att-sec-title {
+  color: #F1F5F9;
+}
+
+.att-sec-subtitle {
+  font-size: 0.74rem;
+  color: var(--erp-text-secondary, #64748B);
+  margin: -6px 0 0;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .att-sec-subtitle,
+.theme-dark .att-sec-subtitle {
+  color: #A6B3C5;
+}
+
+/* SECTION 1: Selected Date Overview */
+.att-sec-overview {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+[data-theme="dark"] .att-sec-overview,
+.theme-dark .att-sec-overview {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.1) 0%, #17243A 100%);
+}
+
+.att-overview-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.att-overview-weekday {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4F46E5;
+}
+
+[data-theme="dark"] .att-overview-weekday,
+.theme-dark .att-overview-weekday {
+  color: #818CF8;
+}
+
+.att-overview-date {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  margin: 2px 0 0;
+  letter-spacing: -0.015em;
+}
+
+[data-theme="dark"] .att-overview-date,
+.theme-dark .att-overview-date {
+  color: #F1F5F9;
+}
+
+.att-overview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.att-chip-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--erp-border, #E2E8F0);
+  background: #FFFFFF;
+  color: var(--erp-text-primary, #172033);
+}
+
+[data-theme="dark"] .att-chip-tag,
+.theme-dark .att-chip-tag {
+  background: #111C30;
+  border-color: #29374D;
+  color: #F1F5F9;
+}
+
+.att-chip-tag.is-working {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1E40AF;
+}
+
+[data-theme="dark"] .att-chip-tag.is-working,
+.theme-dark .att-chip-tag.is-working {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(96, 165, 250, 0.4);
+  color: #93C5FD;
+}
+
+.att-chip-tag.is-nonworking {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  color: #475569;
+}
+
+[data-theme="dark"] .att-chip-tag.is-nonworking,
+.theme-dark .att-chip-tag.is-nonworking {
+  background: rgba(148, 163, 184, 0.18);
+  border-color: rgba(148, 163, 184, 0.35);
+  color: #CBD5E1;
+}
+
+.att-chip-tag.is-today-badge {
+  background: #FFFBEB;
+  border-color: #FDE68A;
+  color: #B45309;
+}
+
+[data-theme="dark"] .att-chip-tag.is-today-badge,
+.theme-dark .att-chip-tag.is-today-badge {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #FDE68A;
+}
+
+.att-overview-explanation {
+  font-size: 0.78rem;
+  color: var(--erp-text-secondary, #64748B);
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 4px;
+}
+
+[data-theme="dark"] .att-overview-explanation,
+.theme-dark .att-overview-explanation {
+  color: #A6B3C5;
+}
+
+/* SECTION 2: Verification Grid */
+.att-verification-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.att-veri-cell {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 12px);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-theme="dark"] .att-veri-cell,
+.theme-dark .att-veri-cell {
+  background: #111C30;
+  border-color: #29374D;
+}
+
+.att-veri-lbl {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary, #64748B);
+  letter-spacing: 0.03em;
+}
+
+[data-theme="dark"] .att-veri-lbl,
+.theme-dark .att-veri-lbl {
+  color: #A6B3C5;
+}
+
+.att-veri-val {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+}
+
+[data-theme="dark"] .att-veri-val,
+.theme-dark .att-veri-val {
+  color: #F1F5F9;
+}
+
+/* SECTION 3: Timeline */
+.att-timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.att-timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 2px;
+  background: var(--erp-border, #E2E8F0);
+}
+
+[data-theme="dark"] .att-timeline-list::before,
+.theme-dark .att-timeline-list::before {
+  background: #29374D;
+}
+
+.att-timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.att-timeline-marker {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+}
+
+[data-theme="dark"] .att-timeline-marker,
+.theme-dark .att-timeline-marker {
+  border-color: #17243A;
+}
+
+.att-timeline-marker.primary { background: #4F46E5; }
+.att-timeline-marker.warn { background: #F59E0B; }
+.att-timeline-marker.success { background: #10B981; }
+
+.att-timeline-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.att-timeline-head {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--erp-text-primary, #172033);
+}
+
+[data-theme="dark"] .att-timeline-head,
+.theme-dark .att-timeline-head {
+  color: #F1F5F9;
+}
+
+.att-timeline-reason {
+  font-size: 0.72rem;
+  color: #D97706;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .att-timeline-reason,
+.theme-dark .att-timeline-reason {
+  color: #FBBF24;
+}
+
+.att-timeline-time {
+  font-size: 0.7rem;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+[data-theme="dark"] .att-timeline-time,
+.theme-dark .att-timeline-time {
+  color: #A6B3C5;
+}
+
+/* SECTION 4: Subject Lecture Activities */
+.att-subject-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.att-subject-act-card {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 12px);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 140ms ease;
+}
+
+[data-theme="dark"] .att-subject-act-card,
+.theme-dark .att-subject-act-card {
+  background: #111C30;
+  border-color: #29374D;
+}
+
+.att-subject-act-card:hover {
+  border-color: var(--erp-primary, #4F46E5);
+}
+
+.att-act-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.att-act-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.att-act-code {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #EEF2FF;
+  color: #4F46E5;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .att-act-code,
+.theme-dark .att-act-code {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818CF8;
+}
+
+.att-act-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--erp-text-primary, #172033);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .att-act-name,
+.theme-dark .att-act-name {
+  color: #F1F5F9;
+}
+
+.att-act-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.att-act-status-badge.present {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .att-act-status-badge.present,
+.theme-dark .att-act-status-badge.present {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.att-act-status-badge.absent {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+[data-theme="dark"] .att-act-status-badge.absent,
+.theme-dark .att-act-status-badge.absent {
+  background: rgba(239, 68, 68, 0.2);
+  color: #F87171;
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.att-act-status-badge.pending {
+  background: #FFFBEB;
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] .att-act-status-badge.pending,
+.theme-dark .att-act-status-badge.pending {
+  background: rgba(245, 158, 11, 0.2);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.att-act-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+[data-theme="dark"] .att-act-meta,
+.theme-dark .att-act-meta {
+  color: #A6B3C5;
+}
+
+.att-no-subjects-card {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 0.76rem;
+  color: var(--erp-text-secondary, #64748B);
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px dashed var(--erp-border, #CBD5E1);
+  border-radius: var(--erp-radius-md, 12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+[data-theme="dark"] .att-no-subjects-card,
+.theme-dark .att-no-subjects-card {
+  background: #111C30;
+  border-color: #29374D;
+  color: #A6B3C5;
+}
+
+/* --------------------------------------------------------------------------
+   7. Loading & Error States for Inspector
+   -------------------------------------------------------------------------- */
+.att-inspector-skeleton-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.att-shimmer {
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.6) 0%, rgba(241, 245, 249, 0.9) 50%, rgba(226, 232, 240, 0.6) 100%);
+  background-size: 200% 100%;
+  animation: attShimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+[data-theme="dark"] .att-shimmer,
+.theme-dark .att-shimmer {
+  background: linear-gradient(90deg, rgba(41, 55, 77, 0.5) 0%, rgba(23, 36, 58, 0.8) 50%, rgba(41, 55, 77, 0.5) 100%);
+  background-size: 200% 100%;
+}
+
+@keyframes attShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.att-skel-title { width: 60%; height: 24px; }
+.att-skel-badge { width: 35%; height: 16px; }
+.att-skel-box { width: 100%; height: 70px; border-radius: 12px; }
+.att-skel-grid { width: 100%; height: 100px; border-radius: 12px; }
+.att-skel-card { width: 100%; height: 140px; border-radius: 12px; }
+
+.att-inspector-error-box {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.att-inspector-error-box h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  margin: 0 0 6px;
+}
+
+[data-theme="dark"] .att-inspector-error-box h4,
+.theme-dark .att-inspector-error-box h4 {
+  color: #F1F5F9;
+}
+
+.att-inspector-error-box p {
+  font-size: 0.8rem;
+  color: var(--erp-text-secondary, #64748B);
+  margin: 0 0 16px;
+  max-width: 320px;
+}
+
+[data-theme="dark"] .att-inspector-error-box p,
+.theme-dark .att-inspector-error-box p {
+  color: #A6B3C5;
+}

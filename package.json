@@ -1,0 +1,16 @@
+{
+  "name": "collegeos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CollegeOS — Polytechnic Management Platform for Swami Vivekanand Subharti University",
+  "scripts": {
+    "dev": "npm --prefix backend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start:backend": "npm --prefix backend start",
+    "seed": "npm --prefix backend run seed",
+    "test": "npm --prefix backend test",
+    "lint": "npm --prefix frontend run lint",
+    "build": "npm --prefix frontend run build"
+  }
+}

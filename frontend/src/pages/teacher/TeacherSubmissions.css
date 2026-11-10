@@ -1,0 +1,33 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER SUBMISSIONS EVALUATION STYLES
+   ========================================================================== */
+
+.teacher-sub-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-sub-context-card {
+  padding: 20px 24px;
+}
+
+.teacher-grade-eval-card {
+  border: 1px solid var(--tch-primary);
+  background: var(--tch-card-bg);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+  animation: tchSlideUp 0.22s ease-out;
+}
+
+.teacher-grade-form-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .teacher-grade-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

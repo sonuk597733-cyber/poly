@@ -1,0 +1,1931 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER ATTENDANCE & TEACHING CALENDAR SYSTEM
+   Enterprise-Grade Styling System for Faculty Daily Lecture Schedules,
+   Attendance Roll-Call Inspection, and Student Roster Verification.
+
+   TABLE OF CONTENTS:
+   1. Design Tokens & Theme Variables (Indigo / Slate / Emerald / Crimson)
+   2. Page Shell & Container Architecture
+   3. Teacher Header & Faculty Metadata Bar
+   4. Top KPI Metric Summary Strip (4 Interactive Cards)
+   5. Mode Switcher & Studio Toggle Navigation
+   6. Teaching Calendar Workspace (Split Left/Right Grid)
+   7. Left Panel: Monthly Teaching Calendar Card
+   8. Calendar Month Navigation & Shortcuts (Today Pill)
+   9. 7-Day Calendar Grid (Sunday to Saturday Alignment)
+   10. Teaching Calendar Date Cells (Badges: Done, Pending, Holiday)
+   11. Right Panel: Daily Lecture Inspector
+   12. Daily Inspector Lecture Cards & Time Badges
+   13. Student Attendance Roster Modal (Wide Dialog)
+   14. Student Roster KPI Bar & Status Filters
+   15. Student Roster Table & Badges (Roll Number, Name, Status, Method)
+   16. Timetable Period Slots Strip & Lecture Breakdown
+   17. Substitution & Rescheduled Lecture Indicators
+   18. Quick-Take Roll-Call Shortcuts & Inline Actions
+   19. Lecture Notes & Topic-Covered Preview Drawer
+   20. Absence Justification & Medical Exemption Badges
+   21. Micro-Interactions, Shimmer Effects & Keyframe Animations
+   22. Comprehensive Dark Mode System ([data-theme="dark"] & .dark)
+   23. Advanced Responsive Layout Engine (1920px -> 360px)
+   24. Accessibility, High-Contrast & Reduced Motion
+   25. Official Print Stylesheet for Faculty Register Archiving
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS & THEME VARIABLES
+   ========================================================================== */
+
+:root {
+  --tch-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tch-font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Color Palette - Faculty Indigo & Academic Blue Identity */
+  --tch-primary: #2563EB;
+  --tch-primary-hover: #1D4ED8;
+  --tch-primary-active: #1E40AF;
+  --tch-primary-soft: #EFF6FF;
+  --tch-primary-line: #BFDBFE;
+
+  --tch-accent: #6366F1;
+  --tch-accent-hover: #4F46E5;
+  --tch-accent-soft: #EEF2FF;
+  --tch-accent-line: #C7D2FE;
+
+  --tch-brand: #FF6B0A;
+  --tch-brand-hover: #EA580C;
+  --tch-brand-soft: #FFF7ED;
+  --tch-brand-line: #FFEDD5;
+
+  /* Neutral Slate Scale */
+  --tch-navy-950: #0B1120;
+  --tch-navy-900: #0F172A;
+  --tch-navy-800: #1E293B;
+  --tch-navy-700: #334155;
+  --tch-navy-600: #475569;
+  --tch-navy-500: #64748B;
+  --tch-navy-400: #94A3B8;
+  --tch-navy-300: #CBD5E1;
+  --tch-navy-200: #E2E8F0;
+  --tch-navy-100: #F1F5F9;
+  --tch-navy-50:  #F8FAFC;
+
+  /* Status Colors */
+  --tch-emerald-700: #047857;
+  --tch-emerald-600: #059669;
+  --tch-emerald-500: #10B981;
+  --tch-emerald-100: #D1FAE5;
+  --tch-emerald-50:  #ECFDF5;
+
+  --tch-crimson-700: #B91C1C;
+  --tch-crimson-600: #DC2626;
+  --tch-crimson-500: #EF4444;
+  --tch-crimson-100: #FEE2E2;
+  --tch-crimson-50:  #FEF2F2;
+
+  --tch-amber-700: #B45309;
+  --tch-amber-600: #D97706;
+  --tch-amber-500: #F59E0B;
+  --tch-amber-100: #FEF3C7;
+  --tch-amber-50:  #FFFBEB;
+
+  --tch-purple-700: #6D28D9;
+  --tch-purple-600: #7C3AED;
+  --tch-purple-500: #8B5CF6;
+  --tch-purple-100: #EDE9FE;
+  --tch-purple-50:  #F5F3FF;
+
+  --tch-teal-700: #0F766E;
+  --tch-teal-600: #0D9488;
+  --tch-teal-500: #14B8A6;
+  --tch-teal-100: #CCFBF1;
+  --tch-teal-50:  #F0FDFA;
+
+  /* Card Surfaces & Elevations */
+  --tch-surface: #FFFFFF;
+  --tch-surface-alt: #F8FAFC;
+  --tch-surface-card: #FFFFFF;
+  --tch-border: #E2E8F0;
+  --tch-border-strong: #CBD5E1;
+  --tch-border-focus: #2563EB;
+
+  /* Shadows */
+  --tch-shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --tch-shadow-sm: 0 2px 4px -1px rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --tch-shadow-md: 0 8px 18px -4px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+  --tch-shadow-lg: 0 16px 32px -6px rgba(15, 23, 42, 0.1), 0 6px 12px -3px rgba(15, 23, 42, 0.04);
+  --tch-shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.14);
+  --tch-shadow-glow-blue: 0 0 20px -3px rgba(37, 99, 235, 0.25);
+  --tch-shadow-glow-emerald: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+
+  /* Border Radii */
+  --tch-radius-xs: 4px;
+  --tch-radius-sm: 8px;
+  --tch-radius-md: 12px;
+  --tch-radius-lg: 16px;
+  --tch-radius-xl: 20px;
+  --tch-radius-full: 9999px;
+
+  /* Easing */
+  --tch-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --tch-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --tch-transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   2. PAGE SHELL & CONTAINER ARCHITECTURE
+   ========================================================================== */
+
+.staff-attendance-page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--tch-font-sans);
+  color: var(--tch-navy-900);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.teaching-calendar-master-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: tchFadeIn 0.3s var(--tch-ease);
+}
+
+@keyframes tchFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tchSlideInRight {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tchScaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   3. TEACHER HEADER & FACULTY METADATA BAR
+   ========================================================================== */
+
+.teaching-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--tch-border);
+}
+
+.teaching-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.teaching-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.role-tag-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  padding: 4px 10px;
+  border-radius: var(--tch-radius-sm);
+  border: 1px solid var(--tch-primary-line);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--tch-shadow-xs);
+}
+
+.role-tag-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tch-primary);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.6);
+}
+
+.branch-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tch-navy-600);
+}
+
+.branch-picker {
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tch-navy-800);
+  outline: none;
+  cursor: pointer;
+  transition: var(--tch-transition);
+}
+
+.branch-picker:hover, .branch-picker:focus {
+  border-color: var(--tch-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.teaching-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.teaching-desc {
+  font-size: 13px;
+  color: var(--tch-navy-600);
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.teaching-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   4. TOP KPI METRIC SUMMARY STRIP (4 INTERACTIVE CARDS)
+   ========================================================================== */
+
+.teaching-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.t-kpi-card {
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: var(--tch-shadow-xs);
+  transition: var(--tch-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.t-kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: var(--tch-transition);
+}
+
+.t-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--tch-shadow-md);
+  border-color: var(--tch-navy-300);
+}
+
+.t-kpi-card:hover::before {
+  background: var(--tch-primary);
+}
+
+.t-kpi-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--tch-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-blue {
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  border: 1px solid var(--tch-primary-line);
+}
+
+.icon-emerald {
+  background: var(--tch-emerald-50);
+  color: var(--tch-emerald-600);
+  border: 1px solid var(--tch-emerald-100);
+}
+
+.icon-amber {
+  background: var(--tch-amber-50);
+  color: var(--tch-amber-600);
+  border: 1px solid var(--tch-amber-100);
+}
+
+.icon-purple {
+  background: var(--tch-purple-50);
+  color: var(--tch-purple-600);
+  border: 1px solid var(--tch-purple-100);
+}
+
+.t-kpi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.t-kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--tch-navy-500);
+}
+
+.t-kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+  line-height: 1.1;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.font-emerald { color: var(--tch-emerald-600) !important; }
+.font-amber   { color: var(--tch-amber-600) !important; }
+.font-purple  { color: var(--tch-purple-600) !important; }
+.font-crimson { color: var(--tch-crimson-600) !important; }
+.font-muted   { color: var(--tch-navy-400) !important; }
+
+.t-kpi-sub {
+  font-size: 11px;
+  color: var(--tch-navy-500);
+}
+
+/* ==========================================================================
+   5. MODE SWITCHER & STUDIO TOGGLE NAVIGATION
+   ========================================================================== */
+
+.studio-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.studio-top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 0;
+}
+
+.btn-back-to-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tch-navy-800);
+  cursor: pointer;
+  box-shadow: var(--tch-shadow-xs);
+  transition: var(--tch-transition);
+}
+
+.btn-back-to-calendar:hover {
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  border-color: var(--tch-primary-line);
+  transform: translateX(-2px);
+}
+
+.btn-open-studio-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--tch-brand), var(--tch-brand-hover));
+  color: #ffffff;
+  border: none;
+  border-radius: var(--tch-radius-md);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 107, 10, 0.25);
+  transition: var(--tch-transition);
+}
+
+.btn-open-studio-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 107, 10, 0.35);
+}
+
+.btn-refresh-unified {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tch-navy-700);
+  cursor: pointer;
+  box-shadow: var(--tch-shadow-xs);
+  transition: var(--tch-transition);
+}
+
+.btn-refresh-unified:hover:not(:disabled) {
+  border-color: var(--tch-primary);
+  color: var(--tch-primary);
+  background: var(--tch-primary-soft);
+}
+
+.spin-icon {
+  animation: tchSpin 1s linear infinite;
+}
+
+@keyframes tchSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   6. TEACHING CALENDAR WORKSPACE (SPLIT LEFT/RIGHT GRID)
+   ========================================================================== */
+
+.teaching-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.teaching-calendar-panel,
+.teaching-day-inspector-panel {
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-xl);
+  box-shadow: var(--tch-shadow-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 16px 22px;
+  background: var(--tch-navy-50);
+  border-bottom: 1px solid var(--tch-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tch-navy-600);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot-green { background: var(--tch-emerald-500); }
+.dot-amber { background: var(--tch-amber-500); }
+.dot-gray  { background: var(--tch-navy-400); }
+
+/* ==========================================================================
+   7. CALENDAR MONTH NAVIGATION & SHORTCUTS
+   ========================================================================== */
+
+.global-month-bar {
+  display: flex;
+  align-items: center;
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 4px 8px;
+  box-shadow: var(--tch-shadow-xs);
+  gap: 8px;
+}
+
+.g-month-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--tch-navy-600);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--tch-transition);
+}
+
+.g-month-btn:hover {
+  background: var(--tch-navy-100);
+  color: var(--tch-navy-950);
+}
+
+.g-month-display {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tch-navy-900);
+  min-width: 110px;
+  text-align: center;
+}
+
+.g-today-pill {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  border: 1px solid var(--tch-primary-line);
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: var(--tch-transition);
+}
+
+.g-today-pill:hover {
+  background: var(--tch-primary);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   8. 7-DAY CALENDAR GRID & DATE CELLS
+   ========================================================================== */
+
+.panel-calendar-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teaching-weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--tch-border);
+}
+
+.wd-col {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tch-navy-400);
+  padding: 4px 0;
+}
+
+.wd-sunday {
+  color: var(--tch-crimson-600);
+}
+
+.teaching-cells-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.t-cal-cell {
+  min-height: 72px;
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-sm);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--tch-surface);
+  transition: var(--tch-transition);
+  position: relative;
+}
+
+.t-cal-cell:hover {
+  border-color: var(--tch-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--tch-shadow-sm);
+  z-index: 2;
+}
+
+.t-cell-empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.t-cell-selected {
+  border-color: var(--tch-primary) !important;
+  background: var(--tch-primary-soft) !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25) !important;
+}
+
+.t-cell-today {
+  border-color: var(--tch-accent) !important;
+  border-width: 2px !important;
+}
+
+.t-cell-sunday {
+  background: var(--tch-navy-50);
+}
+
+.t-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.t-cell-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tch-navy-800);
+}
+
+.t-today-badge {
+  font-size: 8px;
+  font-weight: 800;
+  background: var(--tch-accent);
+  color: #ffffff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.t-cell-badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.t-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.t-badge-done {
+  background: var(--tch-emerald-100);
+  color: var(--tch-emerald-700);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.t-badge-pending {
+  background: var(--tch-amber-100);
+  color: var(--tch-amber-700);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.t-cell-holiday-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--tch-amber-700);
+  background: var(--tch-amber-100);
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   9. RIGHT PANEL: DAILY LECTURE INSPECTOR
+   ========================================================================== */
+
+.teaching-day-inspector-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inspector-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--tch-primary);
+}
+
+.inspector-lecture-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--tch-navy-100);
+  color: var(--tch-navy-800);
+  padding: 4px 10px;
+  border-radius: var(--tch-radius-sm);
+}
+
+.inspector-content {
+  padding: 22px;
+  overflow-y: auto;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inspector-placeholder,
+.inspector-no-lectures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--tch-navy-400);
+  gap: 12px;
+}
+
+.inspector-no-lectures h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tch-navy-800);
+}
+
+.inspector-no-lectures p,
+.inspector-placeholder p {
+  font-size: 12px;
+  margin: 0;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.inspector-lectures-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.inspector-lecture-card {
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 16px 18px;
+  background: var(--tch-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: var(--tch-transition);
+  box-shadow: var(--tch-shadow-xs);
+  position: relative;
+}
+
+.inspector-lecture-card:hover {
+  box-shadow: var(--tch-shadow-md);
+  border-color: var(--tch-navy-300);
+}
+
+.lec-card-submitted {
+  border-left: 4px solid var(--tch-emerald-500);
+}
+
+.lec-card-pending {
+  border-left: 4px solid var(--tch-amber-500);
+}
+
+.lec-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lec-period-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--tch-navy-100);
+  color: var(--tch-navy-800);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.lec-time-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tch-navy-600);
+}
+
+.lec-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-status-pill.pill-done {
+  background: var(--tch-emerald-100);
+  color: var(--tch-emerald-700);
+}
+
+.lec-status-pill.pill-warn {
+  background: var(--tch-amber-100);
+  color: var(--tch-amber-700);
+}
+
+.lec-subj-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lec-meta-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--tch-navy-600);
+  background: var(--tch-navy-50);
+  border: 1px solid var(--tch-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.lec-attendance-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--tch-navy-50);
+  border-radius: var(--tch-radius-sm);
+  padding: 10px;
+}
+
+.att-num-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.num-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--tch-navy-500);
+}
+
+.num-val {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.lec-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.btn-view-roster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-primary-soft);
+  border: 1px solid var(--tch-primary-line);
+  border-radius: var(--tch-radius-sm);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tch-primary);
+  cursor: pointer;
+  transition: var(--tch-transition);
+}
+
+.btn-view-roster:hover {
+  background: var(--tch-primary);
+  color: #ffffff;
+  border-color: var(--tch-primary);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   10. ENROLLED STUDENT ATTENDANCE ROSTER MODAL
+   ========================================================================== */
+
+.subj-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: tchFadeIn 0.15s ease;
+}
+
+.subj-modal-container.roster-modal {
+  background: var(--tch-surface);
+  border-radius: var(--tch-radius-xl);
+  box-shadow: var(--tch-shadow-xl);
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--tch-border);
+  animation: tchSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tchSlideUp {
+  from { transform: translateY(20px) scale(0.97); }
+  to { transform: translateY(0) scale(1); }
+}
+
+.subj-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--tch-border);
+  background: var(--tch-navy-50);
+}
+
+.subj-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--tch-primary);
+}
+
+.subj-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+  margin: 0;
+}
+
+.subj-modal-code {
+  font-size: 12px;
+  color: var(--tch-navy-500);
+}
+
+.subj-modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--tch-navy-400);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: var(--tch-transition);
+}
+
+.subj-modal-close:hover {
+  background: var(--tch-navy-200);
+  color: var(--tch-navy-950);
+}
+
+/* Roster KPI Summary Grid */
+.subj-graph-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.subj-graph-kpi-card {
+  background: var(--tch-navy-50);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subj-graph-kpi-card .kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--tch-navy-500);
+}
+
+.subj-graph-kpi-card .kpi-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+}
+
+.subj-graph-kpi-card .kpi-val.good { color: var(--tch-emerald-600); }
+.subj-graph-kpi-card .kpi-val.alert { color: var(--tch-crimson-600); }
+.subj-graph-kpi-card .kpi-val.highlight { color: var(--tch-primary); }
+
+.subj-graph-kpi-card .kpi-sub {
+  font-size: 11px;
+  color: var(--tch-navy-500);
+}
+
+/* Search and Filters inside modal */
+.search-input-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-navy-50);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 8px 12px;
+}
+
+.search-input-box:focus-within {
+  border-color: var(--tch-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-input-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: var(--tch-navy-900);
+  width: 100%;
+}
+
+.search-icon {
+  color: var(--tch-navy-400);
+}
+
+/* Roster Table */
+.history-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+}
+
+.history-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.history-data-table th {
+  background: var(--tch-navy-50);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--tch-navy-700);
+  border-bottom: 1px solid var(--tch-border);
+}
+
+.history-data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--tch-border);
+  color: var(--tch-navy-800);
+}
+
+.history-data-table tr:hover {
+  background: var(--tch-navy-50);
+}
+
+.status-cell-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.status-cell-pill.pill-pres {
+  background: var(--tch-emerald-100);
+  color: var(--tch-emerald-700);
+}
+
+.status-cell-pill.pill-abs {
+  background: var(--tch-crimson-100);
+  color: var(--tch-crimson-700);
+}
+
+.status-cell-pill.pill-pend {
+  background: var(--tch-amber-100);
+  color: var(--tch-amber-700);
+}
+
+/* ==========================================================================
+   16. TIMETABLE PERIOD SLOTS STRIP & LECTURE BREAKDOWN
+   ========================================================================== */
+
+.teaching-period-schedule-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 0 16px;
+  margin-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tch-navy-300) transparent;
+}
+
+.teaching-period-schedule-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.teaching-period-schedule-strip::-webkit-scrollbar-thumb {
+  background: var(--tch-navy-300);
+  border-radius: 3px;
+}
+
+.period-schedule-pill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--tch-surface);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 10px 14px;
+  min-width: 140px;
+  cursor: pointer;
+  transition: var(--tch-transition);
+}
+
+.period-schedule-pill:hover {
+  border-color: var(--tch-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--tch-shadow-sm);
+}
+
+.period-schedule-pill.period-active {
+  border-color: var(--tch-primary);
+  background: var(--tch-primary-soft);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.period-time-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tch-navy-500);
+}
+
+.period-name-tag {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--tch-navy-950);
+}
+
+.period-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.dot-done { background: var(--tch-emerald-500); }
+.dot-pend { background: var(--tch-amber-500); }
+.dot-void { background: var(--tch-navy-300); }
+
+/* ==========================================================================
+   17. SUBSTITUTION & RESCHEDULED LECTURE INDICATORS
+   ========================================================================== */
+
+.lec-substitution-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-purple-50);
+  border: 1px solid var(--tch-purple-100);
+  border-radius: var(--tch-radius-sm);
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--tch-purple-700);
+}
+
+.lec-substitution-tag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: var(--tch-purple-600);
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.lec-rescheduled-tag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: var(--tch-amber-600);
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   18. QUICK-TAKE ROLL-CALL SHORTCUTS & INLINE ACTIONS
+   ========================================================================== */
+
+.quick-roll-call-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--tch-navy-50);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+.quick-roll-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tch-navy-800);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quick-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-quick-take {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--tch-radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: var(--tch-transition);
+}
+
+.btn-quick-all-present {
+  background: var(--tch-emerald-50);
+  color: var(--tch-emerald-700);
+  border-color: var(--tch-emerald-100);
+}
+
+.btn-quick-all-present:hover {
+  background: var(--tch-emerald-600);
+  color: #ffffff;
+}
+
+.btn-quick-studio-link {
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  border-color: var(--tch-primary-line);
+}
+
+.btn-quick-studio-link:hover {
+  background: var(--tch-primary);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   19. LECTURE NOTES & TOPIC-COVERED PREVIEW DRAWER
+   ========================================================================== */
+
+.lec-notes-box {
+  background: var(--tch-navy-50);
+  border-left: 3px solid var(--tch-primary);
+  border-radius: 0 var(--tch-radius-sm) var(--tch-radius-sm) 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--tch-navy-700);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lec-notes-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--tch-navy-500);
+  letter-spacing: 0.5px;
+}
+
+.lec-notes-text {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   20. ABSENCE JUSTIFICATION & MEDICAL EXEMPTION BADGES
+   ========================================================================== */
+
+.exemption-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--tch-teal-50);
+  color: var(--tch-teal-700);
+  border: 1px solid var(--tch-teal-100);
+}
+
+.medical-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--tch-purple-50);
+  color: var(--tch-purple-700);
+  border: 1px solid var(--tch-purple-100);
+}
+
+/* ==========================================================================
+   21. MICRO-INTERACTIONS, SHIMMER EFFECTS & KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes tchPulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes tchShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.t-cell-selected::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--tch-radius-sm) + 2px);
+  border: 2px solid var(--tch-primary);
+  pointer-events: none;
+  animation: tchPulseRing 2s infinite ease-in-out;
+}
+
+.teaching-loading-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--tch-navy-400);
+  gap: 12px;
+}
+
+.teaching-loading-grid p {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   22. COMPREHENSIVE DARK MODE SYSTEM ([data-theme="dark"] & .dark)
+   ========================================================================== */
+
+[data-theme="dark"] .staff-attendance-page-container,
+.dark .staff-attendance-page-container {
+  --tch-surface: #0F172A;
+  --tch-surface-alt: #1E293B;
+  --tch-surface-card: #0F172A;
+  --tch-border: #334155;
+  --tch-border-strong: #475569;
+  --tch-border-focus: #3B82F6;
+
+  --tch-navy-950: #F8FAFC;
+  --tch-navy-900: #F1F5F9;
+  --tch-navy-800: #E2E8F0;
+  --tch-navy-700: #CBD5E1;
+  --tch-navy-600: #94A3B8;
+  --tch-navy-500: #64748B;
+  --tch-navy-400: #475569;
+  --tch-navy-300: #334155;
+  --tch-navy-200: #1E293B;
+  --tch-navy-100: #1E293B;
+  --tch-navy-50:  #0B1120;
+
+  --tch-primary: #3B82F6;
+  --tch-primary-hover: #2563EB;
+  --tch-primary-soft: rgba(59, 130, 246, 0.16);
+  --tch-primary-line: rgba(59, 130, 246, 0.35);
+
+  --tch-accent: #818CF8;
+  --tch-accent-soft: rgba(129, 140, 248, 0.16);
+  --tch-accent-line: rgba(129, 140, 248, 0.35);
+
+  --tch-brand: #FF6B0A;
+  --tch-brand-soft: rgba(255, 107, 10, 0.16);
+  --tch-brand-line: rgba(255, 107, 10, 0.35);
+
+  --tch-emerald-700: #34D399;
+  --tch-emerald-600: #10B981;
+  --tch-emerald-100: rgba(16, 185, 129, 0.2);
+  --tch-emerald-50:  rgba(16, 185, 129, 0.1);
+
+  --tch-crimson-700: #F87171;
+  --tch-crimson-600: #EF4444;
+  --tch-crimson-100: rgba(239, 68, 68, 0.2);
+  --tch-crimson-50:  rgba(239, 68, 68, 0.1);
+
+  --tch-amber-700: #FBBF24;
+  --tch-amber-600: #F59E0B;
+  --tch-amber-100: rgba(245, 158, 11, 0.2);
+  --tch-amber-50:  rgba(245, 158, 11, 0.1);
+
+  --tch-purple-700: #A78BFA;
+  --tch-purple-600: #8B5CF6;
+  --tch-purple-100: rgba(139, 92, 246, 0.2);
+  --tch-purple-50:  rgba(139, 92, 246, 0.1);
+
+  --tch-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --tch-shadow-sm: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  --tch-shadow-md: 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+  --tch-shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.6);
+  --tch-shadow-xl: 0 28px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .t-cal-cell,
+.dark .t-cal-cell {
+  background: #0F172A;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .t-cal-cell:hover,
+.dark .t-cal-cell:hover {
+  background: #1E293B;
+  border-color: #3B82F6;
+}
+
+[data-theme="dark"] .t-cell-sunday,
+.dark .t-cell-sunday {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .t-cell-selected,
+.dark .t-cell-selected {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border-color: #3B82F6 !important;
+}
+
+[data-theme="dark"] .inspector-lecture-card,
+.dark .inspector-lecture-card {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .inspector-lecture-card:hover,
+.dark .inspector-lecture-card:hover {
+  border-color: #475569;
+  background: #131E35;
+}
+
+[data-theme="dark"] .panel-header,
+.dark .panel-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lec-attendance-numbers,
+.dark .lec-attendance-numbers {
+  background: #0B1120;
+}
+
+[data-theme="dark"] .meta-tag,
+.dark .meta-tag {
+  background: #1E293B;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-view-roster,
+.dark .btn-view-roster {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93C5FD;
+}
+
+[data-theme="dark"] .btn-view-roster:hover,
+.dark .btn-view-roster:hover {
+  background: #2563EB;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .branch-picker,
+.dark .branch-picker {
+  background: #1E293B;
+  border-color: #334155;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .global-month-bar,
+.dark .global-month-bar {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .g-month-btn:hover,
+.dark .g-month-btn:hover {
+  background: #1E293B;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .btn-refresh-unified,
+.dark .btn-refresh-unified {
+  background: #0F172A;
+  border-color: #334155;
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .btn-refresh-unified:hover,
+.dark .btn-refresh-unified:hover {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93C5FD;
+  border-color: #3B82F6;
+}
+
+[data-theme="dark"] .subj-modal-container.roster-modal,
+.dark .subj-modal-container.roster-modal {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-modal-header,
+.dark .subj-modal-header {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .subj-graph-kpi-card,
+.dark .subj-graph-kpi-card {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box,
+.dark .search-input-box {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .search-input-box input,
+.dark .search-input-box input {
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .history-data-table th,
+.dark .history-data-table th {
+  background: #0B1120;
+  border-color: #334155;
+  color: #94A3B8;
+}
+
+[data-theme="dark"] .history-data-table td,
+.dark .history-data-table td {
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+[data-theme="dark"] .history-data-table tr:hover,
+.dark .history-data-table tr:hover {
+  background: #1E293B;
+}
+
+[data-theme="dark"] .period-schedule-pill,
+.dark .period-schedule-pill {
+  background: #0F172A;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .period-schedule-pill.period-active,
+.dark .period-schedule-pill.period-active {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #3B82F6;
+}
+
+[data-theme="dark"] .quick-roll-call-strip,
+.dark .quick-roll-call-strip {
+  background: #0B1120;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lec-notes-box,
+.dark .lec-notes-box {
+  background: #0B1120;
+}
+
+/* ==========================================================================
+   23. ADVANCED RESPONSIVE LAYOUT ENGINE (1920px -> 360px)
+   ========================================================================== */
+
+@media (min-width: 1920px) {
+  .staff-attendance-page-container {
+    max-width: 1800px;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+  }
+  .t-cal-cell {
+    min-height: 84px;
+    padding: 10px;
+  }
+  .t-cell-num {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .teaching-kpi-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+  .teaching-header-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .teaching-header-actions {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .staff-attendance-page-container {
+    padding: 14px;
+    gap: 16px;
+  }
+  .teaching-kpi-strip {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .teaching-title {
+    font-size: 20px;
+  }
+  .teaching-desc {
+    font-size: 12px;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .legend-pills {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .panel-calendar-body {
+    padding: 14px 12px;
+  }
+  .t-cal-cell {
+    min-height: 60px;
+    padding: 5px 4px;
+  }
+  .t-cell-num {
+    font-size: 11px;
+  }
+  .t-badge {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+  .subj-graph-kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .subj-modal-container.roster-modal {
+    margin: 10px;
+    max-height: 94vh;
+  }
+  .subj-modal-header {
+    padding: 16px 18px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-attendance-page-container {
+    padding: 10px;
+  }
+  .global-month-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .g-month-display {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  .btn-open-studio-toggle,
+  .btn-refresh-unified {
+    width: 100%;
+    justify-content: center;
+  }
+  .t-cal-cell {
+    min-height: 52px;
+    padding: 3px 2px;
+  }
+  .t-cell-num {
+    font-size: 10px;
+  }
+  .t-today-badge {
+    display: none;
+  }
+  .inspector-content {
+    padding: 14px 12px;
+  }
+  .inspector-lecture-card {
+    padding: 12px 14px;
+  }
+  .lec-subj-name {
+    font-size: 14px;
+  }
+  .lec-attendance-numbers {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 6px;
+    gap: 4px;
+  }
+  .num-val {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .t-cal-cell {
+    min-height: 46px;
+  }
+  .t-badge {
+    display: none;
+  }
+  .t-cell-has-lectures::after {
+    content: "•";
+    color: var(--tch-primary);
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   24. ACCESSIBILITY, HIGH-CONTRAST & REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .t-cal-cell,
+  .inspector-lecture-card,
+  .t-kpi-card,
+  .subj-modal-container {
+    border: 1px solid CanvasText !important;
+  }
+  .t-cell-selected {
+    outline: 2px solid Highlight !important;
+  }
+}
+
+/* ==========================================================================
+   25. OFFICIAL PRINT STYLESHEET FOR FACULTY REGISTER ARCHIVING
+   ========================================================================== */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .teaching-calendar-master-view,
+  .teaching-calendar-master-view * {
+    visibility: visible;
+  }
+  .teaching-calendar-master-view {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: transparent !important;
+  }
+  .teaching-header-actions,
+  .btn-open-studio-toggle,
+  .btn-refresh-unified,
+  .btn-view-roster,
+  .subj-modal-backdrop {
+    display: none !important;
+  }
+  .teaching-workspace-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .t-kpi-card,
+  .teaching-calendar-panel,
+  .teaching-day-inspector-panel,
+  .inspector-lecture-card {
+    box-shadow: none !important;
+    border: 1px solid #94A3B8 !important;
+    page-break-inside: avoid;
+  }
+}

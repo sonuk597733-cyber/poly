@@ -1,0 +1,96 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER NOTICES & CIRCULARS STYLES
+   ========================================================================== */
+
+.teacher-notices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-notices-form-card {
+  border: 1px solid var(--tch-border-focus);
+  animation: tchSlideUp 0.25s ease-out;
+}
+
+.teacher-notices-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.teacher-notices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.teacher-notice-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  transition: all 0.2s ease;
+}
+
+.teacher-notice-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tch-border-hover);
+  box-shadow: var(--tch-shadow-lg);
+}
+
+.teacher-notice-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.teacher-notice-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.teacher-notice-card-content {
+  font-size: 0.88rem;
+  color: var(--tch-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.teacher-notice-card-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--tch-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teacher-notice-author {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+@media (max-width: 640px) {
+  .teacher-notices-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-notices-form-grid > div[style*="span 2"] {
+    grid-column: span 1 !important;
+  }
+}

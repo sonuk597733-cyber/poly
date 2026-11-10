@@ -1,0 +1,83 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER LEAVES STYLES
+   ========================================================================== */
+
+.teacher-leaves-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-leaves-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.teacher-leave-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.teacher-leave-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--tch-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.teacher-leave-stat-icon.total {
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+}
+
+.teacher-leave-stat-icon.approved {
+  background: var(--tch-emerald-soft);
+  color: var(--tch-emerald);
+}
+
+.teacher-leave-stat-icon.pending {
+  background: var(--tch-amber-soft);
+  color: var(--tch-amber);
+}
+
+.teacher-leave-stat-icon.rejected {
+  background: var(--tch-rose-soft);
+  color: var(--tch-rose);
+}
+
+.teacher-leave-stat-val {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--tch-text-primary);
+  line-height: 1.1;
+}
+
+.teacher-leave-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+}
+
+.teacher-leaves-layout-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+}
+
+.teacher-leave-form-card {
+  height: fit-content;
+}
+
+@media (max-width: 960px) {
+  .teacher-leaves-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}

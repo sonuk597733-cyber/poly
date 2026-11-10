@@ -1,0 +1,162 @@
+.coord-notifs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.coord-read-tabs {
+  display: flex;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.coord-read-tab {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.coord-read-tab.active {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+
+.coord-mark-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #334155;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.coord-mark-all-btn:hover {
+  background: #E2E8F0;
+}
+
+.coord-notifs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coord-notifs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  text-align: center;
+}
+
+.coord-notifs-empty h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 12px 0 4px 0;
+}
+
+.coord-notifs-empty p {
+  font-size: 0.88rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.coord-notif-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+}
+
+.coord-notif-card.unread {
+  border-left: 4px solid #0284C7;
+  background: #F0F9FF;
+}
+
+.coord-notif-icon-col {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.coord-notif-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E0F2FE;
+  color: #0369A1;
+}
+
+.coord-notif-content-col {
+  flex: 1;
+}
+
+.coord-notif-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.coord-notif-title-row h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.coord-notif-time {
+  font-size: 0.75rem;
+  color: #64748B;
+}
+
+.coord-notif-content-col p {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.coord-notif-action-col {
+  flex-shrink: 0;
+}
+
+.coord-mark-read-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.coord-mark-read-btn:hover {
+  color: #0284C7;
+  background: rgba(2, 132, 199, 0.1);
+}

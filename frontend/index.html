@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/webp" href="/svsu-logo-whiten.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Subharti Polytechnic | Swami Vivekanand Subharti University - Powered by CollegeOS</title>
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('collegeos_theme') || localStorage.getItem('collegeos-theme');
+          var theme = saved === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'light') {
+            document.documentElement.classList.add('theme-light');
+            document.documentElement.classList.remove('theme-dark');
+            document.documentElement.style.backgroundColor = '#F0F7FF';
+            document.documentElement.style.color = '#0B1F3B';
+          } else {
+            document.documentElement.classList.add('theme-dark');
+            document.documentElement.classList.remove('theme-light');
+            document.documentElement.style.backgroundColor = '#081525';
+            document.documentElement.style.color = '#F8FAFC';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

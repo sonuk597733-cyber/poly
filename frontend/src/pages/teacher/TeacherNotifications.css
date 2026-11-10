@@ -1,0 +1,86 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER NOTIFICATIONS STYLING
+   ========================================================================== */
+
+.teacher-notif-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.teacher-notif-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-left: 4px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.teacher-notif-card.unread {
+  border-left-color: var(--tch-primary);
+  background: linear-gradient(90deg, var(--tch-primary-soft) 0%, var(--tch-card-bg) 40%);
+}
+
+.teacher-notif-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.teacher-notif-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.teacher-notif-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--tch-text-muted);
+}
+
+.teacher-notif-title {
+  margin: 0 0 4px 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  line-height: 1.35;
+}
+
+.teacher-notif-msg {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--tch-text-secondary);
+  line-height: 1.5;
+}
+
+.teacher-notif-action {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .teacher-notif-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .teacher-notif-action {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .teacher-notif-action button {
+    width: 100%;
+  }
+}

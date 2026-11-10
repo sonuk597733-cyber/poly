@@ -1,0 +1,1102 @@
+/* ==========================================================================
+   COLLEGEOS — STUDENT TIMETABLE
+   Light (default) + dark via [data-theme="dark"] / .theme-dark.
+   Brand accent: orange #FF6B0A. All colours come from the tokens below.
+   ========================================================================== */
+
+/* ---------- 1. TOKENS ---------- */
+.std-tt-container {
+  --tt-accent: #FF6B0A;
+  --tt-accent-strong: #EA580C;
+  --tt-accent-soft: #FFF2E8;
+  --tt-accent-line: #FFD2B3;
+  --tt-ink: #172033;
+  --tt-ink-2: #475569;
+  --tt-muted: #64748B;
+  --tt-surface: #FFFFFF;
+  --tt-surface-2: #F8FAFC;
+  --tt-surface-3: #F1F5F9;
+  --tt-line: #E2E8F0;
+  --tt-line-soft: #F1F5F9;
+  --tt-theory: #3B82F6;
+  --tt-theory-bg: #EFF6FF;
+  --tt-theory-ink: #2563EB;
+  --tt-practical: #8B5CF6;
+  --tt-practical-bg: #F5F3FF;
+  --tt-practical-ink: #7C3AED;
+  --tt-ok: #059669;
+  --tt-ok-bg: #ECFDF5;
+  --tt-ok-line: #A7F3D0;
+  --tt-hero-from: #FFF9F4;
+  --tt-shadow: 0 2px 10px rgba(255, 107, 10, 0.05), 0 1px 3px rgba(23, 32, 51, 0.04);
+  --tt-shadow-hover: 0 8px 24px rgba(255, 107, 10, 0.12);
+  --tt-radius-lg: 16px;
+  --tt-radius-md: 12px;
+  --tt-radius-sm: 8px;
+  --tt-focus: 0 0 0 3px rgba(255, 107, 10, 0.4);
+  --tt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] .std-tt-container,
+.theme-dark .std-tt-container {
+  --tt-accent-strong: #FB923C;
+  --tt-accent-soft: rgba(255, 107, 10, 0.14);
+  --tt-accent-line: rgba(255, 107, 10, 0.35);
+  --tt-ink: #F1F5F9;
+  --tt-ink-2: #CBD5E1;
+  --tt-muted: #94A3B8;
+  --tt-surface: #111A2E;
+  --tt-surface-2: #0D1527;
+  --tt-surface-3: #1A2540;
+  --tt-line: #243049;
+  --tt-line-soft: #1B2740;
+  --tt-theory-bg: rgba(59, 130, 246, 0.14);
+  --tt-theory-ink: #93C5FD;
+  --tt-practical-bg: rgba(139, 92, 246, 0.16);
+  --tt-practical-ink: #C4B5FD;
+  --tt-ok: #34D399;
+  --tt-ok-bg: rgba(16, 185, 129, 0.12);
+  --tt-ok-line: rgba(52, 211, 153, 0.35);
+  --tt-hero-from: #1B1510;
+  --tt-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --tt-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- 2. LAYOUT SHELL ---------- */
+.std-tt-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 22px);
+  width: 100%;
+  min-width: 0;
+  color: var(--tt-ink);
+  font-variant-numeric: tabular-nums;
+  animation: stdFadeIn 0.3s var(--tt-ease);
+}
+
+.std-tt-container button,
+.std-tt-container input,
+.std-tt-container a {
+  font-family: inherit;
+}
+
+.std-tt-container :focus-visible {
+  outline: none;
+  box-shadow: var(--tt-focus);
+}
+
+.std-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.std-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ---------- 3. HEADER CONTROLS ---------- */
+.std-mode-toggle {
+  display: flex;
+  background: var(--tt-surface-3);
+  padding: 4px;
+  border-radius: var(--tt-radius-sm);
+}
+
+.std-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  min-height: 36px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tt-muted);
+  cursor: pointer;
+  transition: background 0.2s var(--tt-ease), color 0.2s var(--tt-ease), box-shadow 0.2s var(--tt-ease);
+}
+
+.std-mode-btn:hover {
+  color: var(--tt-ink);
+}
+
+.std-mode-btn.active {
+  background: var(--tt-surface);
+  color: var(--tt-ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.std-btn-print {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  min-height: 36px;
+  border-radius: var(--tt-radius-sm);
+  border: 1px solid var(--tt-line);
+  background: var(--tt-surface);
+  color: var(--tt-ink);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.std-btn-print:hover {
+  background: var(--tt-surface-2);
+  border-color: var(--tt-muted);
+}
+
+.std-btn-print:active {
+  transform: scale(0.97);
+}
+
+/* ---------- 4. LIVE HERO ---------- */
+.std-live-hero-card {
+  background: linear-gradient(135deg, var(--tt-hero-from) 0%, var(--tt-surface) 100%);
+  border: 1px solid var(--tt-accent-line);
+  border-radius: var(--tt-radius-lg);
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 28px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--tt-shadow);
+  flex-wrap: wrap;
+}
+
+.std-live-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.std-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--tt-accent-strong);
+}
+
+.std-pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.std-pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10B981;
+  animation: stdPulse 2s ease-out infinite;
+}
+
+.std-live-current-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.std-live-status-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--tt-muted);
+}
+
+.std-live-sub-name {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--tt-ink);
+  overflow-wrap: anywhere;
+}
+
+.std-live-details {
+  display: flex;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 0.84rem;
+  color: var(--tt-ink-2);
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.std-live-details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.std-type-pill {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.std-type-pill.theory {
+  background: var(--tt-theory-bg);
+  color: var(--tt-theory-ink);
+}
+
+.std-type-pill.practical {
+  background: var(--tt-practical-bg);
+  color: var(--tt-practical-ink);
+}
+
+.std-live-done-text {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 62ch;
+  color: var(--tt-muted);
+}
+
+.std-live-hero-right {
+  display: flex;
+  align-items: center;
+}
+
+.std-stat-badge {
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-accent-line);
+  padding: 14px 20px;
+  border-radius: var(--tt-radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.std-stat-num {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--tt-accent);
+}
+
+.std-stat-lbl {
+  font-size: 0.75rem;
+  color: var(--tt-muted);
+  font-weight: 600;
+}
+
+/* ---------- 5. DAY TABS ---------- */
+.std-day-tabs-bar {
+  display: flex;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-md);
+  padding: 6px;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.std-day-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  min-height: 40px;
+  border-radius: var(--tt-radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--tt-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s var(--tt-ease), color 0.2s var(--tt-ease), box-shadow 0.2s var(--tt-ease);
+}
+
+.std-day-btn:hover {
+  color: var(--tt-accent);
+  background: var(--tt-accent-soft);
+}
+
+.std-day-btn.active {
+  background: linear-gradient(135deg, var(--tt-accent) 0%, #EA580C 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(255, 107, 10, 0.28);
+}
+
+.std-today-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.std-day-btn:not(.active) .std-today-pill {
+  background: var(--tt-accent-soft);
+  color: var(--tt-accent-strong);
+}
+
+/* ---------- 6. SEARCH ---------- */
+.std-search-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.std-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 280px;
+  max-width: 460px;
+  padding: 0 12px;
+  min-height: 40px;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-sm);
+  color: var(--tt-muted);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.std-search:focus-within {
+  border-color: var(--tt-accent);
+  box-shadow: var(--tt-focus);
+}
+
+.std-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--tt-ink);
+  font-size: 0.88rem;
+  padding: 8px 0;
+}
+
+.std-search input:focus-visible {
+  box-shadow: none;
+}
+
+.std-search input::placeholder {
+  color: var(--tt-muted);
+}
+
+.std-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: var(--tt-surface-3);
+  color: var(--tt-ink-2);
+  cursor: pointer;
+}
+
+.std-result-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tt-muted);
+}
+
+/* ---------- 7. CLASS CARDS ---------- */
+.std-tt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 18px;
+}
+
+.std-tt-card {
+  position: relative;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-left-width: 4px;
+  border-radius: var(--tt-radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  box-shadow: var(--tt-shadow);
+  transition: transform 0.2s var(--tt-ease), box-shadow 0.2s var(--tt-ease), border-color 0.2s var(--tt-ease);
+  animation: stdCardIn 0.35s var(--tt-ease) both;
+  animation-delay: calc(var(--std-i, 0) * 40ms);
+}
+
+.std-tt-card.card-theory { border-left-color: var(--tt-theory); }
+.std-tt-card.card-practical { border-left-color: var(--tt-practical); }
+
+.std-tt-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tt-accent);
+  border-left-color: inherit;
+  box-shadow: var(--tt-shadow-hover);
+}
+
+.std-tt-card.card-theory:hover { border-left-color: var(--tt-theory); }
+.std-tt-card.card-practical:hover { border-left-color: var(--tt-practical); }
+
+.std-tt-card.is-live {
+  border-color: var(--tt-accent);
+  box-shadow: 0 0 0 1px var(--tt-accent), var(--tt-shadow-hover);
+}
+
+.std-tt-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.std-tt-card-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.std-tt-time-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--tt-accent-soft);
+  color: var(--tt-accent-strong);
+  border: 1px solid var(--tt-accent-line);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.std-tt-type-pill {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.std-tt-type-pill.practical { background: var(--tt-practical-bg); color: var(--tt-practical-ink); }
+.std-tt-type-pill.theory { background: var(--tt-theory-bg); color: var(--tt-theory-ink); }
+
+.std-live-chip {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--tt-ok-bg);
+  color: var(--tt-ok);
+  border: 1px solid var(--tt-ok-line);
+}
+
+.std-tt-subject {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--tt-ink);
+  overflow-wrap: anywhere;
+}
+
+.std-tt-code {
+  font-size: 0.78rem;
+  color: var(--tt-muted);
+  font-weight: 600;
+}
+
+.std-tt-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--tt-line-soft);
+  font-size: 0.8rem;
+}
+
+.std-tt-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--tt-ink-2);
+  min-width: 0;
+}
+
+.std-tt-meta-pill.room strong {
+  color: var(--tt-accent-strong);
+}
+
+/* ---------- 8. FULL WEEK TABLE WRAPPER ---------- */
+.std-full-table-card {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-md);
+  box-shadow: var(--tt-shadow);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- 9. EMPTY / ERROR STATES ---------- */
+.std-empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: clamp(36px, 8vw, 60px) 20px;
+  color: var(--tt-muted);
+}
+
+.std-empty-box h3 {
+  margin: 8px 0 0;
+  font-size: 1.05rem;
+  color: var(--tt-ink);
+}
+
+.std-empty-box p {
+  margin: 0;
+  max-width: 52ch;
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+.std-retry-btn {
+  margin-top: 8px;
+}
+
+/* ---------- 10. LOADING SKELETON ---------- */
+.std-skeleton-card {
+  border-left-color: var(--tt-line);
+  animation: none;
+}
+
+.std-skel {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--tt-surface-3) 25%, var(--tt-line) 50%, var(--tt-surface-3) 75%);
+  background-size: 200% 100%;
+  animation: stdShimmer 1.4s linear infinite;
+}
+
+.std-skel-chip { width: 110px; height: 24px; }
+.std-skel-title { width: 70%; height: 20px; }
+.std-skel-line { width: 30%; height: 12px; }
+.std-skel-footer { width: 100%; height: 16px; margin-top: 12px; }
+
+/* ---------- 11. IMAGE-BASED TIMETABLE VIEWER ---------- */
+.std-image-tt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
+  padding: clamp(14px, 3vw, 24px);
+  box-shadow: var(--tt-shadow);
+}
+
+.std-image-tt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--tt-line-soft);
+}
+
+.std-image-tt-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 260px;
+}
+
+.std-image-tt-college {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--tt-accent-strong);
+}
+
+.std-image-tt-title {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--tt-ink);
+}
+
+.std-image-tt-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.std-image-meta-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tt-muted);
+  background: var(--tt-surface-2);
+  border: 1px solid var(--tt-line);
+  padding: 3px 10px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.std-image-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--tt-ok-bg);
+  color: var(--tt-ok);
+  border: 1px solid var(--tt-ok-line);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.std-photo-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--tt-surface-2);
+  border: 1px solid var(--tt-line);
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+
+.std-photo-btn {
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--tt-ink-2);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.std-photo-btn:hover:not(:disabled) {
+  background: var(--tt-accent-soft);
+  color: var(--tt-accent-strong);
+  border-color: var(--tt-accent-line);
+}
+
+.std-photo-btn:active:not(:disabled) { transform: scale(0.94); }
+.std-photo-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.std-photo-zoom-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--tt-ink-2);
+  min-width: 44px;
+  text-align: center;
+}
+
+.std-image-tt-viewport {
+  min-height: min(480px, 60vh);
+  max-height: 720px;
+  overflow: auto;
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-md);
+  background: var(--tt-surface-2);
+  padding: clamp(8px, 2vw, 20px);
+}
+
+/* Zoom changes the real width, so the viewport scrolls in both directions. */
+.std-image-tt-scroller {
+  margin: 0 auto;
+  transition: width 0.15s ease-out;
+}
+
+.std-image-tt-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--tt-radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- 12. FULLSCREEN VIEWER ---------- */
+.std-photo-fs-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.94);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0px, 2vw, 20px);
+  box-sizing: border-box;
+  animation: stdBackdropIn 0.2s ease-out;
+}
+
+.std-photo-fs-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #020617;
+  border-radius: 14px;
+  overflow: hidden;
+  animation: stdModalIn 0.25s var(--tt-ease);
+}
+
+.std-photo-fs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: #0F172A;
+  color: #FFFFFF;
+}
+
+.std-photo-fs-college {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #FB923C;
+}
+
+.std-photo-fs-title {
+  margin: 2px 0 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.std-photo-fs-header .std-photo-controls { background: #1E293B; border-color: #334155; }
+.std-photo-fs-header .std-photo-btn { background: #334155; color: #FFFFFF; border-color: #475569; }
+.std-photo-fs-header .std-photo-btn:hover:not(:disabled) { background: #EA580C; border-color: #EA580C; color: #FFFFFF; }
+.std-photo-fs-header .std-photo-zoom-text { color: #E2E8F0; }
+
+.std-photo-fs-viewport {
+  flex: 1;
+  overflow: auto;
+  padding: clamp(8px, 2vw, 24px);
+}
+
+.std-photo-fs-img {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  transition: width 0.15s ease-out;
+}
+
+/* ---------- 13. ANIMATIONS ---------- */
+@keyframes stdFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stdCardIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stdPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes stdShimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes stdBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes stdModalIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- 14. RESPONSIVE ---------- */
+@media (max-width: 767px) {
+  .std-header-actions { width: 100%; }
+  .std-mode-toggle { flex: 1; }
+  .std-mode-btn { flex: 1; padding-inline: 8px; }
+
+  .std-live-hero-right,
+  .std-stat-badge { width: 100%; }
+  .std-stat-badge { flex-direction: row; justify-content: center; gap: 10px; padding: 10px 16px; }
+
+  .std-tt-grid { gap: 12px; }
+  .std-tt-card { padding: 16px; }
+
+  .std-search { max-width: none; }
+
+  .std-image-tt-header .std-photo-controls { width: 100%; justify-content: space-between; }
+  .std-photo-fs-header { padding: 10px 12px; }
+}
+
+@media (min-width: 1440px) {
+  .std-tt-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+}
+
+/* ---------- 15. REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .std-tt-container,
+  .std-tt-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .std-tt-card:hover { transform: none; }
+}
+
+/* ---------- 12b. MATRIX CARD & ENHANCED STUDENT ELEMENTS ---------- */
+.std-matrix-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.std-grid-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--tt-surface-2);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-md);
+}
+
+.std-filter-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tt-muted);
+}
+
+.std-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.std-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--tt-line);
+  background: var(--tt-surface);
+  color: var(--tt-ink-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.std-filter-pill:hover {
+  border-color: var(--tt-accent);
+  color: var(--tt-accent);
+}
+
+.std-filter-pill.active {
+  background: var(--tt-accent);
+  border-color: var(--tt-accent);
+  color: #FFFFFF;
+}
+
+.std-filter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.std-filter-pill.active .std-filter-dot {
+  background: #FFFFFF;
+}
+
+.std-btn-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-sm);
+  color: var(--tt-ink-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.std-btn-refresh:hover:not(:disabled) {
+  background: var(--tt-surface-2);
+  border-color: var(--tt-accent-line);
+  color: var(--tt-accent-strong);
+}
+
+.std-btn-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.std-spin {
+  animation: stdSpin 1s linear infinite;
+}
+
+@keyframes stdSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.std-header-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.std-status-pill.published {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+[data-theme="dark"] .std-status-pill.published,
+.theme-dark .std-status-pill.published {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+.std-version-chip {
+  background: var(--tt-surface-3);
+  color: var(--tt-muted);
+  border: 1px solid var(--tt-line);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.std-cohort-chip {
+  background: var(--tt-accent-soft);
+  color: var(--tt-accent-strong);
+  border: 1px solid var(--tt-accent-line);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.std-stat-badge.secondary {
+  background: var(--tt-surface-3);
+  border-color: var(--tt-line);
+}
+
+.std-stat-badge.secondary .std-stat-num {
+  color: var(--tt-ink);
+}
+
+/* Skeleton loader */
+.std-skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.std-skel-hero {
+  height: 110px;
+  background: var(--tt-surface-2);
+  border-radius: var(--tt-radius-lg);
+  border: 1px solid var(--tt-line);
+  animation: stdShimmer 1.8s infinite linear;
+}
+
+.std-skel-grid-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--tt-surface);
+  border: 1px solid var(--tt-line);
+  border-radius: var(--tt-radius-lg);
+  padding: 16px;
+}
+
+.std-skel-row {
+  display: flex;
+  gap: 8px;
+  height: 48px;
+}
+
+.std-skel-day { width: 110px; height: 100%; border-radius: 6px; background: var(--tt-surface-3); }
+.std-skel-slot { flex: 1; height: 100%; border-radius: 6px; background: var(--tt-surface-2); }
+.std-skel-lunch { width: 44px; height: 100%; border-radius: 6px; background: var(--tt-accent-soft); }
+.std-skel-lab { flex: 1.5; height: 100%; border-radius: 6px; background: var(--tt-surface-2); }
+
+/* ---------- 16. PRINT ---------- */
+@media print {
+  .std-no-print-actions .std-header-actions,
+  .std-day-tabs-bar,
+  .std-search-row,
+  .std-photo-controls,
+  .std-photo-fs-backdrop { display: none !important; }
+
+  .std-tt-container { animation: none; color: #000; }
+  .std-tt-card,
+  .std-live-hero-card,
+  .std-image-tt-card,
+  .std-full-table-card { box-shadow: none; break-inside: avoid; }
+  .std-image-tt-viewport { max-height: none; overflow: visible; }
+}

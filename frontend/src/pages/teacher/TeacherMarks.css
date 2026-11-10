@@ -1,0 +1,1407 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER MARKS MANAGEMENT & ACADEMIC ANALYTICS DASHBOARD
+   Visual Language: Modern SaaS, Bento Grid, Subtle Glassmorphism, 
+   Refined Typography, Smooth Micro-Interactions, Strict Dark & Light Support
+   ========================================================================== */
+
+.teacher-marks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  animation: tchFadeIn 0.35s ease;
+}
+
+/* ───────────── 1. TOP PANE HEADER ───────────── */
+.tch-pane-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-lg, 16px);
+  box-shadow: var(--tch-shadow-sm);
+  backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+}
+
+.tch-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tch-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: var(--tch-primary-soft);
+  border: 1px solid var(--tch-primary-border);
+  border-radius: var(--tch-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tch-primary);
+  width: fit-content;
+}
+
+.tch-pane-header h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.tch-pane-header p {
+  font-size: 0.86rem;
+  color: var(--tch-text-muted);
+  max-width: 760px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tch-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ───────────── 2. WORKSPACE TABS ───────────── */
+.tch-workspace-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 12px);
+  overflow-x: auto;
+}
+
+.tch-workspace-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--tch-radius-sm, 8px);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--tch-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tch-workspace-tab:hover {
+  color: var(--tch-text-primary);
+  background: var(--tch-card-hover);
+}
+
+.tch-workspace-tab.active {
+  color: #ffffff;
+  background: var(--tch-primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* ───────────── 3. COHORT SELECTION PANEL ───────────── */
+.tch-cohort-panel {
+  padding: 18px 22px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: var(--tch-shadow-sm);
+}
+
+.tch-cohort-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tch-cohort-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+.tch-configured-max-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--tch-primary-soft);
+  border: 1px solid var(--tch-primary-border);
+  border-radius: var(--tch-radius-pill);
+  font-size: 0.82rem;
+  color: var(--tch-primary);
+}
+
+.tch-cohort-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.tch-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tch-field-group label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tch-field-group select {
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--tch-text-primary);
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-sm, 8px);
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tch-field-group select:focus {
+  border-color: var(--tch-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.tch-field-group.subject-select {
+  grid-column: span 1;
+}
+
+@media (min-width: 900px) {
+  .tch-field-group.subject-select {
+    grid-column: span 2;
+  }
+}
+
+.tch-select-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  color: var(--tch-text-muted);
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-sm, 8px);
+}
+
+/* ───────────── 4. ONE-TIME EXAM MAXIMUM MARKS CONFIGURATION PANEL ───────────── */
+.tch-max-marks-config-panel {
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, var(--tch-card-bg) 60%);
+  border: 1.5px solid var(--tch-primary-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  transition: all 0.3s ease;
+}
+
+.tch-max-marks-config-panel.pulse-success {
+  border-color: #10B981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.tch-config-panel-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.tch-config-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--tch-primary-soft);
+  border: 1px solid var(--tch-primary-border);
+  flex-shrink: 0;
+}
+
+.tch-config-text h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.tch-config-text p {
+  font-size: 0.84rem;
+  color: var(--tch-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tch-config-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-sm, 10px);
+  flex-wrap: wrap;
+}
+
+.tch-config-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tch-config-item .cfg-lbl {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  text-transform: uppercase;
+}
+
+.tch-config-item .cfg-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+.tch-config-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tch-config-input-group label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+.tch-config-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--tch-card-bg);
+  border: 1.5px solid var(--tch-primary-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tch-max-num-input {
+  width: 75px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  background: transparent;
+  color: var(--tch-text-primary);
+  border: none;
+  outline: none;
+}
+
+.tch-unit-tag {
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tch-primary);
+  background: var(--tch-primary-soft);
+  border-left: 1px solid var(--tch-primary-border);
+}
+
+.tch-btn-apply-max {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--tch-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.tch-btn-apply-max:hover:not(:disabled) {
+  background: var(--tch-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.tch-btn-apply-max:disabled {
+  opacity: 0.9;
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* ───────────── 5. TOP REAL-DATA KPI BENTO CARDS ───────────── */
+.tch-kpi-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 1100px) {
+  .tch-kpi-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .tch-kpi-bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tch-kpi-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: var(--tch-shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tch-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tch-border-hover);
+  box-shadow: var(--tch-shadow-md);
+}
+
+.tch-kpi-card.highlight-accent {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, var(--tch-card-bg) 70%);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.tch-kpi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.tch-kpi-icon.blue { background: rgba(37, 99, 235, 0.12); color: #2563EB; }
+.tch-kpi-icon.emerald { background: rgba(16, 185, 129, 0.12); color: #10B981; }
+.tch-kpi-icon.violet { background: rgba(139, 92, 246, 0.12); color: #8B5CF6; }
+.tch-kpi-icon.amber { background: rgba(245, 158, 11, 0.12); color: #D97706; }
+.tch-kpi-icon.rose { background: rgba(239, 68, 68, 0.12); color: #DC2626; }
+.tch-kpi-icon.cyan { background: rgba(2, 132, 199, 0.12); color: #0284C7; }
+
+.tch-kpi-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.tch-kpi-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tch-kpi-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--tch-text-primary);
+  line-height: 1.1;
+  font-family: var(--font-mono, monospace);
+}
+
+.tch-kpi-value small {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+}
+
+.tch-kpi-sub {
+  font-size: 0.75rem;
+  color: var(--tch-text-muted);
+  margin-top: 2px;
+}
+
+.tch-mini-progress {
+  width: 100%;
+  height: 5px;
+  background: var(--tch-card-hover);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.tch-mini-bar {
+  height: 100%;
+  background: #10B981;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* ───────────── 6. SESSIONAL TAB PILLS BAR ───────────── */
+.tch-sessional-selector-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.tch-sessional-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.tch-sess-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--tch-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tch-text-secondary);
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tch-sess-pill:hover {
+  background: var(--tch-card-hover);
+  color: var(--tch-text-primary);
+}
+
+.tch-sess-pill .pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.tch-sess-pill .pill-dot.s1 { background: #2563EB; }
+.tch-sess-pill .pill-dot.s2 { background: #10B981; }
+.tch-sess-pill .pill-dot.s3 { background: #8B5CF6; }
+
+.tch-sess-pill.active {
+  background: var(--tch-primary);
+  border-color: var(--tch-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.tch-sess-pill.active .pill-dot {
+  background: #ffffff;
+}
+
+.tch-sess-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ───────────── 7. MODERN SPREADSHEET TOOLBAR ───────────── */
+.tch-spreadsheet-toolbar-modern {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 12px);
+  flex-wrap: wrap;
+}
+
+.tch-search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.tch-search-icon {
+  color: var(--tch-text-muted);
+}
+
+.tch-search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.86rem;
+  color: var(--tch-text-primary);
+}
+
+.tch-search-clear {
+  background: transparent;
+  border: none;
+  color: var(--tch-text-muted);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.tch-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tch-filter-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+}
+
+.tch-select-filter {
+  padding: 6px 12px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--tch-text-primary);
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ───────────── 8. SPREADSHEET TABLE & CELLS ───────────── */
+.tch-spreadsheet-card {
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: var(--tch-shadow-sm);
+  overflow: hidden;
+}
+
+.tch-table-scroll-wrapper {
+  overflow-x: auto;
+  max-height: 640px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tch-marks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.tch-marks-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--tch-card-solid);
+  color: var(--tch-text-secondary);
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--tch-border);
+  z-index: 2;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tch-marks-table tbody tr {
+  border-bottom: 1px solid var(--tch-border);
+  transition: background 0.15s ease;
+}
+
+.tch-marks-table tbody tr:hover {
+  background: var(--tch-card-hover);
+}
+
+.tch-marks-table tbody tr.row-error {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.tch-marks-table tbody tr.row-modified {
+  background: rgba(245, 158, 11, 0.04);
+}
+
+.tch-marks-table tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+.tch-candidate-name-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.tch-input-wrap {
+  display: inline-flex;
+  align-items: center;
+  background: var(--tch-card-solid);
+  border: 1.5px solid var(--tch-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.tch-input-wrap:focus-within {
+  border-color: var(--tch-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.tch-score-input {
+  width: 72px;
+  padding: 7px 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  background: transparent;
+  color: var(--tch-text-primary);
+  border: none;
+  outline: none;
+  font-family: var(--font-mono, monospace);
+}
+
+.tch-score-input.has-error {
+  color: #DC2626;
+}
+
+.tch-score-input.has-value {
+  color: var(--tch-primary);
+}
+
+.tch-max-slash {
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  background: var(--tch-card-bg);
+  border-left: 1px solid var(--tch-border);
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+}
+
+.tch-error-hint {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #DC2626;
+  margin-top: 3px;
+}
+
+.tch-pct-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+}
+
+.tch-pct-badge.dist { background: rgba(37, 99, 235, 0.12); color: #2563EB; }
+.tch-pct-badge.pass { background: rgba(16, 185, 129, 0.12); color: #059669; }
+.tch-pct-badge.fail { background: rgba(239, 68, 68, 0.12); color: #DC2626; }
+
+.tch-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.tch-status-tag.saved { background: rgba(16, 185, 129, 0.12); color: #059669; }
+.tch-status-tag.modified { background: rgba(245, 158, 11, 0.12); color: #D97706; }
+.tch-status-tag.pending { background: rgba(100, 116, 139, 0.12); color: #64748B; }
+
+.tch-btn-row-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  color: var(--tch-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tch-btn-row-save:hover:not(:disabled) {
+  background: var(--tch-primary);
+  border-color: var(--tch-primary);
+  color: #ffffff;
+}
+
+.tch-btn-row-save:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ───────────── 9. ACADEMIC CHARTS & ANALYTICS GRID ───────────── */
+.tch-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .tch-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tch-chart-card {
+  padding: 22px 24px;
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: var(--tch-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tch-chart-card.span-two {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .tch-chart-card.span-two {
+    grid-column: span 1;
+  }
+}
+
+.tch-chart-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tch-chart-card-header h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.tch-chart-card-header p {
+  font-size: 0.82rem;
+  color: var(--tch-text-muted);
+  margin: 0;
+}
+
+.tch-chart-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tch-chart-tag.blue { background: rgba(37, 99, 235, 0.12); color: #2563EB; }
+.tch-chart-tag.emerald { background: rgba(16, 185, 129, 0.12); color: #10B981; }
+.tch-chart-tag.violet { background: rgba(139, 92, 246, 0.12); color: #8B5CF6; }
+
+.tch-custom-tooltip {
+  padding: 10px 14px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 8px;
+  box-shadow: var(--tch-shadow-md);
+  font-size: 0.82rem;
+  color: var(--tch-text-primary);
+  line-height: 1.4;
+}
+
+.tch-band-legends {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--tch-border);
+}
+
+.band-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--tch-text-secondary);
+}
+
+.band-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.tch-sess-comp-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.sess-comp-box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.sess-box-term {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+}
+
+.sess-box-avg {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--tch-primary);
+  font-family: var(--font-mono, monospace);
+}
+
+.sess-box-meta {
+  font-size: 0.7rem;
+  color: var(--tch-text-muted);
+}
+
+/* Leaderboard */
+.tch-top-performers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-performer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 10px;
+}
+
+.top-rank-badge {
+  font-size: 1.1rem;
+  width: 32px;
+  text-align: center;
+}
+
+.top-student-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.top-student-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+.top-student-enrollment {
+  font-size: 0.76rem;
+  color: var(--tch-text-muted);
+}
+
+.top-score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.top-score-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--tch-primary);
+}
+
+.top-score-pct {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+}
+
+/* Best of 3 Analysis Block */
+.tch-best-analytics-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tch-improvement-kpi-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+}
+
+.improvement-val-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.imp-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--font-mono, monospace);
+  line-height: 1;
+}
+
+.imp-lbl {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.imp-note {
+  font-size: 0.8rem;
+  color: var(--tch-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tch-contribution-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contrib-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tch-text-muted);
+  text-transform: uppercase;
+}
+
+.contrib-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contrib-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--tch-text-secondary);
+}
+
+.contrib-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: var(--tch-card-solid);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.contrib-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* ───────────── 10. BEST-OF-THREE COHORT LEDGER MATRIX ───────────── */
+.tch-matrix-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.tch-matrix-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.tch-matrix-header p {
+  font-size: 0.84rem;
+  color: var(--tch-text-muted);
+  margin: 0;
+}
+
+.tch-matrix-card {
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md, 14px);
+  box-shadow: var(--tch-shadow-sm);
+  overflow: hidden;
+}
+
+.tch-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.tch-matrix-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--tch-card-solid);
+  color: var(--tch-text-secondary);
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--tch-border);
+  z-index: 2;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tch-matrix-table thead th.highlight-best {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563EB;
+}
+
+.tch-matrix-table tbody tr {
+  border-bottom: 1px solid var(--tch-border);
+  transition: background 0.15s ease;
+}
+
+.tch-matrix-table tbody tr:hover {
+  background: var(--tch-card-hover);
+}
+
+.tch-matrix-table tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+.tch-matrix-table tbody td.highlight-best {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.tch-best-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #2563EB;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.tch-selected-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--tch-text-secondary);
+}
+
+.tch-imp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+}
+
+.tch-imp-badge.positive { background: rgba(16, 185, 129, 0.12); color: #059669; }
+.tch-imp-badge.negative { background: rgba(239, 68, 68, 0.12); color: #DC2626; }
+.tch-imp-badge.neutral { background: rgba(100, 116, 139, 0.12); color: #64748B; }
+
+/* ───────────── 11. CONFIRMATION MODAL ───────────── */
+.tch-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: tchFadeIn 0.2s ease;
+}
+
+.tch-modal-dialog {
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-lg, 16px);
+  box-shadow: var(--tch-shadow-lg);
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
+  animation: tchSlideUp 0.25s ease;
+}
+
+.tch-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--tch-border);
+}
+
+.modal-title-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-title-lockup h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--tch-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.modal-close-btn:hover {
+  color: var(--tch-text-primary);
+  background: var(--tch-card-hover);
+}
+
+.tch-modal-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-lead-warning {
+  font-size: 0.92rem;
+  color: var(--tch-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.modal-info-box {
+  padding: 12px 14px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: #DC2626;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-disclaimer {
+  font-size: 0.8rem;
+  color: var(--tch-text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tch-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--tch-card-solid);
+  border-top: 1px solid var(--tch-border);
+}
+
+.tch-btn-danger {
+  padding: 9px 18px;
+  background: #DC2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tch-btn-danger:hover {
+  background: #B91C1C;
+}
+
+/* ───────────── 12. UTILITIES & EMPTY / LOADING STATES ───────────── */
+.tch-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: var(--tch-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  white-space: nowrap;
+}
+
+.tch-btn-primary:hover:not(:disabled) {
+  background: var(--tch-primary-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.tch-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tch-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: var(--tch-card-solid);
+  border: 1px solid var(--tch-border);
+  color: var(--tch-text-primary);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tch-btn-secondary:hover {
+  background: var(--tch-card-hover);
+}
+
+.tch-loading-state,
+.tch-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 10px;
+}
+
+.tch-loading-state p,
+.tch-empty-state p {
+  font-size: 0.88rem;
+  color: var(--tch-text-muted);
+  margin: 0;
+}
+
+.tch-empty-state h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0;
+}
+
+.tch-empty-mini {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--tch-text-muted);
+}
+
+.spin {
+  animation: tchSpin 1s linear infinite;
+}
+
+@keyframes tchSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes tchFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tchSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────── 13. PRINT STYLES ───────────── */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .tch-matrix-card {
+    border: none;
+    box-shadow: none;
+  }
+  .tch-matrix-table thead th {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+  }
+}

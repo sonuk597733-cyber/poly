@@ -1,0 +1,126 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER STUDENTS DIRECTORY STYLES
+   ========================================================================== */
+
+.teacher-std-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-std-search-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.teacher-search-input-wrap {
+  position: relative;
+  min-width: 280px;
+}
+
+.teacher-search-input-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.teacher-std-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.teacher-std-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.teacher-std-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tch-border-hover);
+  box-shadow: var(--tch-shadow-lg);
+}
+
+.teacher-std-card-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.teacher-std-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--tch-radius-pill);
+  background: var(--tch-primary-soft);
+  color: var(--tch-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.15rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--tch-primary-border);
+}
+
+.teacher-std-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.teacher-std-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.teacher-std-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--tch-text-secondary);
+  margin-bottom: 16px;
+}
+
+.teacher-std-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teacher-std-card-footer {
+  padding-top: 14px;
+  border-top: 1px solid var(--tch-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+@media (max-width: 640px) {
+  .teacher-std-search-bar {
+    width: 100%;
+  }
+
+  .teacher-search-input-wrap {
+    min-width: 100%;
+  }
+}

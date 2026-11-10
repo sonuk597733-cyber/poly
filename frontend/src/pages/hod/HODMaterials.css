@@ -1,0 +1,86 @@
+/* ==========================================================================
+   COLLEGEOS — HOD MATERIALS MONITORING STYLING
+   ========================================================================== */
+
+.hod-mat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.hod-mat-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hod-mat-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hod-mat-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hod-bg-secondary);
+  padding: 4px;
+  border-radius: var(--hod-radius-md);
+  border: 1px solid var(--hod-border);
+}
+
+.hod-mat-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--hod-radius-sm);
+  background: transparent;
+  color: var(--hod-text-secondary);
+  border: none;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.hod-mat-tab-btn:hover {
+  color: var(--hod-text-primary);
+}
+
+.hod-mat-tab-btn.active {
+  background: var(--hod-card-bg);
+  color: var(--hod-primary);
+  box-shadow: var(--hod-shadow-sm);
+}
+
+.hod-mat-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .hod-mat-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hod-mat-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .hod-search-wrap {
+    max-width: 100% !important;
+    width: 100%;
+  }
+}

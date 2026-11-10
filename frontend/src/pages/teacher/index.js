@@ -1,0 +1,16 @@
+export { default as TeacherDashboard } from "./TeacherDashboard";
+export { default as TeacherProfile } from "./TeacherProfile";
+export { default as TeacherAttendance } from "./TeacherAttendance";
+export { default as TeacherStudents } from "./TeacherStudents";
+export { default as TeacherAssignments } from "./TeacherAssignments";
+export { default as TeacherSubmissions } from "./TeacherSubmissions";
+export { default as TeacherNotes } from "./TeacherNotes";
+export { default as TeacherLectures } from "./TeacherLectures";
+export { default as TeacherTimetable } from "./TeacherTimetable";
+export { default as TeacherMarks } from "./TeacherMarks";
+export { default as TeacherLeaves } from "./TeacherLeaves";
+export { default as TeacherNotices } from "./TeacherNotices";
+export { default as TeacherClasses } from "./TeacherClasses";
+export { default as TeacherReports } from "./TeacherReports";
+export { default as TeacherNotifications } from "./TeacherNotifications";
+export { default as TeacherSettings } from "./TeacherSettings";

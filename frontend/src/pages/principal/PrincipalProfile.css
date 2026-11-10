@@ -1,0 +1,428 @@
+.prin-profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.prin-profile-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.prin-profile-cover {
+  height: 190px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.25) 0%, rgba(15, 23, 42, 0.75) 100%),
+              url('/subharti-polytechnic-main-building.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.prin-cover-campus-badge {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.prin-profile-header-content {
+  padding: 0 32px 32px 32px;
+  position: relative;
+}
+
+.prin-avatar-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-top: -55px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  background: #7C3AED;
+}
+
+.prin-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.prin-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #7C3AED;
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prin-avatar-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 28px;
+  height: 28px;
+  background: #059669;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+}
+
+.prin-title-block {
+  margin-bottom: 24px;
+}
+
+.prin-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.prin-name-row h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+}
+
+.prin-role-badge {
+  background: #F3E8FF;
+  color: #7E22CE;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid #E9D5FF;
+}
+
+.prin-dept-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 6px 0 2px 0;
+}
+
+.prin-inst-text {
+  color: #64748B;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.prin-profile-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.prin-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.prin-meta-icon {
+  color: #7C3AED;
+  flex-shrink: 0;
+}
+
+.prin-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.prin-meta-val {
+  display: block;
+  font-size: 0.9rem;
+  color: #1E293B;
+  font-weight: 600;
+}
+
+.prin-profile-body-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+}
+
+.prin-section-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.prin-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.prin-section-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+}
+
+.prin-section-header p {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.prin-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F3E8FF;
+  border: 1px solid #E9D5FF;
+  color: #7E22CE;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.prin-icon-btn:hover {
+  background: #E9D5FF;
+}
+
+.prin-bio-display p {
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.prin-bio-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: inherit;
+  color: #1E293B;
+  margin-bottom: 12px;
+}
+
+.prin-bio-textarea:focus {
+  outline: none;
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.prin-bio-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.prin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.prin-btn.primary {
+  background: #7C3AED;
+  color: #FFFFFF;
+}
+
+.prin-btn.primary:hover {
+  background: #6D28D9;
+}
+
+.prin-btn.secondary {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+}
+
+.prin-btn.secondary:hover {
+  background: #E2E8F0;
+}
+
+.prin-highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.prin-highlight-box {
+  display: flex;
+  gap: 12px;
+  background: #F8FAFC;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+}
+
+.prin-hi-icon {
+  color: #7C3AED;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.prin-highlight-box strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+
+.prin-highlight-box p {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.prin-skills-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.prin-skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F3E8FF;
+  color: #7E22CE;
+  border: 1px solid #E9D5FF;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.prin-tag-del-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.prin-tag-del-btn:hover {
+  color: #EF4444;
+}
+
+.prin-add-skill-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.prin-skill-input {
+  flex: 1;
+  padding: 8px 14px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.prin-skill-input:focus {
+  outline: none;
+  border-color: #7C3AED;
+}
+
+.prin-shortcuts-box {
+  padding-top: 18px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.prin-shortcuts-box h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #475569;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.prin-shortcuts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prin-shortcut-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.prin-shortcut-btn:hover {
+  background: #F5F3FF;
+  color: #7C3AED;
+  border-color: #E9D5FF;
+}
+
+@media (max-width: 900px) {
+  .prin-profile-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .prin-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}

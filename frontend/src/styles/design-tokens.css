@@ -1,0 +1,129 @@
+/* ==========================================================================
+   COLLEGEOS — CENTRALIZED DESIGN TOKENS
+   Master design system tokens for Navy Blue + Royal Blue enterprise identity.
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     1. OFFICIAL COLLEGEOS BRAND COLORS
+     ========================================================================== */
+  --brand-primary: #0B1F3B;    /* Deep Executive Navy */
+  --brand-accent: #2563EB;     /* Royal Electric Blue */
+  --brand-secondary: #60A5FA;  /* Sky Blue Mid-Tone */
+  --brand-highlight: #93C5FD;  /* Light Ice Blue Accent */
+  --brand-orange: #FF7A00;     /* Controlled Vibrant Accent (Accent only) */
+
+  /* Official Dark Theme Palette */
+  --dark-background: #081525;
+  --dark-surface: #102541;
+  --dark-card: #172D4B;
+  --dark-elevated: #1C3555;
+  --dark-border: #294565;
+  --dark-text: #F8FAFC;
+  --dark-muted: #A9BCD4;
+
+  /* Official Light Theme Palette */
+  --light-background: #F0F7FF;
+  --light-surface: #DBEAFE;
+  --light-card: #FFFFFF;
+  --light-elevated: #F8FBFF;
+  --light-border: #C7D9F0;
+  --light-text: #0B1F3B;
+  --light-muted: #526782;
+
+  /* Derived Brand Opacities */
+  --brand-accent-glow: rgba(37, 99, 235, 0.25);
+  --brand-accent-soft: rgba(37, 99, 235, 0.12);
+  --brand-secondary-soft: rgba(96, 165, 250, 0.15);
+  --brand-highlight-soft: rgba(147, 197, 253, 0.18);
+  --brand-orange-soft: rgba(255, 122, 0, 0.14);
+
+  /* ==========================================================================
+     2. SEMANTIC COLOR TOKENS
+     ========================================================================== */
+  --semantic-success: #16A34A;
+  --semantic-success-hover: #15803D;
+  --semantic-success-light: #DCFCE7;
+  --semantic-success-soft: rgba(22, 163, 74, 0.14);
+
+  --semantic-warning: #F59E0B;
+  --semantic-warning-hover: #D97706;
+  --semantic-warning-light: #FEF3C7;
+  --semantic-warning-soft: rgba(245, 158, 11, 0.14);
+
+  --semantic-danger: #DC2626;
+  --semantic-danger-hover: #B91C1C;
+  --semantic-danger-light: #FEE2E2;
+  --semantic-danger-soft: rgba(220, 38, 38, 0.14);
+
+  --semantic-info: #2563EB;
+  --semantic-info-hover: #1D4ED8;
+  --semantic-info-light: #DBEAFE;
+  --semantic-info-soft: rgba(37, 99, 235, 0.14);
+
+  /* ==========================================================================
+     3. SPACING SCALE (8pt Grid System)
+     ========================================================================== */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ==========================================================================
+     4. BORDER RADIUS SYSTEM
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     5. ELEVATION & SHADOW SYSTEM
+     ========================================================================== */
+  --shadow-xs: 0 1px 2px rgba(11, 31, 59, 0.05);
+  --shadow-sm: 0 1px 3px rgba(11, 31, 59, 0.08), 0 1px 2px rgba(11, 31, 59, 0.04);
+  --shadow-md: 0 4px 14px -2px rgba(11, 31, 59, 0.12), 0 2px 6px -1px rgba(11, 31, 59, 0.06);
+  --shadow-lg: 0 10px 25px -4px rgba(11, 31, 59, 0.16), 0 4px 10px -2px rgba(11, 31, 59, 0.08);
+  --shadow-xl: 0 20px 35px -6px rgba(11, 31, 59, 0.22), 0 8px 16px -4px rgba(11, 31, 59, 0.12);
+  --shadow-2xl: 0 25px 50px -12px rgba(11, 31, 59, 0.28);
+  --shadow-blue-glow: 0 0 22px rgba(37, 99, 235, 0.28);
+  --shadow-blue-glow-lg: 0 0 38px rgba(37, 99, 235, 0.38);
+
+  /* ==========================================================================
+     6. MOTION & TRANSITION TIMINGS
+     ========================================================================== */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 240ms;
+  --duration-slow: 350ms;
+
+  /* ==========================================================================
+     7. Z-INDEX HIERARCHY
+     ========================================================================== */
+  --z-base: 0;
+  --z-card: 1;
+  --z-sticky: 100;
+  --z-dropdown: 500;
+  --z-header: 800;
+  --z-sidebar: 900;
+  --z-drawer: 950;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1050;
+  --z-toast: 1200;
+}

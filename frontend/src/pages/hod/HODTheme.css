@@ -1,0 +1,437 @@
+/* ==========================================================================
+   COLLEGEOS — HEAD OF DEPARTMENT (HOD) DESIGN SYSTEM TOKENS & UTILITIES
+   ========================================================================== */
+
+:root,
+[data-theme="dark"],
+.theme-dark,
+[data-theme="dark"] .hod-role-view,
+.theme-dark .hod-role-view {
+  /* Dark Mode Palette (Default) */
+  --hod-bg-primary: #060B16;
+  --hod-bg-secondary: #0A1124;
+  --hod-card-bg: rgba(15, 23, 42, 0.72);
+  --hod-card-hover: rgba(30, 41, 59, 0.85);
+  --hod-card-solid: #0F172A;
+  --hod-border: rgba(255, 255, 255, 0.08);
+  --hod-border-hover: rgba(99, 102, 241, 0.38);
+  --hod-border-focus: rgba(79, 70, 229, 0.5);
+
+  --hod-text-primary: #F8FAFC;
+  --hod-text-secondary: #94A3B8;
+  --hod-text-muted: #64748B;
+
+  --hod-primary: #4F46E5;
+  --hod-primary-hover: #4338CA;
+  --hod-primary-soft: rgba(79, 70, 229, 0.16);
+  --hod-primary-border: rgba(79, 70, 229, 0.35);
+
+  --hod-violet: #7C3AED;
+  --hod-violet-soft: rgba(124, 58, 237, 0.15);
+  --hod-cyan: #0EA5E9;
+  --hod-cyan-soft: rgba(14, 165, 233, 0.15);
+  --hod-emerald: #10B981;
+  --hod-emerald-soft: rgba(16, 185, 129, 0.15);
+  --hod-amber: #F59E0B;
+  --hod-amber-soft: rgba(245, 158, 11, 0.15);
+  --hod-rose: #EF4444;
+  --hod-rose-soft: rgba(239, 68, 68, 0.15);
+
+  --hod-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --hod-shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+  --hod-shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+
+  --hod-radius-sm: 8px;
+  --hod-radius-md: 14px;
+  --hod-radius-lg: 20px;
+  --hod-radius-pill: 9999px;
+}
+
+/* Bright Mode Overrides */
+[data-theme="light"],
+.theme-light,
+[data-theme="light"] .hod-role-view,
+.theme-light .hod-role-view {
+  --hod-bg-primary: #F8FAFC;
+  --hod-bg-secondary: #F1F5F9;
+  --hod-card-bg: #FFFFFF;
+  --hod-card-hover: #F8FAFC;
+  --hod-card-solid: #FFFFFF;
+  --hod-border: #E2E8F0;
+  --hod-border-hover: rgba(79, 70, 229, 0.35);
+  --hod-border-focus: rgba(79, 70, 229, 0.5);
+
+  --hod-text-primary: #0F172A;
+  --hod-text-secondary: #475569;
+  --hod-text-muted: #64748B;
+
+  --hod-primary: #4F46E5;
+  --hod-primary-hover: #4338CA;
+  --hod-primary-soft: #EEF2FF;
+  --hod-primary-border: #C7D2FE;
+
+  --hod-violet: #6D28D9;
+  --hod-violet-soft: #F5F3FF;
+  --hod-cyan: #0284C7;
+  --hod-cyan-soft: #F0F9FF;
+  --hod-emerald: #10B981;
+  --hod-emerald-soft: #ECFDF5;
+  --hod-amber: #D97706;
+  --hod-amber-soft: #FFFBEB;
+  --hod-rose: #DC2626;
+  --hod-rose-soft: #FEF2F2;
+
+  --hod-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --hod-shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --hod-shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+}
+
+/* Animations */
+@keyframes hodFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hodSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Root HOD Shell */
+.hod-role-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: hodFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Pane Header */
+.hod-pane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.hod-pane-header h2 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--hod-text-primary);
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hod-pane-header p {
+  font-size: 0.92rem;
+  color: var(--hod-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+/* Action Buttons */
+.hod-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--hod-primary);
+  color: #FFFFFF !important;
+  border: 1px solid transparent;
+  border-radius: var(--hod-radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hod-btn-primary:hover:not(:disabled) {
+  background: var(--hod-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+}
+
+.hod-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.hod-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--hod-card-bg);
+  color: var(--hod-text-primary);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--hod-shadow-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hod-btn-secondary:hover:not(:disabled) {
+  background: var(--hod-card-hover);
+  border-color: var(--hod-border-hover);
+  color: var(--hod-primary);
+  transform: translateY(-1px);
+}
+
+.hod-btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hod-btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--hod-emerald);
+  color: #FFFFFF !important;
+  border: 1px solid transparent;
+  border-radius: var(--hod-radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.hod-btn-success:hover:not(:disabled) {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.hod-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--hod-rose);
+  color: #FFFFFF !important;
+  border: 1px solid transparent;
+  border-radius: var(--hod-radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.hod-btn-danger:hover:not(:disabled) {
+  background: #DC2626;
+  transform: translateY(-1px);
+}
+
+/* Cards & Containers */
+.hod-card {
+  background: var(--hod-card-bg);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-lg);
+  padding: 24px;
+  box-shadow: var(--hod-shadow-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.hod-card:hover {
+  border-color: var(--hod-border-hover);
+}
+
+/* Pills & Badges */
+.hod-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--hod-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.hod-pill.indigo {
+  background: var(--hod-primary-soft);
+  color: #6366F1;
+  border: 1px solid var(--hod-primary-border);
+}
+
+.hod-pill.violet {
+  background: var(--hod-violet-soft);
+  color: #8B5CF6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.hod-pill.cyan {
+  background: var(--hod-cyan-soft);
+  color: #0EA5E9;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.hod-pill.emerald {
+  background: var(--hod-emerald-soft);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.hod-pill.amber {
+  background: var(--hod-amber-soft);
+  color: #D97706;
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.hod-pill.rose {
+  background: var(--hod-rose-soft);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Form Controls */
+.hod-input,
+.hod-select,
+.hod-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--hod-bg-secondary);
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  color: var(--hod-text-primary);
+  font-size: 0.9rem;
+  transition: all 0.16s ease;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.hod-input:focus,
+.hod-select:focus,
+.hod-textarea:focus {
+  border-color: var(--hod-primary);
+  box-shadow: 0 0 0 3px var(--hod-border-focus);
+  background: var(--hod-card-bg);
+}
+
+.hod-label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--hod-text-secondary);
+  margin-bottom: 6px;
+}
+
+/* Tables */
+.hod-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--hod-border);
+  border-radius: var(--hod-radius-md);
+  background: var(--hod-card-bg);
+  box-shadow: var(--hod-shadow-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.hod-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.hod-table th {
+  background: var(--hod-bg-secondary);
+  color: var(--hod-text-secondary);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--hod-border);
+  white-space: nowrap;
+}
+
+.hod-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--hod-border);
+  color: var(--hod-text-primary);
+  transition: background-color 0.12s ease;
+}
+
+.hod-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.hod-table tbody tr:hover td {
+  background: var(--hod-card-hover);
+}
+
+/* Empty Box */
+.hod-empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 20px;
+  background: var(--hod-card-bg);
+  border: 1px dashed var(--hod-border);
+  border-radius: var(--hod-radius-lg);
+  color: var(--hod-text-secondary);
+}
+
+.hod-empty-box h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--hod-text-primary);
+  margin: 14px 0 6px 0;
+}
+
+.hod-empty-box p {
+  font-size: 0.9rem;
+  color: var(--hod-text-muted);
+  max-width: 440px;
+  margin: 0;
+  line-height: 1.5;
+}

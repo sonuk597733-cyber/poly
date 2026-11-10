@@ -1,0 +1,378 @@
+/* ==========================================================================
+   COLLEGEOS — PRINCIPAL TIMETABLE EXECUTIVE SUITE DESIGN SYSTEM
+   Supports Light Mode (#F6F8FC) & Dark Mode (#0B1120).
+   Uses --erp-* master tokens with dedicated responsive layouts.
+   ========================================================================== */
+
+.principal-tt-studio {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: erpFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 1. EXECUTIVE HEADER CARD */
+.pr-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 26px 30px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  flex-wrap: wrap;
+  transition: all 0.2s ease;
+}
+
+.pr-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 300px;
+}
+
+.pr-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.pr-badge-executive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: var(--erp-radius-full, 9999px);
+  background: var(--erp-primary-light, #EEF2FF);
+  color: var(--erp-primary, #4F46E5);
+}
+
+[data-theme="dark"] .pr-badge-executive {
+  background: rgba(129, 140, 248, 0.16);
+  color: #818CF8;
+}
+
+.pr-badge-session {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--erp-text-secondary, #64748B);
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  padding: 3px 10px;
+  border-radius: var(--erp-radius-full, 9999px);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.pr-header-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.pr-header-sub {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--erp-text-secondary, #64748B);
+  max-width: 780px;
+  line-height: 1.5;
+}
+
+.pr-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* BUTTONS */
+.pr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: var(--erp-radius-md, 10px);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--erp-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04));
+  white-space: nowrap;
+}
+
+.pr-btn-primary {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+}
+
+.pr-btn-primary:hover {
+  background: var(--erp-primary-hover, #4338CA);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+}
+
+.pr-btn-secondary {
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-text-primary, #172033);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.pr-btn-secondary:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  border-color: var(--erp-border-hover, #CBD5E1);
+  transform: translateY(-1px);
+}
+
+.pr-spin {
+  animation: erpSpin 1s linear infinite;
+}
+
+/* 2. EXECUTIVE METRICS GRID */
+.pr-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.pr-metric-card {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pr-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--erp-shadow-md, 0 6px 18px rgba(0, 0, 0, 0.08));
+}
+
+.pr-metric-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.pr-metric-lbl {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+.pr-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--erp-radius-full, 9999px);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.pr-badge-status.published {
+  background: var(--erp-success-light, #DCFCE7);
+  color: var(--erp-success, #16A34A);
+}
+
+[data-theme="dark"] .pr-badge-status.published {
+  background: rgba(34, 197, 94, 0.16);
+  color: #4ADE80;
+}
+
+.pr-badge-status.blue {
+  background: var(--erp-primary-light, #EEF2FF);
+  color: var(--erp-primary, #4F46E5);
+}
+
+.pr-badge-status.green {
+  background: var(--erp-success-light, #DCFCE7);
+  color: var(--erp-success, #16A34A);
+}
+
+.pr-badge-status.amber {
+  background: var(--erp-accent-light, #FEF3C7);
+  color: var(--erp-accent, #F59E0B);
+}
+
+.pr-metric-val {
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 6px 0 2px 0;
+}
+
+.pr-metric-note {
+  font-size: 0.78rem;
+  color: var(--erp-text-muted, #94A3B8);
+  font-weight: 500;
+}
+
+/* 3. DEPARTMENT COMPARISON BAR */
+.pr-dept-bar-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 16px 24px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  flex-wrap: wrap;
+}
+
+.pr-dept-bar-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--erp-text-secondary, #64748B);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.pr-dept-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.pr-dept-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--erp-radius-md, 10px);
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  color: var(--erp-text-secondary, #64748B);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.pr-dept-chip:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  color: var(--erp-text-primary, #172033);
+  border-color: var(--erp-primary, #4F46E5);
+}
+
+.pr-dept-chip.active {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+[data-theme="dark"] .pr-dept-chip.active {
+  background: var(--erp-primary, #818CF8);
+  color: #0F172A;
+  border-color: var(--erp-primary, #818CF8);
+}
+
+.pr-dept-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+}
+
+.pr-dept-status-dot.published {
+  background: #22C55E;
+}
+
+.pr-dept-status-dot.under_review {
+  background: #F59E0B;
+}
+
+.pr-dept-status-dot.draft {
+  background: #94A3B8;
+}
+
+.pr-cohort-selectors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pr-select {
+  padding: 8px 14px;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 10px);
+  color: var(--erp-text-primary, #172033);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.16s ease;
+}
+
+.pr-select:focus {
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 0 0 3px var(--erp-primary-light, rgba(79, 70, 229, 0.12));
+}
+
+/* 4. MASTER GRID WRAPPER */
+.pr-timetable-wrapper {
+  width: 100%;
+}
+
+/* 5. RESPONSIVE BREAKPOINTS */
+@media (max-width: 1200px) {
+  .pr-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pr-header-card {
+    padding: 20px;
+  }
+
+  .pr-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pr-dept-bar-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pr-dept-chips {
+    width: 100%;
+  }
+
+  .pr-cohort-selectors {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pr-select {
+    flex: 1;
+  }
+}

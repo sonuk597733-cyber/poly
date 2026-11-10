@@ -1,0 +1,10 @@
+export { default as AdminDashboard } from "./AdminDashboard";
+export { default as AdminUsers } from "./AdminUsers";
+export { default as AdminRoles } from "./AdminRoles";
+export { default as AdminBranches } from "./AdminBranches";
+export { default as AdminAudit } from "./AdminAudit";
+export { default as AdminSettings } from "./AdminSettings";
+export { default as AdminReports } from "./AdminReports";
+export { default as AdminProfile } from "./AdminProfile";
+export { default as AdminNotices } from "./AdminNotices";
+export { default as AdminExams } from "./AdminExams";

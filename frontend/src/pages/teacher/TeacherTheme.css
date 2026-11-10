@@ -1,0 +1,398 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER & FACULTY DESIGN SYSTEM (THEME TOKENS & UTILITIES)
+   ========================================================================== */
+
+:root {
+  /* Dark Mode Palette (Default) */
+  --tch-bg-primary: #070D18;
+  --tch-bg-secondary: #0B132B;
+  --tch-card-bg: rgba(15, 23, 42, 0.72);
+  --tch-card-hover: rgba(30, 41, 59, 0.85);
+  --tch-card-solid: #0F172A;
+  --tch-border: rgba(255, 255, 255, 0.08);
+  --tch-border-hover: rgba(59, 130, 246, 0.35);
+  --tch-border-focus: rgba(37, 99, 235, 0.5);
+
+  --tch-text-primary: #F8FAFC;
+  --tch-text-secondary: #94A3B8;
+  --tch-text-muted: #64748B;
+
+  --tch-primary: #2563EB;
+  --tch-primary-hover: #1D4ED8;
+  --tch-primary-soft: rgba(37, 99, 235, 0.16);
+  --tch-primary-border: rgba(37, 99, 235, 0.35);
+
+  --tch-cyan: #0284C7;
+  --tch-cyan-soft: rgba(2, 132, 199, 0.15);
+  --tch-emerald: #10B981;
+  --tch-emerald-soft: rgba(16, 185, 129, 0.15);
+  --tch-amber: #F59E0B;
+  --tch-amber-soft: rgba(245, 158, 11, 0.15);
+  --tch-rose: #EF4444;
+  --tch-rose-soft: rgba(239, 68, 68, 0.15);
+  --tch-violet: #8B5CF6;
+  --tch-violet-soft: rgba(139, 92, 246, 0.15);
+
+  --tch-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --tch-shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+  --tch-shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+
+  --tch-radius-sm: 8px;
+  --tch-radius-md: 14px;
+  --tch-radius-lg: 20px;
+  --tch-radius-pill: 9999px;
+}
+
+/* Bright Mode Overrides */
+[data-theme="light"],
+.theme-light,
+.theme-light .teacher-role-view {
+  --tch-bg-primary: #F8FAFC;
+  --tch-bg-secondary: #F1F5F9;
+  --tch-card-bg: #FFFFFF;
+  --tch-card-hover: #F8FAFC;
+  --tch-card-solid: #FFFFFF;
+  --tch-border: #E2E8F0;
+  --tch-border-hover: rgba(37, 99, 235, 0.35);
+  --tch-border-focus: rgba(37, 99, 235, 0.5);
+
+  --tch-text-primary: #0F172A;
+  --tch-text-secondary: #475569;
+  --tch-text-muted: #64748B;
+
+  --tch-primary: #2563EB;
+  --tch-primary-hover: #1D4ED8;
+  --tch-primary-soft: #EFF6FF;
+  --tch-primary-border: #BFDBFE;
+
+  --tch-cyan: #0284C7;
+  --tch-cyan-soft: #F0F9FF;
+  --tch-emerald: #10B981;
+  --tch-emerald-soft: #ECFDF5;
+  --tch-amber: #D97706;
+  --tch-amber-soft: #FFFBEB;
+  --tch-rose: #DC2626;
+  --tch-rose-soft: #FEF2F2;
+  --tch-violet: #7C3AED;
+  --tch-violet-soft: #F5F3FF;
+
+  --tch-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --tch-shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --tch-shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+}
+
+/* Keyframe Animations */
+@keyframes tchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tchSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tchPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Accessibility: Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Common Faculty Shell Layout */
+.teacher-role-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: tchFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Common Pane Header */
+.tch-pane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.tch-pane-header h2 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--tch-text-primary);
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tch-pane-header p {
+  font-size: 0.92rem;
+  color: var(--tch-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+/* Universal Action Buttons */
+.tch-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--tch-primary);
+  color: #FFFFFF !important;
+  border: 1px solid transparent;
+  border-radius: var(--tch-radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tch-btn-primary:hover:not(:disabled) {
+  background: var(--tch-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+}
+
+.tch-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.tch-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--tch-card-bg);
+  color: var(--tch-text-primary);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--tch-shadow-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tch-btn-secondary:hover:not(:disabled) {
+  background: var(--tch-card-hover);
+  border-color: var(--tch-border-hover);
+  color: var(--tch-primary);
+  transform: translateY(-1px);
+}
+
+.tch-btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Universal Cards & Containers */
+.tch-card {
+  background: var(--tch-card-bg);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-lg);
+  padding: 24px;
+  box-shadow: var(--tch-shadow-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.tch-card:hover {
+  border-color: var(--tch-border-hover);
+}
+
+/* Universal Pills & Badges */
+.tch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--tch-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tch-pill.blue {
+  background: var(--tch-primary-soft);
+  color: #3B82F6;
+  border: 1px solid var(--tch-primary-border);
+}
+
+.tch-pill.cyan {
+  background: var(--tch-cyan-soft);
+  color: #0284C7;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+
+.tch-pill.emerald {
+  background: var(--tch-emerald-soft);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tch-pill.amber {
+  background: var(--tch-amber-soft);
+  color: #D97706;
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.tch-pill.rose {
+  background: var(--tch-rose-soft);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.tch-pill.violet {
+  background: var(--tch-violet-soft);
+  color: #8B5CF6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Universal Form Controls */
+.tch-input,
+.tch-select,
+.tch-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--tch-bg-secondary);
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  color: var(--tch-text-primary);
+  font-size: 0.9rem;
+  transition: all 0.16s ease;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.tch-input:focus,
+.tch-select:focus,
+.tch-textarea:focus {
+  border-color: var(--tch-primary);
+  box-shadow: 0 0 0 3px var(--tch-border-focus);
+  background: var(--tch-card-bg);
+}
+
+.tch-label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--tch-text-secondary);
+  margin-bottom: 6px;
+}
+
+/* Responsive Table Wrappers */
+.tch-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--tch-border);
+  border-radius: var(--tch-radius-md);
+  background: var(--tch-card-bg);
+  box-shadow: var(--tch-shadow-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.tch-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.tch-table th {
+  background: var(--tch-bg-secondary);
+  color: var(--tch-text-secondary);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--tch-border);
+  white-space: nowrap;
+}
+
+.tch-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--tch-border);
+  color: var(--tch-text-primary);
+  transition: background-color 0.12s ease;
+}
+
+.tch-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tch-table tbody tr:hover td {
+  background: var(--tch-card-hover);
+}
+
+/* Empty Box Utility */
+.tch-empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 20px;
+  background: var(--tch-card-bg);
+  border: 1px dashed var(--tch-border);
+  border-radius: var(--tch-radius-lg);
+  color: var(--tch-text-secondary);
+}
+
+.tch-empty-box h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  margin: 14px 0 6px 0;
+}
+
+.tch-empty-box p {
+  font-size: 0.9rem;
+  color: var(--tch-text-muted);
+  max-width: 440px;
+  margin: 0;
+  line-height: 1.5;
+}

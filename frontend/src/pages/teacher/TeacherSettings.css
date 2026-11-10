@@ -1,0 +1,227 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER SETTINGS & SECURITY STYLING
+   ========================================================================== */
+
+.teacher-set-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-set-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.teacher-set-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.teacher-set-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.teacher-set-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--tch-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.teacher-set-icon-box.blue {
+  background: var(--tch-primary-soft);
+  color: #3B82F6;
+}
+
+.teacher-set-icon-box.emerald {
+  background: var(--tch-emerald-soft);
+  color: #10B981;
+}
+
+.teacher-set-icon-box.amber {
+  background: var(--tch-amber-soft);
+  color: #D97706;
+}
+
+.teacher-set-card-header h3 {
+  margin: 0 0 3px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+}
+
+.teacher-set-card-header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--tch-text-secondary);
+  line-height: 1.4;
+}
+
+.teacher-set-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.teacher-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.teacher-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.teacher-input-wrap input {
+  padding-right: 40px;
+}
+
+.teacher-eye-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tch-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+
+.teacher-eye-btn:hover {
+  color: var(--tch-text-primary);
+}
+
+.teacher-strength-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.teacher-strength-track {
+  height: 4px;
+  width: 100%;
+  background: var(--tch-border);
+  border-radius: var(--tch-radius-pill);
+  overflow: hidden;
+}
+
+.teacher-strength-bar {
+  height: 100%;
+  border-radius: var(--tch-radius-pill);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.teacher-strength-text {
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.teacher-set-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.teacher-pref-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.teacher-pref-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: var(--tch-radius-md);
+  border: 1px solid var(--tch-border);
+  background: var(--tch-bg-secondary);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.teacher-pref-item:hover {
+  border-color: var(--tch-border-hover);
+  background: var(--tch-card-hover);
+}
+
+.teacher-pref-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.teacher-pref-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--tch-text-primary);
+}
+
+.teacher-pref-desc {
+  font-size: 0.78rem;
+  color: var(--tch-text-secondary);
+  line-height: 1.35;
+}
+
+.teacher-pref-toggle {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--tch-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.teacher-session-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.teacher-session-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.teacher-session-note {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--tch-text-muted);
+  line-height: 1.45;
+}
+
+.teacher-logout-btn {
+  color: var(--tch-rose) !important;
+  border-color: var(--tch-rose-soft) !important;
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.teacher-logout-btn:hover {
+  background: var(--tch-rose-soft) !important;
+  border-color: var(--tch-rose) !important;
+}
+
+@media (max-width: 860px) {
+  .teacher-set-grid {
+    grid-template-columns: 1fr;
+  }
+}

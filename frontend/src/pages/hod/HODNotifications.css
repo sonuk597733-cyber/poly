@@ -1,0 +1,86 @@
+/* ==========================================================================
+   COLLEGEOS — HOD NOTIFICATIONS STYLING
+   ========================================================================== */
+
+.hod-notif-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.hod-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hod-notif-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-left: 4px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hod-notif-card.unread {
+  border-left-color: var(--hod-primary);
+  background: linear-gradient(90deg, var(--hod-primary-soft) 0%, var(--hod-card-bg) 40%);
+}
+
+.hod-notif-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.hod-notif-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.hod-notif-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--hod-text-muted);
+}
+
+.hod-notif-title {
+  margin: 0 0 4px 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--hod-text-primary);
+  line-height: 1.35;
+}
+
+.hod-notif-msg {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--hod-text-secondary);
+  line-height: 1.5;
+}
+
+.hod-notif-action {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .hod-notif-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hod-notif-action {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hod-notif-action button {
+    width: 100%;
+  }
+}

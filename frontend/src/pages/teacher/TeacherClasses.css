@@ -1,0 +1,91 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER CLASSES & SECTIONS STYLING
+   ========================================================================== */
+
+.teacher-cls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.teacher-cls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.teacher-cls-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-cls-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--tch-border-hover);
+  box-shadow: var(--tch-shadow-lg);
+}
+
+.teacher-cls-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.teacher-cls-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--tch-text-primary);
+  line-height: 1.35;
+}
+
+.teacher-cls-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.teacher-cls-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--tch-text-secondary);
+}
+
+.teacher-cls-meta-row strong {
+  color: var(--tch-text-primary);
+  font-weight: 600;
+}
+
+.teacher-cls-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--tch-border);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .teacher-cls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-cls-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teacher-cls-card-footer button {
+    width: 100%;
+    justify-content: center;
+  }
+}

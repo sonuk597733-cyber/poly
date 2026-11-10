@@ -1,0 +1,476 @@
+/* ==========================================================================
+   COLLEGEOS — TEACHER & FACULTY TIMETABLE PREMIUM DESIGN SYSTEM
+   Supports Light Mode (#F6F8FC) & Dark Mode (#0B1120).
+   Uses --erp-* master tokens with dedicated responsive layouts.
+   ========================================================================== */
+
+.teacher-tt-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  animation: erpFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 1. TOP HEADER & WORKSPACE BAR */
+.tch-pane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 24px 28px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  transition: all 0.2s ease;
+}
+
+.tch-pane-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.025em;
+  margin: 0 0 6px 0;
+}
+
+.tch-pane-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--erp-text-secondary, #64748B);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.tch-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* SCOPE TABS (Personal vs Department) */
+.tch-scope-tabs {
+  display: inline-flex;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  padding: 4px;
+  border-radius: var(--erp-radius-md, 10px);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.tch-scope-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: var(--erp-radius-sm, 6px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary, #64748B);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.tch-scope-btn:hover {
+  color: var(--erp-text-primary, #172033);
+}
+
+.tch-scope-btn.active {
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-primary, #4F46E5);
+  font-weight: 700;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.08));
+}
+
+[data-theme="dark"] .tch-scope-btn.active,
+.theme-dark .tch-scope-btn.active {
+  background: var(--erp-bg-surface-alt, #1E2D4A);
+  color: var(--erp-primary, #818CF8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* DEPARTMENT FILTER CONTROLS */
+.tch-dept-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tch-select {
+  padding: 8px 14px;
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-md, 10px);
+  color: var(--erp-text-primary, #172033);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.16s ease;
+}
+
+.tch-select:focus {
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 0 0 3px var(--erp-primary-light, rgba(79, 70, 229, 0.12));
+}
+
+.tch-btn-print {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--erp-radius-md, 10px);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  background: var(--erp-bg-card, #FFFFFF);
+  color: var(--erp-text-primary, #172033);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: var(--erp-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.04));
+}
+
+.tch-btn-print:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  border-color: var(--erp-border-hover, #CBD5E1);
+  transform: translateY(-1px);
+}
+
+/* 2. TEACHING WORKLOAD METRICS ROW */
+.tch-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.tch-metric-card {
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-lg, 16px);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tch-metric-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--erp-primary, #4F46E5), var(--erp-secondary, #6366F1));
+  opacity: 0.7;
+}
+
+.tch-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--erp-shadow-md, 0 4px 14px rgba(0, 0, 0, 0.08));
+}
+
+.tch-metric-lbl {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+.tch-metric-num {
+  font-size: clamp(1.7rem, 2.5vw, 2.1rem);
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.tch-text-green {
+  color: var(--erp-success, #16A34A) !important;
+}
+
+.tch-metric-sub {
+  font-size: 0.78rem;
+  color: var(--erp-text-muted, #94A3B8);
+  font-weight: 500;
+}
+
+/* 3. DAY SELECTOR PILL BAR */
+.teacher-day-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 8px 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.teacher-day-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  border-radius: var(--erp-radius-full, 9999px);
+  color: var(--erp-text-secondary, #64748B);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  box-shadow: var(--erp-shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.03));
+}
+
+.teacher-day-btn:hover {
+  background: var(--erp-bg-surface-hover, #F8FAFC);
+  color: var(--erp-text-primary, #172033);
+  border-color: var(--erp-primary, #4F46E5);
+  transform: translateY(-1px);
+}
+
+.teacher-day-btn.active {
+  background: var(--erp-primary, #4F46E5);
+  color: #FFFFFF;
+  border-color: var(--erp-primary, #4F46E5);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+}
+
+[data-theme="dark"] .teacher-day-btn.active,
+.theme-dark .teacher-day-btn.active {
+  background: var(--erp-primary, #818CF8);
+  color: #0F172A;
+  border-color: var(--erp-primary, #818CF8);
+  box-shadow: 0 4px 16px rgba(129, 140, 248, 0.35);
+}
+
+.tch-today-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: var(--erp-radius-xs, 4px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .teacher-day-btn.active .tch-today-badge {
+  background: rgba(15, 23, 42, 0.3);
+  color: #0F172A;
+}
+
+/* 4. TEACHER LECTURE CARDS GRID */
+.teacher-tt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+
+.teacher-tt-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px;
+  border-radius: var(--erp-radius-lg, 16px);
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px solid var(--erp-border, #E2E8F0);
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.teacher-tt-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--erp-shadow-md, 0 6px 18px rgba(0, 0, 0, 0.08));
+  border-color: var(--erp-border-hover, #CBD5E1);
+}
+
+.teacher-tt-card.card-practical {
+  border-left: 4px solid #8B5CF6;
+}
+
+.teacher-tt-card.card-theory {
+  border-left: 4px solid var(--erp-primary, #4F46E5);
+}
+
+.teacher-tt-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teacher-tt-time-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--erp-primary, #4F46E5);
+  background: var(--erp-primary-light, #EEF2FF);
+  padding: 5px 10px;
+  border-radius: var(--erp-radius-md, 8px);
+}
+
+[data-theme="dark"] .teacher-tt-time-chip,
+.theme-dark .teacher-tt-time-chip {
+  color: var(--erp-primary, #818CF8);
+  background: rgba(129, 140, 248, 0.16);
+}
+
+.teacher-tt-subject {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.teacher-tt-code {
+  font-size: 0.78rem;
+  color: var(--erp-text-secondary, #64748B);
+  font-weight: 600;
+}
+
+.teacher-tt-cohort-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #EA580C;
+  background: rgba(234, 88, 12, 0.12);
+  padding: 5px 12px;
+  border-radius: var(--erp-radius-md, 8px);
+  width: fit-content;
+}
+
+[data-theme="dark"] .teacher-tt-cohort-tag,
+.theme-dark .teacher-tt-cohort-tag {
+  color: #FB923C;
+  background: rgba(251, 146, 60, 0.16);
+}
+
+.teacher-tt-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--erp-border, #E2E8F0);
+  font-size: 0.82rem;
+}
+
+.tch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--erp-radius-full, 9999px);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.tch-pill.indigo {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7C3AED;
+}
+
+[data-theme="dark"] .tch-pill.indigo {
+  background: rgba(139, 92, 246, 0.2);
+  color: #A78BFA;
+}
+
+.tch-pill.blue {
+  background: var(--erp-primary-light, #EEF2FF);
+  color: var(--erp-primary, #4F46E5);
+}
+
+[data-theme="dark"] .tch-pill.blue {
+  background: rgba(129, 140, 248, 0.16);
+  color: #818CF8;
+}
+
+.tch-pill.cyan {
+  background: var(--erp-bg-surface-secondary, #F1F5F9);
+  color: var(--erp-text-primary, #172033);
+  border: 1px solid var(--erp-border, #E2E8F0);
+}
+
+.tch-pill.muted {
+  background: transparent;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+/* EMPTY STATE */
+.tch-empty-box {
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--erp-bg-card, #FFFFFF);
+  border: 1px dashed var(--erp-border, #CBD5E1);
+  border-radius: var(--erp-radius-lg, 16px);
+  color: var(--erp-text-secondary, #64748B);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tch-empty-box h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--erp-text-primary, #172033);
+}
+
+.tch-empty-box p {
+  margin: 0;
+  max-width: 520px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--erp-text-secondary, #64748B);
+}
+
+/* 5. RESPONSIVE BREAKPOINTS */
+@media (max-width: 1024px) {
+  .tch-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .tch-pane-header {
+    padding: 18px 20px;
+  }
+
+  .tch-metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-tt-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tch-header-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tch-scope-tabs {
+    width: 100%;
+  }
+
+  .tch-scope-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
