@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../services/authApi";
 import AuthLayout from "../components/AuthLayout";
+import { assetUrl } from "../utils/assetUrl";
 import "./ResetPassword.css";
 
 function extractToken() {
@@ -124,7 +125,7 @@ export default function ResetPassword({ onNavigate }) {
             <div className="reset-header">
               <div className="reset-logo-badge">
                 <img
-                  src="/svsu-logo-whiten.webp"
+                  src={assetUrl("/svsu-logo-whiten.webp")}
                   alt="Swami Vivekanand Subharti University"
                   className="reset-univ-img"
                 />

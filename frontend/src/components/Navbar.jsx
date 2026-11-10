@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../services/authApi";
 import { useTheme } from "../context/ThemeContext";
+import { assetUrl } from "../utils/assetUrl";
 import "./Navbar.css";
 
 /* ==========================================================================
@@ -159,7 +160,7 @@ function BrandLockup({ className = "" }) {
   return (
     <div className={`brand-lockup ${className}`.trim()}>
       <img
-        src="/svsu-seal-official.png"
+        src={assetUrl("/svsu-seal-official.png")}
         alt="Swami Vivekanand Subharti University"
         className="brand-crest-img"
       />

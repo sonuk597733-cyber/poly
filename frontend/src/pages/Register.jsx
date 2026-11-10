@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../services/authApi";
 import AuthLayout from "../components/AuthLayout";
+import { assetUrl } from "../utils/assetUrl";
 import "./Register.css";
 
 // 5 Polytechnic Diploma Branches with icons and tags
@@ -591,7 +592,7 @@ export default function Register({ onNavigate }) {
                 <div className="welcome-badge-row">
                   <div className="welcome-logo-container">
                     <img
-                      src="/svsu-logo-whiten.webp"
+                      src={assetUrl("/svsu-logo-whiten.webp")}
                       alt="Subharti University"
                       className="welcome-univ-img"
                     />
@@ -1735,7 +1736,7 @@ export default function Register({ onNavigate }) {
                 <div className="receipt-header">
                   <div className="receipt-brand">
                     <img
-                      src="/svsu-logo-whiten.webp"
+                      src={assetUrl("/svsu-logo-whiten.webp")}
                       alt="SVSU"
                       className="receipt-logo"
                     />

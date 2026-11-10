@@ -51,6 +51,8 @@ import Navbar from "../components/Navbar";
 import ImageCropModal from "../components/ImageCropModal";
 import "./Profile.css";
 
+import { assetUrl } from "../utils/assetUrl";
+
 /* ======================================================
    Constants & helpers
    ====================================================== */
@@ -1122,7 +1124,7 @@ export default function Profile({ onNavigate }) {
                 />
               ) : (
                 <img
-                  src="/subharti-polytechnic-main-building.jpg"
+                  src={assetUrl("/subharti-polytechnic-main-building.jpg")}
                   alt="Subharti Polytechnic College Main Academic Campus"
                   className="cover-banner-img default-cover-img"
                 />

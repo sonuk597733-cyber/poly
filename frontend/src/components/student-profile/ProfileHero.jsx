@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { assetUrl } from "../../utils/assetUrl";
 import {
   Camera,
   CheckCircle2,
@@ -52,7 +53,7 @@ export default function ProfileHero({
     ? profile.achievements.length 
     : 4;
   const avatarUrl = user?.avatarUrl || profile?.avatarUrl;
-  const coverUrl = user?.coverUrl || profile?.coverUrl || "/campus-banner.jpg";
+  const coverUrl = user?.coverUrl || profile?.coverUrl || assetUrl("/campus-banner.jpg");
 
   // User initials for avatar fallback
   const initials = fullName
@@ -110,7 +111,7 @@ export default function ProfileHero({
           alt="Campus Banner"
           className="sp2-hero-cover-img"
           onError={(e) => {
-            e.currentTarget.src = "/campus-banner.jpg";
+            e.currentTarget.src = assetUrl("/campus-banner.jpg");
           }}
         />
         <div className="sp2-hero-cover-overlay" />

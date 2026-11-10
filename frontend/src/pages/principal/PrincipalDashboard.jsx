@@ -1,4 +1,5 @@
 import React from "react";
+import { assetUrl } from "../../utils/assetUrl";
 import {
   Building2,
   Users,
@@ -87,7 +88,7 @@ export default function PrincipalDashboard({
           <div className="prin-campus-badge-card">
             <div className="prin-campus-img-wrap">
               <img
-                src="/subharti-polytechnic-main-building.jpg"
+                src={assetUrl("/subharti-polytechnic-main-building.jpg")}
                 alt="Subharti Polytechnic College Main Academic Building"
                 className="prin-campus-thumb"
               />

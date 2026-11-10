@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../services/authApi";
 import AuthLayout from "../components/AuthLayout";
+import { assetUrl } from "../utils/assetUrl";
 import "./ForgotPassword.css";
 
 export default function ForgotPassword({ onNavigate }) {
@@ -87,7 +88,7 @@ export default function ForgotPassword({ onNavigate }) {
             <div className="forgot-header">
               <div className="forgot-logo-badge">
                 <img
-                  src="/svsu-logo-whiten.webp"
+                  src={assetUrl("/svsu-logo-whiten.webp")}
                   alt="Swami Vivekanand Subharti University"
                   className="forgot-univ-img"
                 />

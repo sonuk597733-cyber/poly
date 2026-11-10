@@ -6,6 +6,7 @@ import {
   CalendarDays, ArrowUp, Keyboard, Type
 } from "lucide-react";
 import { authApi } from "../../services/authApi";
+import { assetUrl } from "../../utils/assetUrl";
 import "./StudentTheme.css";
 import "./StudentNotices.css";
 
@@ -580,7 +581,7 @@ export default function StudentNotices({ showToast }) {
             <div className="nt-read-progress no-print" aria-hidden="true"><span style={{ transform: `scaleX(${progress})` }} /></div>
             <div className="std-notice-document" ref={docRef} onScroll={onDocScroll} style={{ "--ns": fontScale }}>
               <div className="std-trans-header">
-                <img src="/svsu-logo-whiten.webp" alt="SVSU Crest" className="std-trans-crest" />
+                <img src={assetUrl("/svsu-logo-whiten.webp")} alt="SVSU Crest" className="std-trans-crest" />
                 <div className="std-trans-header-text">
                   <h3>SWAMI VIVEKANAND SUBHARTI UNIVERSITY</h3>
                   <h4>OFFICE OF ACADEMIC AFFAIRS &amp; ADMINISTRATION</h4>

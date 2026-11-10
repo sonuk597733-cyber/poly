@@ -14,16 +14,17 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import "./Home.css";
+import { assetUrl } from "../utils/assetUrl";
 
 /* ==========================================================================
    HIGH-RESOLUTION CURATED CAMPUS PHOTOGRAPHY & ASSETS
    ========================================================================== */
 const IMG = {
-  hero: "/subharti-polytechnic-main-building.jpg",
-  heroStudent: "/subharti-polytechnic-main-building.jpg",
-  heroBuilding: "/subharti-polytechnic-main-building.jpg",
+  hero: assetUrl("/subharti-polytechnic-main-building.jpg"),
+  heroStudent: assetUrl("/subharti-polytechnic-main-building.jpg"),
+  heroBuilding: assetUrl("/subharti-polytechnic-main-building.jpg"),
   about: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
-  aboutCampus: "/subharti-polytechnic-main-building.jpg",
+  aboutCampus: assetUrl("/subharti-polytechnic-main-building.jpg"),
   lab: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
   labCs: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
   labMech: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
@@ -52,18 +53,18 @@ export const COLLEGE = {
   affiliation: "Constituent Polytechnic of Swami Vivekanand Subharti University, Meerut (Approved by AICTE)",
   estd: "Estd. 2008",
   location: "Subhartipuram, NH-58, Delhi-Haridwar Bypass Road, Meerut, UP 250005",
-  photo: "/subharti-polytechnic-main-building.jpg",
-  crest: "/svsu-logo-whiten.webp",
+  photo: assetUrl("/subharti-polytechnic-main-building.jpg"),
+  crest: assetUrl("/svsu-logo-whiten.webp"),
   heroSlides: [
     {
-      img: "/subharti-polytechnic-main-building.jpg",
+      img: assetUrl("/subharti-polytechnic-main-building.jpg"),
       eyebrow: "AICTE APPROVED & SVSU CONSTITUENT POLYTECHNIC",
       title: "Subharti Polytechnic College",
       sub: "Hands-on engineering laboratories, certified workshop facilities, and direct industry recruitment across 5 core technical branches.",
       tag: "AICTE Approved • SVSU Constituent"
     },
     {
-      img: "/subharti-polytechnic-main-building.jpg",
+      img: assetUrl("/subharti-polytechnic-main-building.jpg"),
       eyebrow: "INDUSTRY-ALIGNED CURRICULUMS",
       title: "Engineered for Practical Excellence",
       sub: "From modern computer science laboratories to advanced robotic CNC bays, master the tools demanded by global tech employers.",
@@ -78,9 +79,9 @@ export const COLLEGE = {
     }
   ],
   gallery: [
-    { id: "g1", cat: "campus", src: "/subharti-polytechnic-main-building.jpg", title: "Subharti Polytechnic College Main Academic Building", spec: "Administrative & 5 Engineering Departments" },
+    { id: "g1", cat: "campus", src: assetUrl("/subharti-polytechnic-main-building.jpg"), title: "Subharti Polytechnic College Main Academic Building", spec: "Administrative & 5 Engineering Departments" },
     { id: "g2", cat: "labs", src: IMG.labCs, title: "Artificial Intelligence & Cloud Computing Lab", spec: "60 High-End Workstations" },
-    { id: "g3", cat: "campus", src: "/subharti-polytechnic-main-building.jpg", title: "Subharti Knowledge City Campus Facade", spec: "Main Building & Portico Entrance" },
+    { id: "g3", cat: "campus", src: assetUrl("/subharti-polytechnic-main-building.jpg"), title: "Subharti Knowledge City Campus Facade", spec: "Main Building & Portico Entrance" },
     { id: "g4", cat: "labs", src: IMG.labMech, title: "Robotics & Automation Testing Bay", spec: "Industrial 6-Axis Arms" },
     { id: "g5", cat: "campus", src: IMG.library, title: "Central University Digital Library", spec: "50,000+ E-Journals & Books" },
     { id: "g6", cat: "life", src: IMG.hackathon, title: "Annual State Hackathon & Tech Expo", spec: "Student Innovation Arena" },
@@ -545,7 +546,11 @@ function useInView(threshold = 0.25) {
 }
 
 const Img = ({ src, alt = "", className = "" }) => {
-  const [imgSrc, setImgSrc] = useState(src || "/campus-banner.jpg");
+  const resolved = assetUrl(src) || assetUrl("/campus-banner.jpg");
+  const [imgSrc, setImgSrc] = useState(resolved);
+  useEffect(() => {
+    setImgSrc(assetUrl(src) || assetUrl("/campus-banner.jpg"));
+  }, [src]);
   return (
     <img
       className={className}
@@ -553,7 +558,8 @@ const Img = ({ src, alt = "", className = "" }) => {
       alt={alt}
       loading="eager"
       onError={() => {
-        if (imgSrc !== "/campus-banner.jpg") setImgSrc("/campus-banner.jpg");
+        const fallback = assetUrl("/campus-banner.jpg");
+        if (imgSrc !== fallback) setImgSrc(fallback);
       }}
     />
   );
@@ -585,7 +591,7 @@ export const CAMPUS_HOTSPOTS = [
     badge: "Main Engineering Block",
     x: 28,
     y: 34,
-    image: "/subharti-polytechnic-main-building.jpg",
+    image: assetUrl("/subharti-polytechnic-main-building.jpg"),
     description: "5-story state-of-the-art academic block housing multimedia lecture halls, administrative offices, seminar auditorium, and engineering workshops.",
     specs: ["24 Smart Classrooms", "Wi-Fi 6 Campus Mesh", "Central Faculty Suites", "1200 Seat Auditorium"],
     inCharge: "Office of the Principal",
@@ -1824,7 +1830,7 @@ export default function Home({ onNavigate }) {
         {/* Background Panoramic Campus Imagery with Ambient Vignette Overlay */}
         <div className="hero-background-carousel">
           <div className="hero-slide-layer active">
-            <Img src="/subharti-polytechnic-main-building.jpg" alt="Subharti Polytechnic College Main Academic Building" className="hero-backdrop-img" />
+            <Img src={assetUrl("/subharti-polytechnic-main-building.jpg")} alt="Subharti Polytechnic College Main Academic Building" className="hero-backdrop-img" />
             <div className="hero-backdrop-gradient" />
           </div>
         </div>
@@ -1903,14 +1909,14 @@ export default function Home({ onNavigate }) {
                 {/* Main Card: Authentic College Building Showcase */}
                 <div className="hero-main-showcase-card">
                   <Img
-                    src="/subharti-polytechnic-main-building.jpg"
+                    src={assetUrl("/subharti-polytechnic-main-building.jpg")}
                     alt="Subharti Polytechnic College Main Academic Building"
                     className="hero-engineering-photo"
                   />
                   <div className="showcase-glass-footer">
                     <div className="showcase-emblem-row">
                       <img
-                        src="/svsu-logo-whiten.webp"
+                        src={assetUrl("/svsu-logo-whiten.webp")}
                         alt="SVSU Emblem"
                         className="showcase-crest-mini"
                       />
@@ -2514,7 +2520,7 @@ export default function Home({ onNavigate }) {
             {/* Campus Blueprint Map Frame with Beacon Pins */}
             <div className="campus-blueprint-map-frame">
               <Img
-                src="/subharti-polytechnic-main-building.jpg"
+                src={assetUrl("/subharti-polytechnic-main-building.jpg")}
                 alt="Subharti Polytechnic Campus Aerial Blueprint"
                 className="campus-aerial-bg"
               />
@@ -3755,7 +3761,7 @@ export default function Home({ onNavigate }) {
         {/* Institutional Contact Header Banner (Building Image Backdrop + Breadcrumb) */}
         <div className="contact-banner-header">
           <div className="contact-banner-bg" aria-hidden="true">
-            <img src="/subharti-polytechnic-main-building.jpg" alt="Subharti Polytechnic Campus" />
+            <img src={assetUrl("/subharti-polytechnic-main-building.jpg")} alt="Subharti Polytechnic Campus" />
             <div className="contact-banner-gradient-overlay" />
           </div>
           <div className="home-content-wrapper contact-banner-content">

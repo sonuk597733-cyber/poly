@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../services/authApi";
 import AuthLayout from "../components/AuthLayout";
+import { assetUrl } from "../utils/assetUrl";
 import "./Login.css";
 
 export default function Login({ onNavigate }) {
@@ -136,7 +137,7 @@ export default function Login({ onNavigate }) {
             <div className="login-header">
               <div className="login-logo-badge">
                 <img
-                  src="/svsu-logo-whiten.webp"
+                  src={assetUrl("/svsu-logo-whiten.webp")}
                   alt="Swami Vivekanand Subharti University"
                   className="login-univ-img"
                 />

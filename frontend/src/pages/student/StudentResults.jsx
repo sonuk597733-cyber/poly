@@ -8,6 +8,7 @@ import {
   Loader2
 } from "lucide-react";
 import { authApi } from "../../services/authApi";
+import { assetUrl } from "../../utils/assetUrl";
 import "./StudentTheme.css";
 import "./StudentResults.css";
 
@@ -1085,7 +1086,7 @@ export default function StudentResults({ currentUser }) {
                     <div className="svsu-qr-box-col">
                       <div className="svsu-qr-frame">
                         <img
-                          src="/svsu_qr_code_scanned.png"
+                          src={assetUrl("/svsu_qr_code_scanned.png")}
                           alt="Official Verification QR Code"
                           className="svsu-scanned-qr-img"
                           onError={(e) => {
@@ -1130,13 +1131,13 @@ export default function StudentResults({ currentUser }) {
                             studentMeta.avatarUrl.trim() !== "" &&
                             !studentMeta.avatarUrl.includes("default")
                               ? studentMeta.avatarUrl
-                              : "/sonu_kumar_passport_photo.png"
+                              : assetUrl("/sonu_kumar_passport_photo.png")
                           }
                           alt={studentMeta.name}
                           className="svsu-student-passport-photo"
                           onError={(e) => {
                             e.currentTarget.onerror = null;
-                            e.currentTarget.src = "/sonu_kumar_passport_photo.png";
+                            e.currentTarget.src = assetUrl("/sonu_kumar_passport_photo.png");
                           }}
                         />
                       </div>
@@ -1306,7 +1307,7 @@ export default function StudentResults({ currentUser }) {
                     <div className="signature-col left">
                       <div className="signature-img-wrapper">
                         <img
-                          src="/svsu_sign_prepared_scanned.png"
+                          src={assetUrl("/svsu_sign_prepared_scanned.png")}
                           alt="Prepared by Signature"
                           className="authentic-signature-img prepared"
                           onError={(e) => {
@@ -1324,7 +1325,7 @@ export default function StudentResults({ currentUser }) {
                     <div className="signature-col middle">
                       <div className="signature-img-wrapper">
                         <img
-                          src="/svsu_sign_checked_scanned.png"
+                          src={assetUrl("/svsu_sign_checked_scanned.png")}
                           alt="Checked by Signature"
                           className="authentic-signature-img checked"
                           onError={(e) => {
@@ -1344,7 +1345,7 @@ export default function StudentResults({ currentUser }) {
                     <div className="svsu-hologram-seal-col">
                       <div className="hologram-asset-wrapper">
                         <img
-                          src="/svsu_hologram_scanned.png"
+                          src={assetUrl("/svsu_hologram_scanned.png")}
                           alt="Authentic University Hologram"
                           className="authentic-hologram-img"
                           onError={(e) => {
@@ -1361,7 +1362,7 @@ export default function StudentResults({ currentUser }) {
                     <div className="signature-col right">
                       <div className="signature-img-wrapper">
                         <img
-                          src="/svsu_sign_controller_scanned.png"
+                          src={assetUrl("/svsu_sign_controller_scanned.png")}
                           alt="Controller of Examination Signature"
                           className="authentic-signature-img controller"
                           onError={(e) => {
@@ -1443,7 +1444,7 @@ export default function StudentResults({ currentUser }) {
                     style={{ transform: `scale(${docZoom / 100})`, transformOrigin: "top center" }}
                   >
                     <img
-                      src="/svsu_marksheet_scanned_reference.jpg"
+                      src={assetUrl("/svsu_marksheet_scanned_reference.jpg")}
                       alt="Original Scanned SVSU Statement of Marks"
                       className="std-original-scan-img"
                     />
@@ -1458,7 +1459,7 @@ export default function StudentResults({ currentUser }) {
                     <button
                       type="button"
                       className="std-btn-primary"
-                      onClick={() => window.open("/svsu_marksheet_scanned_reference.jpg", "_blank")}
+                      onClick={() => window.open(assetUrl("/svsu_marksheet_scanned_reference.jpg"), "_blank")}
                     >
                       <ExternalLink size={14} />
                       <span>Open Full Resolution Image</span>

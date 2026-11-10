@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { authApi } from "../../services/authApi";
 import { useTheme } from "../../context/ThemeContext";
+import { assetUrl } from "../../utils/assetUrl";
 import "./DashboardLayout.css";
 
 // ============================================================
@@ -681,7 +682,7 @@ export default function DashboardLayout({
           <div className="sidebar-brand-box">
             <div className="brand-logo-pill">
               <img
-                src="/svsu-logo-whiten.webp"
+                src={assetUrl("/svsu-logo-whiten.webp")}
                 alt="SVSU Crest"
                 className="brand-univ-logo"
               />

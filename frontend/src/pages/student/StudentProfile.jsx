@@ -8,6 +8,7 @@ import {
   FileText, UploadCloud
 } from "lucide-react";
 import { authApi } from "../../services/authApi";
+import { assetUrl } from "../../utils/assetUrl";
 
 import "./StudentTheme.css";
 import "./StudentProfile.css";
@@ -162,7 +163,7 @@ export function mergeProfileData(user, roleProfile, rawActivities = []) {
     email: u.email || p.email || "",
     phone: u.phone || p.phone || "",
     avatarUrl: u.avatarUrl || p.avatarUrl || "",
-    coverUrl: u.coverUrl || p.coverUrl || "/campus-banner.jpg",
+    coverUrl: u.coverUrl || p.coverUrl || assetUrl("/campus-banner.jpg"),
     branch: resolvedBranch,
     academicYear: p.academicYear || u.academicYear || "3rd Year",
     semester: p.semester || u.semester || "Semester 5",

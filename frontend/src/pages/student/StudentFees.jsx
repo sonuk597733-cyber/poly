@@ -4,6 +4,7 @@ import {
   QrCode, PieChart, Wallet, Receipt, Search, Clock, AlertCircle
 } from "lucide-react";
 import { authApi } from "../../services/authApi";
+import { assetUrl } from "../../utils/assetUrl";
 import "./StudentTheme.css";
 import "./StudentFees.css";
 
@@ -997,7 +998,7 @@ export default function StudentFees({ currentUser, showToast }) {
               <div className="std-fx-watermark" aria-hidden="true">PAID</div>
 
               <div className="std-trans-header">
-                <img src="/svsu-logo-whiten.webp" alt="SVSU Crest" className="std-trans-crest" />
+                <img src={assetUrl("/svsu-logo-whiten.webp")} alt="SVSU Crest" className="std-trans-crest" />
                 <div className="std-trans-header-text">
                   <h3>SWAMI VIVEKANAND SUBHARTI UNIVERSITY</h3>
                   <h4>SUBHARTI POLYTECHNIC COLLEGE — ACCOUNTS DIVISION</h4>

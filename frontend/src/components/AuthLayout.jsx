@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Home as HomeIcon, ShieldCheck, CheckCircle2 } from "lucide-react";
 import Campus3DCanvas from "./Campus3DCanvas";
 import { CAMPUS_CHAPTERS } from "../data/campusChapters";
+import { assetUrl } from "../utils/assetUrl";
 import "./AuthLayout.css";
 
 /**
@@ -44,7 +45,7 @@ export default function AuthLayout({ children, currentView = "login", onNavigate
             >
               <div className="visual-brand-mini-badge">
                 <img
-                  src="/svsu-logo-whiten.webp"
+                  src={assetUrl("/svsu-logo-whiten.webp")}
                   alt="Swami Vivekanand Subharti University"
                   className="visual-brand-mini-logo"
                 />
